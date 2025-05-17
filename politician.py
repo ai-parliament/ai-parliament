@@ -1,6 +1,5 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain.memory import ConversationBufferMemory
@@ -61,6 +60,7 @@ class Politician:
         return WikipediaQueryRun(api_wrapper=wiki_wrapper)
     
     def _setup_sejm_api_tool(self):
+        # TODO: ogarnąć jak się używa API Sejmu, są tam jakieś ID, jak znaleźć id dla danego posła
         pass
 
     def _get_all_tools(self):

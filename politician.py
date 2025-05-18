@@ -13,7 +13,7 @@ class Politician:
         load_dotenv()
         self.name = name
         self.surname = surname
-        self.memory = ConversationBufferMemory()
+        self.memory = ConversationBufferMemory(return_messages=True)
         self.model = ChatOpenAI(model=os.getenv("GPT_MODEL_NAME"), temperature=0.8, max_completion_tokens=400)
         self.system_prompt = self._set_system_prompt()
 
@@ -32,7 +32,10 @@ class Politician:
             SystemMessage(content=self.system_prompt),
             HumanMessage(content=f"context: [{self.get_context()}] \n\n question: [{question}]")
         ]
+        messages += self.memory.load_memory_variables({})["history"]
+
         response = self.model(messages=messages)
+        self.memory.chat_memory.add_ai_message(response.content)
         return response
     
     def get_general_political_beliefs(self):

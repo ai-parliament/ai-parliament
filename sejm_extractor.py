@@ -40,7 +40,7 @@ class SejmExtractor:
             url = f"https://api.sejm.gov.pl/sejm/term10/MP/{id}/votings/{i}/{date}"
             glosowania = self._get_from_url(url)
             if not glosowania:
-                #jeśli zapytanie zwróci pustą listę to znaczy że 
+                #jeśli zapytanie zwróci pustą listę to znaczy że nie było już więcej posiedzeń tego dnia
                 break
             all_votes_that_day.append(glosowania)
 

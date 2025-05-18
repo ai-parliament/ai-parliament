@@ -1,5 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.tools import Tool
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain.memory import ConversationBufferMemory
@@ -7,6 +8,8 @@ from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langsmith import Client
 import os
 from dotenv import load_dotenv
+from sejm_tools import SejmTools
+from sejm_extractor import SejmExtractor
 
 class Politician:
     def __init__(self, name:str, surname:str):
@@ -46,7 +49,7 @@ class Politician:
             1. Gospodarka: \n\
             2. Polityka zagraniczna: \n\
             3. Polityka społeczna: \n\
-            4. Sprawy światopoglądowe: \n\""
+            4. Sprawy światopoglądowe: \n"
         
         summary = self.agent_executor.invoke({"input" : prompt})
         return summary['output']
@@ -66,13 +69,16 @@ class Politician:
         return WikipediaQueryRun(api_wrapper=wiki_wrapper)
     
     def _setup_sejm_api_tool(self):
-        # TODO: ogarnąć jak się używa API Sejmu, są tam jakieś ID, jak znaleźć id dla danego posła
-        pass
+        self.sejm_toolset = SejmTools("dane_poslow.json")
+        return self.sejm_toolset.get_all_tools()
 
     def _get_all_tools(self):
         #tutaj miejsce na wywołania jeszcze jakichś innych funkcji zwracających narzędzia (?) 
         wiki = self._setup_wikipedia_tool()
-        return [wiki] #tu powinny być wszystkie narzędzia
+        sejm = self._setup_sejm_api_tool()
+
+        #return [wiki]
+        return [wiki, sejm[0], sejm[1]] #tu powinny być wszystkie narzędzia
 
     def _setup_agent(self):
         hub_client = Client(api_key=os.getenv("LANGSMITH_API_KEY"))

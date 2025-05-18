@@ -18,14 +18,13 @@ class Politician:
         self.surname = surname
         self.memory = ConversationBufferMemory(return_messages=True)
         self.model = ChatOpenAI(model=os.getenv("GPT_MODEL_NAME"), temperature=0.8, max_completion_tokens=400)
-        self.system_prompt = self._set_system_prompt()
 
         self.tools = self._get_all_tools()
         self.agent = self._setup_agent()
         self.agent_executor = AgentExecutor(agent=self.agent, tools=self.tools, verbose=True)
 
         self.general_beliefs = self.get_general_political_beliefs()
-
+        self.system_prompt = self._set_system_prompt()
 
     def answer_question(self, question:str) -> str:
         '''
@@ -33,13 +32,30 @@ class Politician:
         '''
         messages = [
             SystemMessage(content=self.system_prompt),
-            HumanMessage(content=f"context: [{self.get_context()}] \n\n question: [{question}]")
+            HumanMessage(content=f"context of the conversation: [{self.memory.load_memory_variables({})['history']}] \n\n question: [{question}]")
         ]
         messages += self.memory.load_memory_variables({})["history"]
 
         response = self.model(messages=messages)
         self.memory.chat_memory.add_ai_message(response.content)
         return response
+    
+        #Próba zrobienia go jako agenta - nie łapie kontekstu i zapomina że jest politykiem (?)
+        #memory = self.memory.load_memory_variables({})["history"]
+
+        # inputs = {
+        #     "input": f"Pytanie: {question}",
+        #     "chat_history": memory
+        # }
+
+        # response = self.agent_executor.invoke(inputs)
+
+        # output = response["output"]
+
+        # self.memory.chat_memory.add_user_message(question)
+        # self.memory.chat_memory.add_ai_message(output)
+
+        return output
     
     def get_general_political_beliefs(self):
         prompt = f"Jakie poglądy polityczne ma {self.name} {self.surname}?\
@@ -61,7 +77,8 @@ class Politician:
     def _set_system_prompt(self):
         system_prompt = f"Jesteś politykiem i nazywasz się {self.name} {self.surname}. \
                     Bierzesz udział w dyskusji z innymi politykami.\
-                    Odpowiadasz w oparciu o własne poglądy polityczne i uwzględniając wypowiedzi innych uczestników."
+                    Odpowiadasz w oparciu o własne poglądy polityczne i uwzględniając wypowiedzi innych uczestników.\n\n \
+                    Oto kontekst na temat tego jakie są twoje poglądy: context[{self.general_beliefs}]"
         return system_prompt
 
     def _setup_wikipedia_tool(self) -> WikipediaQueryRun:

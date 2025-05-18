@@ -1,5 +1,5 @@
-{
-  "1": {
+[
+  {
     "accusativeName": "Andrzeja Adamczyka",
     "active": true,
     "birthDate": "1959-01-04",
@@ -20,7 +20,7 @@
     "secondName": "Mieczysław",
     "voivodeship": "małopolskie"
   },
-  "2": {
+  {
     "accusativeName": "Piotra Adamowicza",
     "active": true,
     "birthDate": "1961-06-26",
@@ -40,7 +40,7 @@
     "profession": "dziennikarz",
     "voivodeship": "pomorskie"
   },
-  "3": {
+  {
     "accusativeName": "Adama Andruszkiewicza",
     "active": true,
     "birthDate": "1990-06-30",
@@ -60,7 +60,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "podlaskie"
   },
-  "4": {
+  {
     "accusativeName": "Waldemara Andzela",
     "active": true,
     "birthDate": "1971-09-17",
@@ -81,7 +81,7 @@
     "secondName": "Franciszek",
     "voivodeship": "śląskie"
   },
-  "5": {
+  {
     "accusativeName": "Dorotę Arciszewską-Mielewczyk",
     "active": true,
     "birthDate": "1968-02-16",
@@ -102,7 +102,7 @@
     "secondName": "Irvina",
     "voivodeship": "pomorskie"
   },
-  "6": {
+  {
     "accusativeName": "Jana Krzysztofa Ardanowskiego",
     "active": true,
     "birthDate": "1961-02-11",
@@ -123,7 +123,7 @@
     "secondName": "Krzysztof",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "7": {
+  {
     "accusativeName": "Iwonę Ewę Arent",
     "active": true,
     "birthDate": "1968-06-04",
@@ -144,7 +144,7 @@
     "secondName": "Ewa",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "8": {
+  {
     "accusativeName": "Bartosza Arłukowicza",
     "active": false,
     "birthDate": "1971-12-30",
@@ -167,7 +167,7 @@
     "voivodeship": "zachodniopomorskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "9": {
+  {
     "accusativeName": "Marka Asta",
     "active": true,
     "birthDate": "1958-09-27",
@@ -187,7 +187,7 @@
     "profession": "pracownik samorządowy, radca prawny, urzędnik państwowy",
     "voivodeship": "lubuskie"
   },
-  "10": {
+  {
     "accusativeName": "Urszulę Augustyn",
     "active": true,
     "birthDate": "1964-09-01",
@@ -207,7 +207,7 @@
     "profession": "dziennikarz",
     "voivodeship": "małopolskie"
   },
-  "11": {
+  {
     "accusativeName": "Piotra Babinetza",
     "active": true,
     "birthDate": "1969-09-09",
@@ -228,7 +228,7 @@
     "secondName": "Mieczysław",
     "voivodeship": "podkarpackie"
   },
-  "12": {
+  {
     "accusativeName": "Ryszarda Bartosika",
     "active": true,
     "birthDate": "1968-01-11",
@@ -248,7 +248,7 @@
     "profession": "politolog",
     "voivodeship": "wielkopolskie"
   },
-  "13": {
+  {
     "accusativeName": "Władysława Bartoszewskiego",
     "active": true,
     "birthDate": "1955-10-22",
@@ -269,7 +269,7 @@
     "secondName": "Teofil",
     "voivodeship": "mazowieckie"
   },
-  "14": {
+  {
     "accusativeName": "Barbarę Bartuś",
     "active": true,
     "birthDate": "1967-07-03",
@@ -290,7 +290,7 @@
     "secondName": "Halina",
     "voivodeship": "małopolskie"
   },
-  "15": {
+  {
     "accusativeName": "Pawła Bejdę",
     "active": true,
     "birthDate": "1962-10-13",
@@ -311,7 +311,7 @@
     "secondName": "Jan",
     "voivodeship": "łódzkie"
   },
-  "16": {
+  {
     "accusativeName": "Konrada Berkowicza",
     "active": true,
     "birthDate": "1984-05-27",
@@ -332,7 +332,7 @@
     "secondName": "Szczepan",
     "voivodeship": "małopolskie"
   },
-  "17": {
+  {
     "accusativeName": "Sylwię Bielawską",
     "active": true,
     "birthDate": "1975-04-27",
@@ -353,7 +353,7 @@
     "secondName": "Alina",
     "voivodeship": "dolnośląskie"
   },
-  "18": {
+  {
     "accusativeName": "Marka Biernackiego",
     "active": true,
     "birthDate": "1959-04-28",
@@ -373,7 +373,7 @@
     "profession": "prawnik",
     "voivodeship": "pomorskie"
   },
-  "19": {
+  {
     "accusativeName": "Pawła Bliźniuka",
     "active": true,
     "birthDate": "1986-10-11",
@@ -394,7 +394,7 @@
     "secondName": "Kazimierz",
     "voivodeship": "łódzkie"
   },
-  "20": {
+  {
     "accusativeName": "Mariusza Błaszczaka",
     "active": true,
     "birthDate": "1969-09-19",
@@ -414,7 +414,7 @@
     "profession": "urzędnik państwowy",
     "voivodeship": "mazowieckie"
   },
-  "21": {
+  {
     "accusativeName": "Mateusza Bochenka",
     "active": true,
     "birthDate": "1993-03-12",
@@ -434,7 +434,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "śląskie"
   },
-  "22": {
+  {
     "accusativeName": "Rafała Bochenka",
     "active": true,
     "birthDate": "1986-08-14",
@@ -455,7 +455,7 @@
     "secondName": "Paweł",
     "voivodeship": "małopolskie"
   },
-  "23": {
+  {
     "accusativeName": "Izabelę Bodnar",
     "active": true,
     "birthDate": "1975-02-13",
@@ -476,7 +476,7 @@
     "secondName": "Anna",
     "voivodeship": "dolnośląskie"
   },
-  "24": {
+  {
     "accusativeName": "Jacka Boguckiego",
     "active": true,
     "birthDate": "1959-02-13",
@@ -496,7 +496,7 @@
     "profession": "inżynier mechanik",
     "voivodeship": "podlaskie"
   },
-  "25": {
+  {
     "accusativeName": "Zbigniewa Boguckiego",
     "active": true,
     "birthDate": "1980-01-26",
@@ -516,7 +516,7 @@
     "profession": "adwokat",
     "voivodeship": "zachodniopomorskie"
   },
-  "26": {
+  {
     "accusativeName": "Krzysztofa Bojarskiego",
     "active": true,
     "birthDate": "1968-07-11",
@@ -536,7 +536,7 @@
     "profession": "lekarz",
     "voivodeship": "lubelskie"
   },
-  "27": {
+  {
     "accusativeName": "Joannę Borowiak",
     "active": true,
     "birthDate": "1967-08-20",
@@ -557,7 +557,7 @@
     "secondName": "Beata",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "28": {
+  {
     "accusativeName": "Kamila Bortniczuka",
     "active": true,
     "birthDate": "1983-06-11",
@@ -577,7 +577,7 @@
     "profession": "menedżer, prawnik, urzędnik państwowy",
     "voivodeship": "mazowieckie"
   },
-  "29": {
+  {
     "accusativeName": "Piotra Borysa",
     "active": true,
     "birthDate": "1976-01-11",
@@ -597,7 +597,7 @@
     "profession": "prawnik",
     "voivodeship": "dolnośląskie"
   },
-  "30": {
+  {
     "accusativeName": "Bożenę Borys-Szopę",
     "active": true,
     "birthDate": "1954-03-11",
@@ -618,7 +618,7 @@
     "secondName": "Teresa",
     "voivodeship": "śląskie"
   },
-  "31": {
+  {
     "accusativeName": "Marcina Bosackiego",
     "active": true,
     "birthDate": "1970-11-05",
@@ -638,7 +638,7 @@
     "secondName": "Rafał",
     "voivodeship": "wielkopolskie"
   },
-  "32": {
+  {
     "accusativeName": "Karinę Annę Bosak",
     "active": true,
     "birthDate": "1988-07-08",
@@ -659,7 +659,7 @@
     "secondName": "Anna",
     "voivodeship": "mazowieckie"
   },
-  "33": {
+  {
     "accusativeName": "Krzysztofa Bosaka",
     "active": true,
     "birthDate": "1982-06-13",
@@ -679,7 +679,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "podlaskie"
   },
-  "34": {
+  {
     "accusativeName": "Grzegorza Brauna",
     "active": false,
     "birthDate": "1967-03-11",
@@ -702,7 +702,7 @@
     "voivodeship": "podkarpackie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "35": {
+  {
     "accusativeName": "Krzysztofa Brejzę",
     "active": false,
     "birthDate": "1983-05-16",
@@ -724,7 +724,7 @@
     "voivodeship": "kujawsko-pomorskie",
     "waiverDesc": "Objął mandat posła do Parlamentu Europejskiego"
   },
-  "36": {
+  {
     "accusativeName": "Agnieszkę Buczyńską",
     "active": true,
     "birthDate": "1986-09-22",
@@ -745,7 +745,7 @@
     "secondName": "MARIA",
     "voivodeship": "pomorskie"
   },
-  "37": {
+  {
     "accusativeName": "Waldemara Budę",
     "active": false,
     "birthDate": "1982-09-21",
@@ -768,7 +768,7 @@
     "voivodeship": "łódzkie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "38": {
+  {
     "accusativeName": "Borysa Budkę",
     "active": false,
     "birthDate": "1978-03-11",
@@ -791,7 +791,7 @@
     "voivodeship": "śląskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "39": {
+  {
     "accusativeName": "Elżbietę Burkiewicz",
     "active": true,
     "birthDate": "1964-10-17",
@@ -812,7 +812,7 @@
     "secondName": "Jolanta",
     "voivodeship": "podkarpackie"
   },
-  "40": {
+  {
     "accusativeName": "Lidię Burzyńską",
     "active": true,
     "birthDate": "1964-08-27",
@@ -833,7 +833,7 @@
     "secondName": "Ewa",
     "voivodeship": "śląskie"
   },
-  "41": {
+  {
     "accusativeName": "Marka Jana Chmielewskiego",
     "active": true,
     "birthDate": "1962-05-06",
@@ -854,7 +854,7 @@
     "secondName": "Jan",
     "voivodeship": "dolnośląskie"
   },
-  "42": {
+  {
     "accusativeName": "Zbigniewa Chmielowca",
     "active": true,
     "birthDate": "1954-09-22",
@@ -875,7 +875,7 @@
     "secondName": "Michał",
     "voivodeship": "podkarpackie"
   },
-  "43": {
+  {
     "accusativeName": "Artura Chojeckiego",
     "active": true,
     "birthDate": "1974-04-19",
@@ -896,7 +896,7 @@
     "secondName": "Henryk",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "44": {
+  {
     "accusativeName": "Kazimierza Bogusława Chomę",
     "active": true,
     "birthDate": "1957-12-16",
@@ -917,7 +917,7 @@
     "secondName": "Bogusław",
     "voivodeship": "lubelskie"
   },
-  "45": {
+  {
     "accusativeName": "Dominikę Chorosińską",
     "active": true,
     "birthDate": "1978-12-29",
@@ -938,7 +938,7 @@
     "secondName": "Małgorzata",
     "voivodeship": "mazowieckie"
   },
-  "46": {
+  {
     "accusativeName": "Tadeusza Chrzana",
     "active": true,
     "birthDate": "1963-09-14",
@@ -958,7 +958,7 @@
     "profession": "geodeta",
     "voivodeship": "podkarpackie"
   },
-  "47": {
+  {
     "accusativeName": "Alicję Chybicką",
     "active": true,
     "birthDate": "1951-05-10",
@@ -979,7 +979,7 @@
     "secondName": "Paulina",
     "voivodeship": "dolnośląskie"
   },
-  "48": {
+  {
     "accusativeName": "Annę Ewę Cicholską",
     "active": true,
     "birthDate": "1962-02-07",
@@ -1000,7 +1000,7 @@
     "secondName": "Ewa",
     "voivodeship": "mazowieckie"
   },
-  "49": {
+  {
     "accusativeName": "Janusza Cichonia",
     "active": true,
     "birthDate": "1957-01-07",
@@ -1021,7 +1021,7 @@
     "secondName": "Władysław",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "50": {
+  {
     "accusativeName": "Krzysztofa Cieciórę",
     "active": true,
     "birthDate": "1989-06-27",
@@ -1041,7 +1041,7 @@
     "secondName": "Jan",
     "voivodeship": "łódzkie"
   },
-  "51": {
+  {
     "accusativeName": "Janusza Cieszyńskiego",
     "active": true,
     "birthDate": "1988-05-06",
@@ -1062,7 +1062,7 @@
     "secondName": "Antoni",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "52": {
+  {
     "accusativeName": "Michała Cieślaka",
     "active": true,
     "birthDate": "1974-12-09",
@@ -1082,7 +1082,7 @@
     "profession": "ekonomista",
     "voivodeship": "świętokrzyskie"
   },
-  "53": {
+  {
     "accusativeName": "Żanetę Cwalinę-Śliwowską",
     "active": true,
     "birthDate": "1978-12-10",
@@ -1102,7 +1102,7 @@
     "profession": "pedagog, trener",
     "voivodeship": "mazowieckie"
   },
-  "54": {
+  {
     "accusativeName": "Krzysztofa Czarneckiego",
     "active": true,
     "birthDate": "1957-10-25",
@@ -1123,7 +1123,7 @@
     "secondName": "Władysław",
     "voivodeship": "wielkopolskie"
   },
-  "55": {
+  {
     "accusativeName": "Witolda Wojciecha Czarneckiego",
     "active": true,
     "birthDate": "1953-04-12",
@@ -1144,7 +1144,7 @@
     "secondName": "Wojciech",
     "voivodeship": "wielkopolskie"
   },
-  "56": {
+  {
     "accusativeName": "Przemysława Czarnka",
     "active": true,
     "birthDate": "1977-06-11",
@@ -1164,7 +1164,7 @@
     "profession": "prawnik",
     "voivodeship": "lubelskie"
   },
-  "57": {
+  {
     "accusativeName": "Arkadiusza Czartoryskiego",
     "active": true,
     "birthDate": "1966-04-14",
@@ -1184,7 +1184,7 @@
     "profession": "urzędnik samorządowy",
     "voivodeship": "mazowieckie"
   },
-  "58": {
+  {
     "accusativeName": "Włodzimierza Czarzastego",
     "active": true,
     "birthDate": "1960-05-03",
@@ -1204,7 +1204,7 @@
     "profession": "politolog",
     "voivodeship": "śląskie"
   },
-  "59": {
+  {
     "accusativeName": "Jacka Czerniaka",
     "active": true,
     "birthDate": "1964-08-30",
@@ -1225,7 +1225,7 @@
     "secondName": "Andrzej",
     "voivodeship": "lubelskie"
   },
-  "60": {
+  {
     "accusativeName": "Zofię Czernow",
     "active": true,
     "birthDate": "1950-09-30",
@@ -1245,7 +1245,7 @@
     "profession": "ekonomista",
     "voivodeship": "dolnośląskie"
   },
-  "61": {
+  {
     "accusativeName": "Anitę Czerwińską",
     "active": true,
     "birthDate": "1970-01-13",
@@ -1265,7 +1265,7 @@
     "profession": "prawnik",
     "voivodeship": "mazowieckie"
   },
-  "62": {
+  {
     "accusativeName": "Katarzynę Czocharę",
     "active": true,
     "birthDate": "1969-11-03",
@@ -1286,7 +1286,7 @@
     "secondName": "Beata",
     "voivodeship": "opolskie"
   },
-  "63": {
+  {
     "accusativeName": "Sławomira Ćwika",
     "active": true,
     "birthDate": "1972-01-21",
@@ -1306,7 +1306,7 @@
     "profession": "menedżer, prawnik, przedsiębiorca prywatny",
     "voivodeship": "lubelskie"
   },
-  "64": {
+  {
     "accusativeName": "Władysława Dajczaka",
     "active": true,
     "birthDate": "1959-07-10",
@@ -1326,7 +1326,7 @@
     "profession": "inżynier mechanik",
     "voivodeship": "lubuskie"
   },
-  "65": {
+  {
     "accusativeName": "Annę Dąbrowską-Banaszek",
     "active": true,
     "birthDate": "1961-04-14",
@@ -1346,7 +1346,7 @@
     "profession": "lekarz",
     "voivodeship": "lubelskie"
   },
-  "66": {
+  {
     "accusativeName": "Zbigniewa Dolatę",
     "active": true,
     "birthDate": "1965-12-01",
@@ -1366,7 +1366,7 @@
     "profession": "nauczyciel",
     "voivodeship": "wielkopolskie"
   },
-  "67": {
+  {
     "accusativeName": "Barbarę Dolniak",
     "active": true,
     "birthDate": "1960-09-12",
@@ -1386,7 +1386,7 @@
     "profession": "prawnik",
     "voivodeship": "śląskie"
   },
-  "68": {
+  {
     "accusativeName": "Andrzeja Domańskiego",
     "active": true,
     "birthDate": "1981-08-27",
@@ -1407,7 +1407,7 @@
     "secondName": "Jan",
     "voivodeship": "mazowieckie"
   },
-  "69": {
+  {
     "accusativeName": "Bartłomieja Dorywalskiego",
     "active": true,
     "birthDate": "1979-08-16",
@@ -1427,7 +1427,7 @@
     "profession": "radca prawny",
     "voivodeship": "świętokrzyskie"
   },
-  "70": {
+  {
     "accusativeName": "Roberta Dowhana",
     "active": true,
     "birthDate": "1967-07-14",
@@ -1446,7 +1446,7 @@
     "numberOfVotes": 14761,
     "voivodeship": "lubuskie"
   },
-  "71": {
+  {
     "accusativeName": "Przemysława Drabka",
     "active": true,
     "birthDate": "1979-10-02",
@@ -1467,7 +1467,7 @@
     "secondName": "Mieczysław",
     "voivodeship": "śląskie"
   },
-  "72": {
+  {
     "accusativeName": "Elżbietę Dudę",
     "active": true,
     "birthDate": "1962-11-20",
@@ -1487,7 +1487,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "małopolskie"
   },
-  "73": {
+  {
     "accusativeName": "Michała Pawła Dworczyka",
     "active": false,
     "birthDate": "1975-07-22",
@@ -1510,7 +1510,7 @@
     "voivodeship": "dolnośląskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "74": {
+  {
     "accusativeName": "Adama Dziedzica",
     "active": true,
     "birthDate": "1969-09-26",
@@ -1530,7 +1530,7 @@
     "profession": "inżynier mechanik",
     "voivodeship": "podkarpackie"
   },
-  "75": {
+  {
     "accusativeName": "Jana Michała Dziedziczaka",
     "active": true,
     "birthDate": "1981-08-03",
@@ -1551,7 +1551,7 @@
     "secondName": "Michał",
     "voivodeship": "wielkopolskie"
   },
-  "76": {
+  {
     "accusativeName": "Agnieszkę Dziemianowicz-Bąk",
     "active": true,
     "birthDate": "1984-01-20",
@@ -1572,7 +1572,7 @@
     "secondName": "Ewa",
     "voivodeship": "pomorskie"
   },
-  "77": {
+  {
     "accusativeName": "Magdalenę Filiks",
     "active": true,
     "birthDate": "1978-12-08",
@@ -1592,7 +1592,7 @@
     "profession": "ekonomista",
     "voivodeship": "zachodniopomorskie"
   },
-  "78": {
+  {
     "accusativeName": "Magdalenę Filipek-Sobczak",
     "active": true,
     "birthDate": "1983-09-07",
@@ -1612,7 +1612,7 @@
     "profession": "prawnik",
     "voivodeship": "lubelskie"
   },
-  "79": {
+  {
     "accusativeName": "Radosława Fogla",
     "active": true,
     "birthDate": "1982-02-16",
@@ -1633,7 +1633,7 @@
     "secondName": "Aleksander",
     "voivodeship": "mazowieckie"
   },
-  "80": {
+  {
     "accusativeName": "Bronisława Foltyna",
     "active": true,
     "birthDate": "1974-08-12",
@@ -1654,7 +1654,7 @@
     "secondName": "Edward",
     "voivodeship": "śląskie"
   },
-  "81": {
+  {
     "accusativeName": "Romana Fritza",
     "active": true,
     "birthDate": "1966-01-03",
@@ -1675,7 +1675,7 @@
     "secondName": "Henryk",
     "voivodeship": "śląskie"
   },
-  "82": {
+  {
     "accusativeName": "Joannę Frydrych",
     "active": true,
     "birthDate": "1978-01-13",
@@ -1696,7 +1696,7 @@
     "secondName": "Zofia",
     "voivodeship": "podkarpackie"
   },
-  "83": {
+  {
     "accusativeName": "Konrada Frysztaka",
     "active": true,
     "birthDate": "1986-02-15",
@@ -1716,7 +1716,7 @@
     "profession": "dziennikarz, prawnik",
     "voivodeship": "mazowieckie"
   },
-  "84": {
+  {
     "accusativeName": "Patryka Gabriela",
     "active": true,
     "birthDate": "1977-03-29",
@@ -1736,7 +1736,7 @@
     "profession": "urzędnik samorządowy",
     "voivodeship": "pomorskie"
   },
-  "85": {
+  {
     "accusativeName": "Krzysztofa Gadowskiego",
     "active": true,
     "birthDate": "1962-08-14",
@@ -1757,7 +1757,7 @@
     "secondName": "Jan",
     "voivodeship": "śląskie"
   },
-  "86": {
+  {
     "accusativeName": "Aleksandrę Gajewską",
     "active": true,
     "birthDate": "1989-08-22",
@@ -1778,7 +1778,7 @@
     "secondName": "Małgorzata",
     "voivodeship": "mazowieckie"
   },
-  "87": {
+  {
     "accusativeName": "Kingę Gajewską",
     "active": true,
     "birthDate": "1990-07-22",
@@ -1799,7 +1799,7 @@
     "secondName": "Magdalena",
     "voivodeship": "mazowieckie"
   },
-  "88": {
+  {
     "accusativeName": "Elżbietę Gapińską",
     "active": true,
     "birthDate": "1960-10-03",
@@ -1820,7 +1820,7 @@
     "secondName": "Teresa",
     "voivodeship": "mazowieckie"
   },
-  "89": {
+  {
     "accusativeName": "Kamilę Gasiuk-Pihowicz",
     "active": false,
     "birthDate": "1983-05-08",
@@ -1842,7 +1842,7 @@
     "voivodeship": "mazowieckie",
     "waiverDesc": "Wybrana na posła do Parlamentu Europejskiego"
   },
-  "90": {
+  {
     "accusativeName": "Krzysztofa Gawkowskiego",
     "active": true,
     "birthDate": "1980-04-11",
@@ -1863,7 +1863,7 @@
     "secondName": "Kamil",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "91": {
+  {
     "accusativeName": "Zdzisława Gawlika",
     "active": true,
     "birthDate": "1960-09-12",
@@ -1883,7 +1883,7 @@
     "profession": "nauczyciel akademicki",
     "voivodeship": "podkarpackie"
   },
-  "92": {
+  {
     "accusativeName": "Andrzeja Gawrona",
     "active": true,
     "birthDate": "1965-01-06",
@@ -1904,7 +1904,7 @@
     "secondName": "Janusz",
     "voivodeship": "śląskie"
   },
-  "93": {
+  {
     "accusativeName": "Grzegorza Gażę",
     "active": true,
     "birthDate": "1972-03-23",
@@ -1925,7 +1925,7 @@
     "secondName": "Krzysztof",
     "voivodeship": "śląskie"
   },
-  "94": {
+  {
     "accusativeName": "Elżbietę Gelert",
     "active": true,
     "birthDate": "1955-04-22",
@@ -1946,7 +1946,7 @@
     "secondName": "Kazimiera",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "95": {
+  {
     "accusativeName": "Annę Gembicką",
     "active": true,
     "birthDate": "1991-11-07",
@@ -1967,7 +1967,7 @@
     "secondName": "Urszula",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "96": {
+  {
     "accusativeName": "Artura Daniela Gieradę",
     "active": true,
     "birthDate": "1979-04-21",
@@ -1988,7 +1988,7 @@
     "secondName": "Daniel",
     "voivodeship": "świętokrzyskie"
   },
-  "97": {
+  {
     "accusativeName": "Romana Giertycha",
     "active": true,
     "birthDate": "1971-02-27",
@@ -2009,7 +2009,7 @@
     "secondName": "Jacek",
     "voivodeship": "świętokrzyskie"
   },
-  "98": {
+  {
     "accusativeName": "Włodzisława Gizińskiego",
     "active": true,
     "birthDate": "1952-10-19",
@@ -2028,7 +2028,7 @@
     "numberOfVotes": 13630,
     "voivodeship": "kujawsko-pomorskie"
   },
-  "99": {
+  {
     "accusativeName": "Szymona Giżyńskiego",
     "active": true,
     "birthDate": "1956-03-08",
@@ -2049,7 +2049,7 @@
     "secondName": "Stanisław",
     "voivodeship": "śląskie"
   },
-  "100": {
+  {
     "accusativeName": "Piotra Glińskiego",
     "active": true,
     "birthDate": "1954-04-20",
@@ -2070,7 +2070,7 @@
     "secondName": "Tadeusz",
     "voivodeship": "mazowieckie"
   },
-  "101": {
+  {
     "accusativeName": "Tomasza Głogowskiego",
     "active": true,
     "birthDate": "1974-12-30",
@@ -2091,7 +2091,7 @@
     "secondName": "Marian",
     "voivodeship": "śląskie"
   },
-  "102": {
+  {
     "accusativeName": "Piotra Głowskiego",
     "active": true,
     "birthDate": "1967-07-22",
@@ -2112,7 +2112,7 @@
     "secondName": "Krzysztof",
     "voivodeship": "wielkopolskie"
   },
-  "103": {
+  {
     "accusativeName": "Martę Golbik",
     "active": true,
     "birthDate": "1985-04-14",
@@ -2133,7 +2133,7 @@
     "secondName": "Joanna",
     "voivodeship": "śląskie"
   },
-  "104": {
+  {
     "accusativeName": "Małgorzatę Golińską",
     "active": true,
     "birthDate": "1980-10-30",
@@ -2154,7 +2154,7 @@
     "secondName": "Joanna",
     "voivodeship": "zachodniopomorskie"
   },
-  "105": {
+  {
     "accusativeName": "Kazimierza Gołojucha",
     "active": true,
     "birthDate": "1964-02-05",
@@ -2175,7 +2175,7 @@
     "secondName": "Edward",
     "voivodeship": "podkarpackie"
   },
-  "106": {
+  {
     "accusativeName": "Adama Gomołę",
     "active": true,
     "birthDate": "1999-01-20",
@@ -2196,7 +2196,7 @@
     "secondName": "Michał",
     "voivodeship": "opolskie"
   },
-  "107": {
+  {
     "accusativeName": "Roberta Gontarza",
     "active": true,
     "birthDate": "1993-07-02",
@@ -2216,7 +2216,7 @@
     "profession": "ekonomista, matematyk, parlamentarzysta",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "108": {
+  {
     "accusativeName": "Stanisława Gorczycę",
     "active": true,
     "birthDate": "1958-07-27",
@@ -2237,7 +2237,7 @@
     "secondName": "Andrzej",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "109": {
+  {
     "accusativeName": "Mariusza Goska",
     "active": true,
     "birthDate": "1982-08-20",
@@ -2258,7 +2258,7 @@
     "secondName": "Marek",
     "voivodeship": "świętokrzyskie"
   },
-  "110": {
+  {
     "accusativeName": "Darię Gosek-Popiołek",
     "active": true,
     "birthDate": "1985-04-16",
@@ -2279,7 +2279,7 @@
     "secondName": "Iwona",
     "voivodeship": "małopolskie"
   },
-  "111": {
+  {
     "accusativeName": "Małgorzatę Gosiewską",
     "active": false,
     "birthDate": "1966-07-22",
@@ -2302,7 +2302,7 @@
     "voivodeship": "mazowieckie",
     "waiverDesc": "Wybrana na posła do Parlamentu Europejskiego"
   },
-  "112": {
+  {
     "accusativeName": "Piotra Górnikiewicza",
     "active": true,
     "birthDate": "1972-07-09",
@@ -2323,7 +2323,7 @@
     "secondName": "Tadeusz",
     "voivodeship": "małopolskie"
   },
-  "113": {
+  {
     "accusativeName": "Agnieszkę Górską",
     "active": true,
     "birthDate": "1976-01-01",
@@ -2344,7 +2344,7 @@
     "secondName": "Beata",
     "voivodeship": "mazowieckie"
   },
-  "114": {
+  {
     "accusativeName": "Krzysztofa Grabczuka",
     "active": true,
     "birthDate": "1962-04-22",
@@ -2364,7 +2364,7 @@
     "profession": "nauczyciel akademicki",
     "voivodeship": "lubelskie"
   },
-  "115": {
+  {
     "accusativeName": "Jana Grabca",
     "active": true,
     "birthDate": "1972-11-02",
@@ -2385,7 +2385,7 @@
     "secondName": "Stanisław",
     "voivodeship": "mazowieckie"
   },
-  "116": {
+  {
     "accusativeName": "Marcina Grabowskiego",
     "active": true,
     "birthDate": "1981-04-06",
@@ -2405,7 +2405,7 @@
     "profession": "pracownik administracji państwowej",
     "voivodeship": "mazowieckie"
   },
-  "117": {
+  {
     "accusativeName": "Michała Gramatykę",
     "active": true,
     "birthDate": "1971-10-08",
@@ -2426,7 +2426,7 @@
     "secondName": "Sebastian",
     "voivodeship": "śląskie"
   },
-  "118": {
+  {
     "accusativeName": "Małgorzatę Gromadzką",
     "active": true,
     "birthDate": "1985-03-24",
@@ -2446,7 +2446,7 @@
     "profession": "pracownik administracji samorządowej",
     "voivodeship": "lubelskie"
   },
-  "119": {
+  {
     "accusativeName": "Marka Gróbarczyka",
     "active": true,
     "birthDate": "1968-03-13",
@@ -2466,7 +2466,7 @@
     "profession": "inżynier mechanik",
     "voivodeship": "zachodniopomorskie"
   },
-  "120": {
+  {
     "accusativeName": "Andrzeja Grzyba",
     "active": true,
     "birthDate": "1956-08-23",
@@ -2487,7 +2487,7 @@
     "secondName": "Marian",
     "voivodeship": "wielkopolskie"
   },
-  "121": {
+  {
     "accusativeName": "Andrzeja Gut-Mostowego",
     "active": true,
     "birthDate": "1960-10-30",
@@ -2507,7 +2507,7 @@
     "profession": "ekonomista",
     "voivodeship": "małopolskie"
   },
-  "122": {
+  {
     "accusativeName": "Kazimierza Gwiazdowskiego",
     "active": true,
     "birthDate": "1962-06-10",
@@ -2527,7 +2527,7 @@
     "profession": "rolnik",
     "voivodeship": "podlaskie"
   },
-  "123": {
+  {
     "accusativeName": "Marcina Gwoździa",
     "active": true,
     "birthDate": "1977-12-14",
@@ -2548,7 +2548,7 @@
     "secondName": "Piotr",
     "voivodeship": "dolnośląskie"
   },
-  "124": {
+  {
     "accusativeName": "Marka Gzika",
     "active": true,
     "birthDate": "1971-09-03",
@@ -2569,7 +2569,7 @@
     "secondName": "Krzysztof",
     "voivodeship": "śląskie"
   },
-  "125": {
+  {
     "accusativeName": "Krzysztofa Haburę",
     "active": true,
     "birthDate": "1956-06-02",
@@ -2590,7 +2590,7 @@
     "secondName": "Stefan",
     "voivodeship": "łódzkie"
   },
-  "126": {
+  {
     "accusativeName": "Agnieszkę Hanajczyk",
     "active": true,
     "birthDate": "1963-01-12",
@@ -2611,7 +2611,7 @@
     "secondName": "Małgorzata",
     "voivodeship": "łódzkie"
   },
-  "127": {
+  {
     "accusativeName": "Iwonę Hartwich",
     "active": true,
     "birthDate": "1970-09-06",
@@ -2631,7 +2631,7 @@
     "profession": "sprzedawca",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "128": {
+  {
     "accusativeName": "Paulinę Hennig-Kloskę",
     "active": true,
     "birthDate": "1977-10-05",
@@ -2651,7 +2651,7 @@
     "profession": "bankowiec, dziennikarz, ekonomista",
     "voivodeship": "wielkopolskie"
   },
-  "129": {
+  {
     "accusativeName": "Krzysztofa Hetmana",
     "active": false,
     "birthDate": "1974-06-27",
@@ -2674,7 +2674,7 @@
     "voivodeship": "lubelskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "130": {
+  {
     "accusativeName": "Czesława Hoca",
     "active": true,
     "birthDate": "1954-02-22",
@@ -2694,7 +2694,7 @@
     "profession": "lekarz",
     "voivodeship": "zachodniopomorskie"
   },
-  "131": {
+  {
     "accusativeName": "Zbigniewa Hoffmanna",
     "active": true,
     "birthDate": "1963-07-05",
@@ -2715,7 +2715,7 @@
     "secondName": "Grzegorz",
     "voivodeship": "wielkopolskie"
   },
-  "132": {
+  {
     "accusativeName": "Marka Tomasza Hoka",
     "active": true,
     "birthDate": "1953-06-15",
@@ -2736,7 +2736,7 @@
     "secondName": "Tomasz",
     "voivodeship": "zachodniopomorskie"
   },
-  "133": {
+  {
     "accusativeName": "Szymona Hołownię",
     "active": true,
     "birthDate": "1976-09-03",
@@ -2757,7 +2757,7 @@
     "secondName": "Franciszek",
     "voivodeship": "podlaskie"
   },
-  "134": {
+  {
     "accusativeName": "Marcina Horałę",
     "active": true,
     "birthDate": "1981-10-02",
@@ -2778,7 +2778,7 @@
     "secondName": "Michał",
     "voivodeship": "pomorskie"
   },
-  "135": {
+  {
     "accusativeName": "Łukasza Horbatowskiego",
     "active": true,
     "birthDate": "1980-05-14",
@@ -2798,7 +2798,7 @@
     "profession": "pracownik samorządowy",
     "voivodeship": "dolnośląskie"
   },
-  "136": {
+  {
     "accusativeName": "Pawła Hreniaka",
     "active": true,
     "birthDate": "1979-09-09",
@@ -2819,7 +2819,7 @@
     "secondName": "Marek",
     "voivodeship": "dolnośląskie"
   },
-  "137": {
+  {
     "accusativeName": "Pawła Jabłońskiego",
     "active": true,
     "birthDate": "1986-01-25",
@@ -2839,7 +2839,7 @@
     "profession": "adwokat",
     "voivodeship": "śląskie"
   },
-  "138": {
+  {
     "accusativeName": "Klaudię Jachirę",
     "active": true,
     "birthDate": "1988-05-31",
@@ -2860,7 +2860,7 @@
     "secondName": "Krystyna",
     "voivodeship": "mazowieckie"
   },
-  "139": {
+  {
     "accusativeName": "Marka Jakubiaka",
     "active": true,
     "birthDate": "1959-04-30",
@@ -2880,7 +2880,7 @@
     "profession": "przedsiębiorca prywatny",
     "voivodeship": "mazowieckie"
   },
-  "140": {
+  {
     "accusativeName": "Marię Małgorzatę Janyską",
     "active": true,
     "birthDate": "1962-01-16",
@@ -2901,7 +2901,7 @@
     "secondName": "Małgorzata",
     "voivodeship": "wielkopolskie"
   },
-  "141": {
+  {
     "accusativeName": "Michała Jarosa",
     "active": true,
     "birthDate": "1981-01-26",
@@ -2921,7 +2921,7 @@
     "profession": "ekonomista",
     "voivodeship": "dolnośląskie"
   },
-  "142": {
+  {
     "accusativeName": "Patryka Jaskulskiego",
     "active": true,
     "birthDate": "1990-08-18",
@@ -2942,7 +2942,7 @@
     "secondName": "Bartłomiej",
     "voivodeship": "zachodniopomorskie"
   },
-  "143": {
+  {
     "accusativeName": "Danutę Jazłowiecką",
     "active": true,
     "birthDate": "1957-05-19",
@@ -2963,7 +2963,7 @@
     "secondName": "Maria",
     "voivodeship": "opolskie"
   },
-  "144": {
+  {
     "accusativeName": "Dariusza Jońskiego",
     "active": false,
     "birthDate": "1979-01-12",
@@ -2985,7 +2985,7 @@
     "voivodeship": "łódzkie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "145": {
+  {
     "accusativeName": "Marcina Józefaciuka",
     "active": true,
     "birthDate": "1982-10-17",
@@ -3005,7 +3005,7 @@
     "profession": "nauczyciel",
     "voivodeship": "łódzkie"
   },
-  "146": {
+  {
     "accusativeName": "Norberta Jakuba Kaczmarczyka",
     "active": true,
     "birthDate": "1989-11-16",
@@ -3026,7 +3026,7 @@
     "secondName": "Jakub",
     "voivodeship": "małopolskie"
   },
-  "147": {
+  {
     "accusativeName": "Filipa Kaczyńskiego",
     "active": true,
     "birthDate": "1987-11-19",
@@ -3047,7 +3047,7 @@
     "secondName": "Roman",
     "voivodeship": "małopolskie"
   },
-  "148": {
+  {
     "accusativeName": "Jarosława Kaczyńskiego",
     "active": true,
     "birthDate": "1949-06-18",
@@ -3068,7 +3068,7 @@
     "secondName": "Aleksander",
     "voivodeship": "świętokrzyskie"
   },
-  "149": {
+  {
     "accusativeName": "Piotra Kaletę",
     "active": true,
     "birthDate": "1968-06-25",
@@ -3089,7 +3089,7 @@
     "secondName": "Marek",
     "voivodeship": "wielkopolskie"
   },
-  "150": {
+  {
     "accusativeName": "Sebastiana Kaletę",
     "active": true,
     "birthDate": "1989-07-29",
@@ -3110,7 +3110,7 @@
     "secondName": "Jerzy",
     "voivodeship": "mazowieckie"
   },
-  "151": {
+  {
     "accusativeName": "Mariusza Kałużnego",
     "active": true,
     "birthDate": "1986-08-10",
@@ -3130,7 +3130,7 @@
     "profession": "politolog",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "152": {
+  {
     "accusativeName": "Mariusza Kamińskiego",
     "active": false,
     "birthDate": "1965-09-25",
@@ -3151,7 +3151,7 @@
     "voivodeship": "lubelskie",
     "waiverDesc": "Utrata prawa wybieralności"
   },
-  "153": {
+  {
     "accusativeName": "Piotra Kandybę",
     "active": true,
     "birthDate": "1969-10-13",
@@ -3171,7 +3171,7 @@
     "profession": "menedżer",
     "voivodeship": "mazowieckie"
   },
-  "154": {
+  {
     "accusativeName": "Jana Kanthaka",
     "active": true,
     "birthDate": "1991-09-20",
@@ -3192,7 +3192,7 @@
     "secondName": "Jakub",
     "voivodeship": "lubelskie"
   },
-  "155": {
+  {
     "accusativeName": "Fryderyka Sylwestra Kapinosa",
     "active": true,
     "birthDate": "1961-12-31",
@@ -3213,7 +3213,7 @@
     "secondName": "Sylwester",
     "voivodeship": "podkarpackie"
   },
-  "156": {
+  {
     "accusativeName": "Jacka Karnowskiego",
     "active": true,
     "birthDate": "1963-08-16",
@@ -3234,7 +3234,7 @@
     "secondName": "Karnowski",
     "voivodeship": "pomorskie"
   },
-  "157": {
+  {
     "accusativeName": "Iwonę Karolewską",
     "active": true,
     "birthDate": "1974-03-11",
@@ -3254,7 +3254,7 @@
     "profession": "urzędnik samorządowy",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "158": {
+  {
     "accusativeName": "Rafała Kasprzyka",
     "active": true,
     "birthDate": "1971-08-27",
@@ -3275,7 +3275,7 @@
     "secondName": "Marcin",
     "voivodeship": "świętokrzyskie"
   },
-  "159": {
+  {
     "accusativeName": "Henryka Kiepurę",
     "active": true,
     "birthDate": "1969-11-10",
@@ -3295,7 +3295,7 @@
     "profession": "prawnik",
     "voivodeship": "śląskie"
   },
-  "160": {
+  {
     "accusativeName": "Marcina Kierwińskiego",
     "active": false,
     "birthDate": "1976-08-22",
@@ -3318,7 +3318,7 @@
     "voivodeship": "mazowieckie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "161": {
+  {
     "accusativeName": "Katarzynę Kierzek-Koperską",
     "active": true,
     "birthDate": "1974-06-09",
@@ -3339,7 +3339,7 @@
     "secondName": "Renata",
     "voivodeship": "wielkopolskie"
   },
-  "162": {
+  {
     "accusativeName": "Dariusza Klimczaka",
     "active": true,
     "birthDate": "1980-06-17",
@@ -3359,7 +3359,7 @@
     "profession": "historyk",
     "voivodeship": "łódzkie"
   },
-  "163": {
+  {
     "accusativeName": "Joannę Kluzik-Rostkowską",
     "active": true,
     "birthDate": "1963-12-14",
@@ -3380,7 +3380,7 @@
     "secondName": "Grażyna",
     "voivodeship": "mazowieckie"
   },
-  "164": {
+  {
     "accusativeName": "Agnieszkę Marię Kłopotek",
     "active": true,
     "birthDate": "1969-07-09",
@@ -3401,7 +3401,7 @@
     "secondName": "Maria",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "165": {
+  {
     "accusativeName": "Łukasza Kmitę",
     "active": true,
     "birthDate": "1985-11-07",
@@ -3422,7 +3422,7 @@
     "secondName": "Marek",
     "voivodeship": "małopolskie"
   },
-  "166": {
+  {
     "accusativeName": "Michała Koboskę",
     "active": false,
     "birthDate": "1968-04-15",
@@ -3444,7 +3444,7 @@
     "voivodeship": "mazowieckie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "167": {
+  {
     "accusativeName": "Marię Koc",
     "active": true,
     "birthDate": "1964-08-22",
@@ -3465,7 +3465,7 @@
     "secondName": "Zofia",
     "voivodeship": "mazowieckie"
   },
-  "168": {
+  {
     "accusativeName": "Ewę Kołodziej",
     "active": true,
     "birthDate": "1978-09-02",
@@ -3486,7 +3486,7 @@
     "secondName": "Edyta",
     "voivodeship": "śląskie"
   },
-  "169": {
+  {
     "accusativeName": "Magdalenę Małgorzatę Kołodziejczak",
     "active": true,
     "birthDate": "1958-06-19",
@@ -3507,7 +3507,7 @@
     "secondName": "Małgorzata",
     "voivodeship": "pomorskie"
   },
-  "170": {
+  {
     "accusativeName": "Michała Kołodziejczaka",
     "active": true,
     "birthDate": "1988-09-14",
@@ -3527,7 +3527,7 @@
     "profession": "rolnik",
     "voivodeship": "wielkopolskie"
   },
-  "171": {
+  {
     "accusativeName": "Rafała Komarewicza",
     "active": true,
     "birthDate": "1971-06-10",
@@ -3548,7 +3548,7 @@
     "secondName": "Paweł",
     "voivodeship": "małopolskie"
   },
-  "172": {
+  {
     "accusativeName": "Macieja Koniecznego",
     "active": true,
     "birthDate": "1980-10-14",
@@ -3568,7 +3568,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "śląskie"
   },
-  "173": {
+  {
     "accusativeName": "Zbigniewa Konwińskiego",
     "active": true,
     "birthDate": "1974-03-24",
@@ -3589,7 +3589,7 @@
     "secondName": "Marek",
     "voivodeship": "pomorskie"
   },
-  "174": {
+  {
     "accusativeName": "Władysława Kosiniaka-Kamysza",
     "active": true,
     "birthDate": "1981-08-10",
@@ -3610,7 +3610,7 @@
     "secondName": "Marcin",
     "voivodeship": "małopolskie"
   },
-  "175": {
+  {
     "accusativeName": "Tomasza Kostusia",
     "active": true,
     "birthDate": "1974-03-07",
@@ -3631,7 +3631,7 @@
     "secondName": "Tadeusz",
     "voivodeship": "opolskie"
   },
-  "176": {
+  {
     "accusativeName": "Andrzeja Kosztowniaka",
     "active": true,
     "birthDate": "1976-03-31",
@@ -3652,7 +3652,7 @@
     "secondName": "Tomasz",
     "voivodeship": "mazowieckie"
   },
-  "177": {
+  {
     "accusativeName": "Katarzynę Kotulę",
     "active": true,
     "birthDate": "1977-02-01",
@@ -3672,7 +3672,7 @@
     "profession": "nauczyciel",
     "voivodeship": "pomorskie"
   },
-  "178": {
+  {
     "accusativeName": "Pawła Kowala",
     "active": true,
     "birthDate": "1975-07-22",
@@ -3692,7 +3692,7 @@
     "profession": "nauczyciel akademicki",
     "voivodeship": "podkarpackie"
   },
-  "179": {
+  {
     "accusativeName": "Henryka Kowalczyka",
     "active": true,
     "birthDate": "1956-07-15",
@@ -3712,7 +3712,7 @@
     "profession": "matematyk",
     "voivodeship": "mazowieckie"
   },
-  "180": {
+  {
     "accusativeName": "Janusza Kowalskiego",
     "active": true,
     "birthDate": "1978-04-11",
@@ -3733,7 +3733,7 @@
     "secondName": "Marcin",
     "voivodeship": "opolskie"
   },
-  "181": {
+  {
     "accusativeName": "Bartosza Józefa Kownackiego",
     "active": true,
     "birthDate": "1979-08-11",
@@ -3754,7 +3754,7 @@
     "secondName": "Józef",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "182": {
+  {
     "accusativeName": "Iwonę Marię Kozłowską",
     "active": true,
     "birthDate": "1963-08-11",
@@ -3775,7 +3775,7 @@
     "secondName": "Maria",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "183": {
+  {
     "accusativeName": "Stefana Krajewskiego",
     "active": true,
     "birthDate": "1981-06-08",
@@ -3795,7 +3795,7 @@
     "profession": "politolog",
     "voivodeship": "podlaskie"
   },
-  "184": {
+  {
     "accusativeName": "Wiesława Krajewskiego",
     "active": true,
     "birthDate": "1964-06-03",
@@ -3815,7 +3815,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "małopolskie"
   },
-  "185": {
+  {
     "accusativeName": "Leonarda Krasulskiego",
     "active": true,
     "birthDate": "1950-11-08",
@@ -3836,7 +3836,7 @@
     "secondName": "Seweryn",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "186": {
+  {
     "accusativeName": "Iwonę Małgorzatę Krawczyk",
     "active": true,
     "birthDate": "1965-07-19",
@@ -3857,7 +3857,7 @@
     "secondName": "Małgorzata",
     "voivodeship": "dolnośląskie"
   },
-  "187": {
+  {
     "accusativeName": "Michała Krawczyka",
     "active": true,
     "birthDate": "1978-03-21",
@@ -3877,7 +3877,7 @@
     "profession": "menedżer",
     "voivodeship": "lubelskie"
   },
-  "188": {
+  {
     "accusativeName": "Roberta Kropiwnickiego",
     "active": true,
     "birthDate": "1974-07-23",
@@ -3897,7 +3897,7 @@
     "profession": "menedżer, nauczyciel akademicki",
     "voivodeship": "dolnośląskie"
   },
-  "189": {
+  {
     "accusativeName": "Piotra Króla",
     "active": true,
     "birthDate": "1974-06-26",
@@ -3918,7 +3918,7 @@
     "secondName": "Marek",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "190": {
+  {
     "accusativeName": "Wojciecha Króla",
     "active": true,
     "birthDate": "1985-04-22",
@@ -3939,7 +3939,7 @@
     "secondName": "Piotr",
     "voivodeship": "śląskie"
   },
-  "191": {
+  {
     "accusativeName": "Annę Krupkę",
     "active": true,
     "birthDate": "1981-10-30",
@@ -3960,7 +3960,7 @@
     "secondName": "Maria",
     "voivodeship": "świętokrzyskie"
   },
-  "192": {
+  {
     "accusativeName": "Andrzeja Kryja",
     "active": true,
     "birthDate": "1960-06-09",
@@ -3981,7 +3981,7 @@
     "secondName": "Michał",
     "voivodeship": "świętokrzyskie"
   },
-  "193": {
+  {
     "accusativeName": "Mariusza Krystiana",
     "active": true,
     "birthDate": "1976-09-18",
@@ -4002,7 +4002,7 @@
     "secondName": "Tomasz",
     "voivodeship": "małopolskie"
   },
-  "194": {
+  {
     "accusativeName": "Marka Krząkałę",
     "active": true,
     "birthDate": "1967-10-22",
@@ -4023,7 +4023,7 @@
     "secondName": "Grzegorz",
     "voivodeship": "śląskie"
   },
-  "195": {
+  {
     "accusativeName": "Adama Krzemińskiego",
     "active": true,
     "birthDate": "1975-01-14",
@@ -4043,7 +4043,7 @@
     "profession": "nauczyciel, pracownik administracji samorządowej, technik elektronik",
     "voivodeship": "mazowieckie"
   },
-  "196": {
+  {
     "accusativeName": "Henrykę Krzywonos-Strycharską",
     "active": true,
     "birthDate": "1953-03-27",
@@ -4064,7 +4064,7 @@
     "secondName": "Krystyna",
     "voivodeship": "pomorskie"
   },
-  "197": {
+  {
     "accusativeName": "Krzysztofa Kubowa",
     "active": true,
     "birthDate": "1984-07-22",
@@ -4085,7 +4085,7 @@
     "secondName": "Jan",
     "voivodeship": "dolnośląskie"
   },
-  "198": {
+  {
     "accusativeName": "Anitę Kucharską-Dziedzic",
     "active": true,
     "birthDate": "1972-01-21",
@@ -4106,7 +4106,7 @@
     "secondName": "Agnieszka",
     "voivodeship": "lubuskie"
   },
-  "199": {
+  {
     "accusativeName": "Marka Kuchcińskiego",
     "active": true,
     "birthDate": "1955-08-09",
@@ -4127,7 +4127,7 @@
     "secondName": "Tadeusz",
     "voivodeship": "podkarpackie"
   },
-  "200": {
+  {
     "accusativeName": "Pawła Kukiza",
     "active": true,
     "birthDate": "1963-06-24",
@@ -4148,7 +4148,7 @@
     "secondName": "Piotr",
     "voivodeship": "opolskie"
   },
-  "201": {
+  {
     "accusativeName": "Marcina Kulaska",
     "active": true,
     "birthDate": "1976-04-04",
@@ -4169,7 +4169,7 @@
     "secondName": "Robert",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "202": {
+  {
     "accusativeName": "Marię Kurowską",
     "active": true,
     "birthDate": "1954-06-03",
@@ -4190,7 +4190,7 @@
     "secondName": "Stanisława",
     "voivodeship": "podkarpackie"
   },
-  "203": {
+  {
     "accusativeName": "Władysława Kurowskiego",
     "active": true,
     "birthDate": "1960-04-14",
@@ -4211,7 +4211,7 @@
     "secondName": "Michał",
     "voivodeship": "małopolskie"
   },
-  "204": {
+  {
     "accusativeName": "Zbigniewa Krzysztofa Kuźmiuka",
     "active": true,
     "birthDate": "1956-09-19",
@@ -4232,7 +4232,7 @@
     "secondName": "Krzysztof",
     "voivodeship": "mazowieckie"
   },
-  "205": {
+  {
     "accusativeName": "Annę Kwiecień",
     "active": true,
     "birthDate": "1964-09-30",
@@ -4252,7 +4252,7 @@
     "profession": "urzędnik samorządowy",
     "voivodeship": "mazowieckie"
   },
-  "206": {
+  {
     "accusativeName": "Piotra Lachowicza",
     "active": true,
     "birthDate": "1967-09-29",
@@ -4273,7 +4273,7 @@
     "secondName": "Michał",
     "voivodeship": "małopolskie"
   },
-  "207": {
+  {
     "accusativeName": "Stanisława Lamczyka",
     "active": true,
     "birthDate": "1957-08-12",
@@ -4294,7 +4294,7 @@
     "secondName": "Józef",
     "voivodeship": "pomorskie"
   },
-  "208": {
+  {
     "accusativeName": "Macieja Laska",
     "active": true,
     "birthDate": "1967-06-15",
@@ -4315,7 +4315,7 @@
     "secondName": "Grzegorz",
     "voivodeship": "mazowieckie"
   },
-  "209": {
+  {
     "accusativeName": "Gabrielę Lenartowicz",
     "active": true,
     "birthDate": "1960-12-12",
@@ -4336,7 +4336,7 @@
     "secondName": "Teresa",
     "voivodeship": "śląskie"
   },
-  "210": {
+  {
     "accusativeName": "Ewę Leniart",
     "active": true,
     "birthDate": "1976-08-27",
@@ -4357,7 +4357,7 @@
     "secondName": "Maria",
     "voivodeship": "podkarpackie"
   },
-  "211": {
+  {
     "accusativeName": "Aleksandrę Leo",
     "active": true,
     "birthDate": "1981-03-28",
@@ -4378,7 +4378,7 @@
     "secondName": "Maria",
     "voivodeship": "dolnośląskie"
   },
-  "212": {
+  {
     "accusativeName": "Izabelę Leszczynę",
     "active": true,
     "birthDate": "1962-09-03",
@@ -4399,7 +4399,7 @@
     "secondName": "Dorota",
     "voivodeship": "śląskie"
   },
-  "213": {
+  {
     "accusativeName": "Joannę Lichocką",
     "active": true,
     "birthDate": "1969-11-21",
@@ -4420,7 +4420,7 @@
     "secondName": "Katarzyna",
     "voivodeship": "łódzkie"
   },
-  "214": {
+  {
     "accusativeName": "Krzysztofa Lipca",
     "active": true,
     "birthDate": "1959-10-11",
@@ -4441,7 +4441,7 @@
     "secondName": "Bogdan",
     "voivodeship": "świętokrzyskie"
   },
-  "215": {
+  {
     "accusativeName": "Łukasza Litewkę",
     "active": true,
     "birthDate": "1989-05-09",
@@ -4462,7 +4462,7 @@
     "secondName": "Karol",
     "voivodeship": "śląskie"
   },
-  "216": {
+  {
     "accusativeName": "Grzegorza Lorka",
     "active": true,
     "birthDate": "1970-10-31",
@@ -4483,7 +4483,7 @@
     "secondName": "Andrzej",
     "voivodeship": "łódzkie"
   },
-  "217": {
+  {
     "accusativeName": "Radosława Lubczyka",
     "active": true,
     "birthDate": "1978-07-18",
@@ -4503,7 +4503,7 @@
     "profession": "lekarz",
     "voivodeship": "zachodniopomorskie"
   },
-  "218": {
+  {
     "accusativeName": "Katarzynę Annę Lubnauer",
     "active": true,
     "birthDate": "1969-07-24",
@@ -4524,7 +4524,7 @@
     "secondName": "Anna",
     "voivodeship": "mazowieckie"
   },
-  "219": {
+  {
     "accusativeName": "Adama Lubońskiego",
     "active": true,
     "birthDate": "1969-04-30",
@@ -4545,7 +4545,7 @@
     "secondName": "Sławomir",
     "voivodeship": "wielkopolskie"
   },
-  "220": {
+  {
     "accusativeName": "Artura Jarosława Łąckiego",
     "active": true,
     "birthDate": "1961-12-05",
@@ -4566,7 +4566,7 @@
     "secondName": "Jarosław",
     "voivodeship": "zachodniopomorskie"
   },
-  "221": {
+  {
     "accusativeName": "Alicję Łepkowską-Gołaś",
     "active": true,
     "birthDate": "1983-01-01",
@@ -4586,7 +4586,7 @@
     "profession": "archiwista",
     "voivodeship": "podlaskie"
   },
-  "222": {
+  {
     "accusativeName": "Dorotę Łobodę",
     "active": true,
     "birthDate": "1975-08-19",
@@ -4607,7 +4607,7 @@
     "secondName": "Ewa",
     "voivodeship": "mazowieckie"
   },
-  "223": {
+  {
     "accusativeName": "Krystiana Łuczaka",
     "active": true,
     "birthDate": "1975-01-16",
@@ -4628,7 +4628,7 @@
     "secondName": "Marek",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "224": {
+  {
     "accusativeName": "Sebastiana Łukaszewicza",
     "active": true,
     "birthDate": "1991-02-09",
@@ -4648,7 +4648,7 @@
     "profession": "pracownik administracji samorządowej",
     "voivodeship": "podlaskie"
   },
-  "225": {
+  {
     "accusativeName": "Marzenę Annę Machałek",
     "active": true,
     "birthDate": "1960-08-29",
@@ -4669,7 +4669,7 @@
     "secondName": "Anna",
     "voivodeship": "dolnośląskie"
   },
-  "226": {
+  {
     "accusativeName": "Antoniego Macierewicza",
     "active": true,
     "birthDate": "1948-08-03",
@@ -4689,7 +4689,7 @@
     "profession": "historyk",
     "voivodeship": "łódzkie"
   },
-  "227": {
+  {
     "accusativeName": "Marlenę Magdalenę Maląg",
     "active": false,
     "birthDate": "1964-11-02",
@@ -4712,7 +4712,7 @@
     "voivodeship": "wielkopolskie",
     "waiverDesc": "Wybrana na posła do Parlamentu Europejskiego"
   },
-  "228": {
+  {
     "accusativeName": "Ewę Malik",
     "active": true,
     "birthDate": "1961-01-11",
@@ -4733,7 +4733,7 @@
     "secondName": "Danuta",
     "voivodeship": "śląskie"
   },
-  "229": {
+  {
     "accusativeName": "Mirosława Maliszewskiego",
     "active": true,
     "birthDate": "1968-02-28",
@@ -4754,7 +4754,7 @@
     "secondName": "Wojciech",
     "voivodeship": "mazowieckie"
   },
-  "230": {
+  {
     "accusativeName": "Macieja Małeckiego",
     "active": true,
     "birthDate": "1974-10-09",
@@ -4774,7 +4774,7 @@
     "profession": "historyk",
     "voivodeship": "mazowieckie"
   },
-  "231": {
+  {
     "accusativeName": "Arkadiusza Marchewkę",
     "active": true,
     "birthDate": "1986-01-18",
@@ -4794,7 +4794,7 @@
     "profession": "nauczyciel akademicki",
     "voivodeship": "zachodniopomorskie"
   },
-  "232": {
+  {
     "accusativeName": "Jagnę Marczułajtis-Walczak",
     "active": false,
     "birthDate": "1978-12-15",
@@ -4817,7 +4817,7 @@
     "voivodeship": "małopolskie",
     "waiverDesc": "Wybrana na posła do Parlamentu Europejskiego"
   },
-  "233": {
+  {
     "accusativeName": "Dorotę Marek",
     "active": true,
     "birthDate": "1973-12-28",
@@ -4837,7 +4837,7 @@
     "profession": "przedsiębiorca prywatny",
     "voivodeship": "małopolskie"
   },
-  "234": {
+  {
     "accusativeName": "Dariusza Mateckiego",
     "active": true,
     "birthDate": "1989-02-06",
@@ -4858,7 +4858,7 @@
     "secondName": "Piotr",
     "voivodeship": "zachodniopomorskie"
   },
-  "235": {
+  {
     "accusativeName": "Jerzego Maternę",
     "active": true,
     "birthDate": "1956-03-25",
@@ -4879,7 +4879,7 @@
     "secondName": "Marian",
     "voivodeship": "lubuskie"
   },
-  "236": {
+  {
     "accusativeName": "Grzegorza Matusiaka",
     "active": true,
     "birthDate": "1961-02-24",
@@ -4899,7 +4899,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "śląskie"
   },
-  "237": {
+  {
     "accusativeName": "Katarzynę Matusik-Lipiec",
     "active": true,
     "birthDate": "1975-06-29",
@@ -4920,7 +4920,7 @@
     "secondName": "Irena",
     "voivodeship": "małopolskie"
   },
-  "238": {
+  {
     "accusativeName": "Marka Matuszewskiego",
     "active": true,
     "birthDate": "1959-08-14",
@@ -4940,7 +4940,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "łódzkie"
   },
-  "239": {
+  {
     "accusativeName": "Paulinę Matysiak",
     "active": true,
     "birthDate": "1984-10-02",
@@ -4960,7 +4960,7 @@
     "profession": "filolog",
     "voivodeship": "łódzkie"
   },
-  "240": {
+  {
     "accusativeName": "Łukasza Mejzę",
     "active": true,
     "birthDate": "1991-05-15",
@@ -4980,7 +4980,7 @@
     "profession": "przedsiębiorca prywatny",
     "voivodeship": "lubuskie"
   },
-  "241": {
+  {
     "accusativeName": "Sławomira Mentzena",
     "active": true,
     "birthDate": "1986-11-20",
@@ -5001,7 +5001,7 @@
     "secondName": "Jerzy",
     "voivodeship": "mazowieckie"
   },
-  "242": {
+  {
     "accusativeName": "Annę Milczanowską",
     "active": true,
     "birthDate": "1958-07-18",
@@ -5022,7 +5022,7 @@
     "secondName": "Maria",
     "voivodeship": "łódzkie"
   },
-  "243": {
+  {
     "accusativeName": "Daniela Milewskiego",
     "active": true,
     "birthDate": "1989-11-22",
@@ -5043,7 +5043,7 @@
     "secondName": "George",
     "voivodeship": "mazowieckie"
   },
-  "244": {
+  {
     "accusativeName": "Rajmunda Millera",
     "active": false,
     "birthDate": "1954-07-16",
@@ -5066,7 +5066,7 @@
     "voivodeship": "opolskie",
     "waiverDesc": "Zmarł"
   },
-  "245": {
+  {
     "accusativeName": "Aleksandra Miszalskiego",
     "active": false,
     "birthDate": "1980-08-07",
@@ -5089,7 +5089,7 @@
     "voivodeship": "małopolskie",
     "waiverDesc": "Wybrany na funkcję Prezydenta Miasta Krakowa"
   },
-  "246": {
+  {
     "accusativeName": "Mateusza Morawieckiego",
     "active": true,
     "birthDate": "1968-06-20",
@@ -5110,7 +5110,7 @@
     "secondName": "Jakub",
     "voivodeship": "śląskie"
   },
-  "247": {
+  {
     "accusativeName": "Jana Mosińskiego",
     "active": true,
     "birthDate": "1956-12-19",
@@ -5130,7 +5130,7 @@
     "profession": "politolog",
     "voivodeship": "wielkopolskie"
   },
-  "248": {
+  {
     "accusativeName": "Michała Moskala",
     "active": true,
     "birthDate": "1994-05-06",
@@ -5150,7 +5150,7 @@
     "profession": "prawnik",
     "voivodeship": "lubelskie"
   },
-  "249": {
+  {
     "accusativeName": "Czesława Mroczka",
     "active": true,
     "birthDate": "1964-07-20",
@@ -5170,7 +5170,7 @@
     "profession": "prawnik",
     "voivodeship": "mazowieckie"
   },
-  "250": {
+  {
     "accusativeName": "Aleksandra Mikołaja Mrówczyńskiego",
     "active": true,
     "birthDate": "1953-12-09",
@@ -5191,7 +5191,7 @@
     "secondName": "Mikołaj",
     "voivodeship": "pomorskie"
   },
-  "251": {
+  {
     "accusativeName": "Izabelę Katarzynę Mrzygłocką",
     "active": false,
     "birthDate": "1959-05-20",
@@ -5214,7 +5214,7 @@
     "voivodeship": "dolnośląskie",
     "waiverDesc": "Zmarła"
   },
-  "252": {
+  {
     "accusativeName": "Joannę Muchę",
     "active": true,
     "birthDate": "1976-04-12",
@@ -5234,7 +5234,7 @@
     "profession": "nauczyciel akademicki",
     "voivodeship": "lubelskie"
   },
-  "253": {
+  {
     "accusativeName": "Arkadiusza Mularczyka",
     "active": false,
     "birthDate": "1971-02-04",
@@ -5256,7 +5256,7 @@
     "voivodeship": "małopolskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "254": {
+  {
     "accusativeName": "Krzysztofa Mulawę",
     "active": true,
     "birthDate": "1985-06-24",
@@ -5276,7 +5276,7 @@
     "profession": "ekspert ds. kontrolingu",
     "voivodeship": "mazowieckie"
   },
-  "255": {
+  {
     "accusativeName": "Piotra Müllera",
     "active": false,
     "birthDate": "1989-05-02",
@@ -5299,7 +5299,7 @@
     "voivodeship": "pomorskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "256": {
+  {
     "accusativeName": "Arkadiusza Myrchę",
     "active": true,
     "birthDate": "1984-02-01",
@@ -5319,7 +5319,7 @@
     "profession": "radca prawny",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "257": {
+  {
     "accusativeName": "Grzegorza Napieralskiego",
     "active": true,
     "birthDate": "1974-03-18",
@@ -5340,7 +5340,7 @@
     "secondName": "Bernard",
     "voivodeship": "zachodniopomorskie"
   },
-  "258": {
+  {
     "accusativeName": "Dorotę Niedzielę",
     "active": true,
     "birthDate": "1964-08-20",
@@ -5360,7 +5360,7 @@
     "profession": "lekarz weterynarii",
     "voivodeship": "małopolskie"
   },
-  "259": {
+  {
     "accusativeName": "Jacka Niedźwiedzkiego",
     "active": true,
     "birthDate": "1975-06-13",
@@ -5380,7 +5380,7 @@
     "profession": "specjalista ds. zarządzania",
     "voivodeship": "podlaskie"
   },
-  "260": {
+  {
     "accusativeName": "Małgorzatę Niemczyk",
     "active": true,
     "birthDate": "1969-10-25",
@@ -5401,7 +5401,7 @@
     "secondName": "Barbara",
     "voivodeship": "łódzkie"
   },
-  "261": {
+  {
     "accusativeName": "Jolantę Niezgodzką",
     "active": true,
     "birthDate": "1991-02-26",
@@ -5421,7 +5421,7 @@
     "secondName": "Magdalena",
     "voivodeship": "dolnośląskie"
   },
-  "262": {
+  {
     "accusativeName": "Sławomira Nitrasa",
     "active": true,
     "birthDate": "1973-04-26",
@@ -5441,7 +5441,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "zachodniopomorskie"
   },
-  "263": {
+  {
     "accusativeName": "Barbarę Nowacką",
     "active": true,
     "birthDate": "1975-05-10",
@@ -5462,7 +5462,7 @@
     "secondName": "Anna",
     "voivodeship": "pomorskie"
   },
-  "264": {
+  {
     "accusativeName": "Maję Ewę Nowak",
     "active": true,
     "birthDate": "1987-07-07",
@@ -5483,7 +5483,7 @@
     "secondName": "Ewa",
     "voivodeship": "lubuskie"
   },
-  "265": {
+  {
     "accusativeName": "Tomasza Piotra Nowaka",
     "active": true,
     "birthDate": "1956-12-22",
@@ -5504,7 +5504,7 @@
     "secondName": "Piotr",
     "voivodeship": "wielkopolskie"
   },
-  "266": {
+  {
     "accusativeName": "Wandę Nowicką",
     "active": true,
     "birthDate": "1956-11-21",
@@ -5525,7 +5525,7 @@
     "secondName": "Hanna",
     "voivodeship": "śląskie"
   },
-  "267": {
+  {
     "accusativeName": "Urszulę Nowogórską",
     "active": true,
     "birthDate": "1978-09-29",
@@ -5546,7 +5546,7 @@
     "secondName": "Teresa",
     "voivodeship": "małopolskie"
   },
-  "268": {
+  {
     "accusativeName": "Mirosławę Nykiel",
     "active": false,
     "birthDate": "1953-09-23",
@@ -5568,7 +5568,7 @@
     "voivodeship": "śląskie",
     "waiverDesc": "Wybrana na posła do Parlamentu Europejskiego"
   },
-  "269": {
+  {
     "accusativeName": "Marcina Ociepę",
     "active": true,
     "birthDate": "1984-10-21",
@@ -5589,7 +5589,7 @@
     "secondName": "Michał",
     "voivodeship": "opolskie"
   },
-  "270": {
+  {
     "accusativeName": "Marzenę Okła-Drewnowicz",
     "active": true,
     "birthDate": "1972-05-20",
@@ -5609,7 +5609,7 @@
     "profession": "urzędnik samorządowy",
     "voivodeship": "świętokrzyskie"
   },
-  "271": {
+  {
     "accusativeName": "Barbarę Okułę",
     "active": true,
     "birthDate": "1973-12-04",
@@ -5629,7 +5629,7 @@
     "profession": "ekonomista",
     "voivodeship": "podlaskie"
   },
-  "272": {
+  {
     "accusativeName": "Barbarę Oliwiecką",
     "active": true,
     "birthDate": "1977-01-07",
@@ -5650,7 +5650,7 @@
     "secondName": "Anna",
     "voivodeship": "wielkopolskie"
   },
-  "273": {
+  {
     "accusativeName": "Dorotę Olko",
     "active": true,
     "birthDate": "1988-01-13",
@@ -5671,7 +5671,7 @@
     "secondName": "Zofia",
     "voivodeship": "mazowieckie"
   },
-  "274": {
+  {
     "accusativeName": "Pawła Olszewskiego",
     "active": true,
     "birthDate": "1979-12-11",
@@ -5692,7 +5692,7 @@
     "secondName": "Bartosz",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "275": {
+  {
     "accusativeName": "Mirosława Adama Orlińskiego",
     "active": true,
     "birthDate": "1986-07-21",
@@ -5713,7 +5713,7 @@
     "secondName": "Adam",
     "voivodeship": "mazowieckie"
   },
-  "276": {
+  {
     "accusativeName": "Łukasza Osmalaka",
     "active": true,
     "birthDate": "1977-06-17",
@@ -5734,7 +5734,7 @@
     "secondName": "Tomasz",
     "voivodeship": "śląskie"
   },
-  "277": {
+  {
     "accusativeName": "Katarzynę Osos",
     "active": true,
     "birthDate": "1980-11-17",
@@ -5754,7 +5754,7 @@
     "profession": "radca prawny",
     "voivodeship": "lubuskie"
   },
-  "278": {
+  {
     "accusativeName": "Jacka Osucha",
     "active": true,
     "birthDate": "1958-08-28",
@@ -5775,7 +5775,7 @@
     "secondName": "Piotr",
     "voivodeship": "małopolskie"
   },
-  "279": {
+  {
     "accusativeName": "Jacka Ozdobę",
     "active": false,
     "birthDate": "1991-09-22",
@@ -5798,7 +5798,7 @@
     "voivodeship": "mazowieckie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "280": {
+  {
     "accusativeName": "Teresę Pamułę",
     "active": true,
     "birthDate": "1956-12-28",
@@ -5818,7 +5818,7 @@
     "profession": "inżynier ogrodnik",
     "voivodeship": "podkarpackie"
   },
-  "281": {
+  {
     "accusativeName": "Pawła Papkego",
     "active": true,
     "birthDate": "1977-02-13",
@@ -5838,7 +5838,7 @@
     "profession": "pedagog",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "282": {
+  {
     "accusativeName": "Urszulę Pasławską",
     "active": true,
     "birthDate": "1977-01-28",
@@ -5859,7 +5859,7 @@
     "secondName": "Stefania",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "283": {
+  {
     "accusativeName": "Krzysztofa Paszyka",
     "active": true,
     "birthDate": "1979-04-10",
@@ -5880,7 +5880,7 @@
     "secondName": "Michał",
     "voivodeship": "wielkopolskie"
   },
-  "284": {
+  {
     "accusativeName": "Karolinę Pawliczak",
     "active": true,
     "birthDate": "1976-06-25",
@@ -5901,7 +5901,7 @@
     "secondName": "Monika",
     "voivodeship": "wielkopolskie"
   },
-  "285": {
+  {
     "accusativeName": "Bartłomieja Pejo",
     "active": true,
     "birthDate": "1985-04-04",
@@ -5922,7 +5922,7 @@
     "secondName": "Artur",
     "voivodeship": "lubelskie"
   },
-  "286": {
+  {
     "accusativeName": "Ryszarda Petru",
     "active": true,
     "birthDate": "1972-07-06",
@@ -5943,7 +5943,7 @@
     "secondName": "Jerzy",
     "voivodeship": "mazowieckie"
   },
-  "287": {
+  {
     "accusativeName": "Małgorzatę Pępek",
     "active": true,
     "birthDate": "1961-06-10",
@@ -5964,7 +5964,7 @@
     "secondName": "Anna",
     "voivodeship": "śląskie"
   },
-  "288": {
+  {
     "accusativeName": "Bolesława Piechę",
     "active": true,
     "birthDate": "1954-09-19",
@@ -5985,7 +5985,7 @@
     "secondName": "Grzegorz",
     "voivodeship": "śląskie"
   },
-  "289": {
+  {
     "accusativeName": "Grzegorza Piechowiaka",
     "active": true,
     "birthDate": "1963-09-14",
@@ -6005,7 +6005,7 @@
     "profession": "nadzorca sądowy, syndyk, zarządca nieruchomości",
     "voivodeship": "wielkopolskie"
   },
-  "290": {
+  {
     "accusativeName": "Annę Pieczarkę",
     "active": true,
     "birthDate": "1977-02-15",
@@ -6026,7 +6026,7 @@
     "secondName": "Maria",
     "voivodeship": "małopolskie"
   },
-  "291": {
+  {
     "accusativeName": "Katarzynę Marię Piekarską",
     "active": true,
     "birthDate": "1967-09-23",
@@ -6047,7 +6047,7 @@
     "secondName": "Maria",
     "voivodeship": "mazowieckie"
   },
-  "292": {
+  {
     "accusativeName": "Norberta Pietrykowskiego",
     "active": true,
     "birthDate": "1973-12-17",
@@ -6068,7 +6068,7 @@
     "secondName": "jerzy",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "293": {
+  {
     "accusativeName": "Lucjana Marka Pietrzczyka",
     "active": true,
     "birthDate": "1960-03-24",
@@ -6089,7 +6089,7 @@
     "secondName": "Marek",
     "voivodeship": "świętokrzyskie"
   },
-  "294": {
+  {
     "accusativeName": "Dariusza Piontkowskiego",
     "active": true,
     "birthDate": "1964-12-17",
@@ -6109,7 +6109,7 @@
     "profession": "nauczyciel",
     "voivodeship": "podlaskie"
   },
-  "295": {
+  {
     "accusativeName": "Kazimierza Plocke",
     "active": true,
     "birthDate": "1958-05-03",
@@ -6130,7 +6130,7 @@
     "secondName": "Florian",
     "voivodeship": "pomorskie"
   },
-  "296": {
+  {
     "accusativeName": "Grzegorza Płaczka",
     "active": true,
     "birthDate": "1978-05-13",
@@ -6151,7 +6151,7 @@
     "secondName": "Adam",
     "voivodeship": "śląskie"
   },
-  "297": {
+  {
     "accusativeName": "Kacpra Płażyńskiego",
     "active": true,
     "birthDate": "1989-05-10",
@@ -6172,7 +6172,7 @@
     "secondName": "Maciej",
     "voivodeship": "pomorskie"
   },
-  "298": {
+  {
     "accusativeName": "Szymona Pogodę",
     "active": true,
     "birthDate": "1985-09-22",
@@ -6193,7 +6193,7 @@
     "secondName": "Marek",
     "voivodeship": "dolnośląskie"
   },
-  "299": {
+  {
     "accusativeName": "Jerzego Polaczka",
     "active": true,
     "birthDate": "1961-08-24",
@@ -6214,7 +6214,7 @@
     "secondName": "Jan",
     "voivodeship": "śląskie"
   },
-  "300": {
+  {
     "accusativeName": "Elżbietę Annę Polak",
     "active": true,
     "birthDate": "1959-09-06",
@@ -6235,7 +6235,7 @@
     "secondName": "Anna",
     "voivodeship": "lubuskie"
   },
-  "301": {
+  {
     "accusativeName": "Piotra Polaka",
     "active": true,
     "birthDate": "1961-01-20",
@@ -6255,7 +6255,7 @@
     "profession": "inżynier mechanizacji rolnictwa",
     "voivodeship": "łódzkie"
   },
-  "302": {
+  {
     "accusativeName": "Agnieszkę Pomaską",
     "active": true,
     "birthDate": "1980-01-08",
@@ -6276,7 +6276,7 @@
     "secondName": "Dominika",
     "voivodeship": "pomorskie"
   },
-  "303": {
+  {
     "accusativeName": "Marcina Porzucka",
     "active": true,
     "birthDate": "1984-07-20",
@@ -6297,7 +6297,7 @@
     "secondName": "Bartosz",
     "voivodeship": "wielkopolskie"
   },
-  "304": {
+  {
     "accusativeName": "Jacka Protasa",
     "active": false,
     "birthDate": "1964-01-15",
@@ -6319,7 +6319,7 @@
     "voivodeship": "warmińsko-mazurskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "305": {
+  {
     "accusativeName": "Marcina Przydacza",
     "active": true,
     "birthDate": "1985-06-26",
@@ -6340,7 +6340,7 @@
     "secondName": "Paweł",
     "voivodeship": "łódzkie"
   },
-  "306": {
+  {
     "accusativeName": "Grzegorza Pudę",
     "active": true,
     "birthDate": "1982-07-13",
@@ -6361,7 +6361,7 @@
     "secondName": "Paweł",
     "voivodeship": "śląskie"
   },
-  "307": {
+  {
     "accusativeName": "Michała Pyrzyka",
     "active": true,
     "birthDate": "1975-06-07",
@@ -6381,7 +6381,7 @@
     "profession": "prawnik",
     "voivodeship": "wielkopolskie"
   },
-  "308": {
+  {
     "accusativeName": "Renatę Rak",
     "active": true,
     "birthDate": "1973-06-29",
@@ -6402,7 +6402,7 @@
     "secondName": "Urszula",
     "voivodeship": "zachodniopomorskie"
   },
-  "309": {
+  {
     "accusativeName": "Ireneusza Rasia",
     "active": true,
     "birthDate": "1972-09-30",
@@ -6422,7 +6422,7 @@
     "profession": "urzędnik samorządowy",
     "voivodeship": "małopolskie"
   },
-  "310": {
+  {
     "accusativeName": "Zbigniewa Raua",
     "active": true,
     "birthDate": "1955-02-03",
@@ -6443,7 +6443,7 @@
     "secondName": "Włodzimierz",
     "voivodeship": "łódzkie"
   },
-  "311": {
+  {
     "accusativeName": "Marcina Romanowskiego",
     "active": true,
     "birthDate": "1976-01-20",
@@ -6463,7 +6463,7 @@
     "profession": "nauczyciel akademicki, prawnik",
     "voivodeship": "lubelskie"
   },
-  "312": {
+  {
     "accusativeName": "Bartosza Romowicza",
     "active": true,
     "birthDate": "1988-06-14",
@@ -6483,7 +6483,7 @@
     "profession": "prawnik",
     "voivodeship": "podkarpackie"
   },
-  "313": {
+  {
     "accusativeName": "Monikę Rosę",
     "active": true,
     "birthDate": "1986-04-24",
@@ -6504,7 +6504,7 @@
     "secondName": "Anna",
     "voivodeship": "śląskie"
   },
-  "314": {
+  {
     "accusativeName": "Wiesława Różyńskiego",
     "active": true,
     "birthDate": "1968-06-26",
@@ -6525,7 +6525,7 @@
     "secondName": "Marian",
     "voivodeship": "lubelskie"
   },
-  "315": {
+  {
     "accusativeName": "Urszulę Rusecką",
     "active": true,
     "birthDate": "1966-09-11",
@@ -6546,7 +6546,7 @@
     "secondName": "Beata",
     "voivodeship": "małopolskie"
   },
-  "316": {
+  {
     "accusativeName": "Grzegorza Rusieckiego",
     "active": false,
     "birthDate": "1983-02-28",
@@ -6569,7 +6569,7 @@
     "voivodeship": "wielkopolskie",
     "waiverDesc": "Wybrany na funkcję Prezydenta Miasta Leszna"
   },
-  "317": {
+  {
     "accusativeName": "Jakuba Rutnickiego",
     "active": true,
     "birthDate": "1978-12-03",
@@ -6590,7 +6590,7 @@
     "secondName": "Adam",
     "voivodeship": "wielkopolskie"
   },
-  "318": {
+  {
     "accusativeName": "Pawła Rychlika",
     "active": true,
     "birthDate": "1986-12-16",
@@ -6611,7 +6611,7 @@
     "secondName": "Piotr",
     "voivodeship": "łódzkie"
   },
-  "319": {
+  {
     "accusativeName": "Marka Rząsę",
     "active": true,
     "birthDate": "1957-10-04",
@@ -6632,7 +6632,7 @@
     "secondName": "Zdzisław",
     "voivodeship": "podkarpackie"
   },
-  "320": {
+  {
     "accusativeName": "Jarosława Rzepę",
     "active": true,
     "birthDate": "1972-08-22",
@@ -6653,7 +6653,7 @@
     "secondName": "Michał",
     "voivodeship": "zachodniopomorskie"
   },
-  "321": {
+  {
     "accusativeName": "Jarosława Sachajkę",
     "active": true,
     "birthDate": "1971-10-08",
@@ -6673,7 +6673,7 @@
     "profession": "przedsiębiorca prywatny",
     "voivodeship": "lubelskie"
   },
-  "322": {
+  {
     "accusativeName": "Pawła Sałka",
     "active": true,
     "birthDate": "1975-06-29",
@@ -6693,7 +6693,7 @@
     "profession": "inżynier mechanik, urzędnik państwowy",
     "voivodeship": "łódzkie"
   },
-  "323": {
+  {
     "accusativeName": "Wojciecha Saługę",
     "active": false,
     "birthDate": "1969-03-27",
@@ -6716,7 +6716,7 @@
     "voivodeship": "śląskie",
     "waiverDesc": "Wybrany na funkcję Marszałka Województwa Śląskiego"
   },
-  "324": {
+  {
     "accusativeName": "Tadeusza Samborskiego",
     "active": true,
     "birthDate": "1945-08-08",
@@ -6736,7 +6736,7 @@
     "profession": "historyk",
     "voivodeship": "dolnośląskie"
   },
-  "325": {
+  {
     "accusativeName": "Jacka Sasina",
     "active": true,
     "birthDate": "1969-11-06",
@@ -6757,7 +6757,7 @@
     "secondName": "Robert",
     "voivodeship": "podlaskie"
   },
-  "326": {
+  {
     "accusativeName": "Marka Sawickiego",
     "active": true,
     "birthDate": "1958-04-08",
@@ -6778,7 +6778,7 @@
     "secondName": "Wacław",
     "voivodeship": "mazowieckie"
   },
-  "327": {
+  {
     "accusativeName": "Ewę Schädler",
     "active": true,
     "birthDate": "1968-09-13",
@@ -6799,7 +6799,7 @@
     "secondName": "Katarzyna",
     "voivodeship": "wielkopolskie"
   },
-  "328": {
+  {
     "accusativeName": "Joannę Scheuring-Wielgus",
     "active": false,
     "birthDate": "1972-02-08",
@@ -6822,7 +6822,7 @@
     "voivodeship": "kujawsko-pomorskie",
     "waiverDesc": "Wybrana na posła do Parlamentu Europejskiego"
   },
-  "329": {
+  {
     "accusativeName": "Annę Schmidt",
     "active": true,
     "birthDate": "1978-11-11",
@@ -6843,7 +6843,7 @@
     "secondName": "Katarzyna",
     "voivodeship": "podkarpackie"
   },
-  "330": {
+  {
     "accusativeName": "Łukasza Schreibera",
     "active": true,
     "birthDate": "1987-05-26",
@@ -6863,7 +6863,7 @@
     "profession": "urzędnik państwowy",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "331": {
+  {
     "accusativeName": "Jarosława Sellina",
     "active": true,
     "birthDate": "1963-05-01",
@@ -6884,7 +6884,7 @@
     "secondName": "Daniel",
     "voivodeship": "pomorskie"
   },
-  "332": {
+  {
     "accusativeName": "Olgę Ewę Semeniuk-Patkowską",
     "active": true,
     "birthDate": "1988-12-05",
@@ -6905,7 +6905,7 @@
     "secondName": "Ewa",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "333": {
+  {
     "accusativeName": "Edwarda Siarkę",
     "active": true,
     "birthDate": "1963-07-07",
@@ -6925,7 +6925,7 @@
     "profession": "nauczyciel",
     "voivodeship": "małopolskie"
   },
-  "334": {
+  {
     "accusativeName": "Krystynę Sibińską",
     "active": true,
     "birthDate": "1962-06-12",
@@ -6946,7 +6946,7 @@
     "secondName": "Mieczysława",
     "voivodeship": "lubuskie"
   },
-  "335": {
+  {
     "accusativeName": "Czesława Siekierskiego",
     "active": true,
     "birthDate": "1952-10-08",
@@ -6967,7 +6967,7 @@
     "secondName": "Adam",
     "voivodeship": "świętokrzyskie"
   },
-  "336": {
+  {
     "accusativeName": "Rafała Siemaszkę",
     "active": true,
     "birthDate": "1986-09-11",
@@ -6986,7 +6986,7 @@
     "numberOfVotes": 15494,
     "voivodeship": "pomorskie"
   },
-  "337": {
+  {
     "accusativeName": "Tomasza Siemoniaka",
     "active": true,
     "birthDate": "1967-07-02",
@@ -7006,7 +7006,7 @@
     "profession": "ekonomista",
     "voivodeship": "opolskie"
   },
-  "338": {
+  {
     "accusativeName": "Bartłomieja Sienkiewicza",
     "active": false,
     "birthDate": "1961-07-29",
@@ -7029,7 +7029,7 @@
     "voivodeship": "małopolskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "339": {
+  {
     "accusativeName": "Arkadiusza Sikorę",
     "active": true,
     "birthDate": "1973-06-20",
@@ -7050,7 +7050,7 @@
     "secondName": "-",
     "voivodeship": "dolnośląskie"
   },
-  "340": {
+  {
     "accusativeName": "Włodzimierza Skalika",
     "active": true,
     "birthDate": "1959-06-10",
@@ -7070,7 +7070,7 @@
     "secondName": "Bogdan",
     "voivodeship": "opolskie"
   },
-  "341": {
+  {
     "accusativeName": "Marcina Skonieczkę",
     "active": true,
     "birthDate": "1978-11-09",
@@ -7091,7 +7091,7 @@
     "secondName": "Seweryn",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "342": {
+  {
     "accusativeName": "Krystynę Skowrońską",
     "active": true,
     "birthDate": "1954-07-22",
@@ -7111,7 +7111,7 @@
     "profession": "bankowiec",
     "voivodeship": "podkarpackie"
   },
-  "343": {
+  {
     "accusativeName": "Sławomira Skwarka",
     "active": true,
     "birthDate": "1963-11-25",
@@ -7131,7 +7131,7 @@
     "profession": "nauczyciel",
     "voivodeship": "lubelskie"
   },
-  "344": {
+  {
     "accusativeName": "Waldemara Sługockiego",
     "active": true,
     "birthDate": "1971-09-09",
@@ -7152,7 +7152,7 @@
     "secondName": "Jan",
     "voivodeship": "lubuskie"
   },
-  "345": {
+  {
     "accusativeName": "Weronikę Smarduch",
     "active": true,
     "birthDate": "1990-04-08",
@@ -7173,7 +7173,7 @@
     "secondName": "Anna",
     "voivodeship": "małopolskie"
   },
-  "346": {
+  {
     "accusativeName": "Kazimierza Smolińskiego",
     "active": true,
     "birthDate": "1955-07-15",
@@ -7193,7 +7193,7 @@
     "profession": "adwokat",
     "voivodeship": "pomorskie"
   },
-  "347": {
+  {
     "accusativeName": "Annę Sobolak",
     "active": true,
     "birthDate": "1979-11-02",
@@ -7213,7 +7213,7 @@
     "secondName": "Helena",
     "voivodeship": "dolnośląskie"
   },
-  "348": {
+  {
     "accusativeName": "Krzysztofa Sobolewskiego",
     "active": true,
     "birthDate": "1978-09-20",
@@ -7233,7 +7233,7 @@
     "profession": "administratywista",
     "voivodeship": "podkarpackie"
   },
-  "349": {
+  {
     "accusativeName": "Artura Sobonia",
     "active": false,
     "birthDate": "1977-03-13",
@@ -7255,7 +7255,7 @@
     "voivodeship": "lubelskie",
     "waiverDesc": "Powołany na członka Zarządu Narodowego Banku Polskiego"
   },
-  "350": {
+  {
     "accusativeName": "Agnieszkę Annę Soin",
     "active": true,
     "birthDate": "1977-02-09",
@@ -7276,7 +7276,7 @@
     "secondName": "Anna",
     "voivodeship": "dolnośląskie"
   },
-  "351": {
+  {
     "accusativeName": "Zbigniewa Sosnowskiego",
     "active": true,
     "birthDate": "1963-12-10",
@@ -7296,7 +7296,7 @@
     "profession": "nauczyciel",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "352": {
+  {
     "accusativeName": "Marka Sowę",
     "active": true,
     "birthDate": "1967-02-04",
@@ -7317,7 +7317,7 @@
     "secondName": "Jan",
     "voivodeship": "małopolskie"
   },
-  "353": {
+  {
     "accusativeName": "Katarzynę Sójkę",
     "active": true,
     "birthDate": "1986-02-05",
@@ -7337,7 +7337,7 @@
     "profession": "lekarz - specjalista chorób wewnętrznych",
     "voivodeship": "wielkopolskie"
   },
-  "354": {
+  {
     "accusativeName": "Magdalenę Srokę",
     "active": true,
     "birthDate": "1979-07-15",
@@ -7358,7 +7358,7 @@
     "secondName": "Joanna",
     "voivodeship": "pomorskie"
   },
-  "355": {
+  {
     "accusativeName": "Mirosławę Stachowiak-Różecką",
     "active": true,
     "birthDate": "1973-07-08",
@@ -7379,7 +7379,7 @@
     "secondName": "Agnieszka",
     "voivodeship": "dolnośląskie"
   },
-  "356": {
+  {
     "accusativeName": "Dariusza Stefaniuka",
     "active": true,
     "birthDate": "1981-05-10",
@@ -7400,7 +7400,7 @@
     "secondName": "Paweł",
     "voivodeship": "lubelskie"
   },
-  "357": {
+  {
     "accusativeName": "Franciszka Sterczewskiego",
     "active": true,
     "birthDate": "1988-03-17",
@@ -7421,7 +7421,7 @@
     "secondName": "Wojciech",
     "voivodeship": "wielkopolskie"
   },
-  "358": {
+  {
     "accusativeName": "Piotra Pawła Stracha",
     "active": true,
     "birthDate": "1982-01-10",
@@ -7442,7 +7442,7 @@
     "secondName": "Paweł",
     "voivodeship": "śląskie"
   },
-  "359": {
+  {
     "accusativeName": "Mirosława Suchonia",
     "active": true,
     "birthDate": "1976-01-10",
@@ -7463,7 +7463,7 @@
     "secondName": "Tadeusz",
     "voivodeship": "śląskie"
   },
-  "360": {
+  {
     "accusativeName": "Marka Suskiego",
     "active": true,
     "birthDate": "1958-06-11",
@@ -7483,7 +7483,7 @@
     "profession": "specjalista ds. marketingu",
     "voivodeship": "mazowieckie"
   },
-  "361": {
+  {
     "accusativeName": "Pawła Suskiego",
     "active": true,
     "birthDate": "1964-06-10",
@@ -7503,7 +7503,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "zachodniopomorskie"
   },
-  "362": {
+  {
     "accusativeName": "Artura Szałabawkę",
     "active": true,
     "birthDate": "1967-10-03",
@@ -7524,7 +7524,7 @@
     "secondName": "Lesław",
     "voivodeship": "zachodniopomorskie"
   },
-  "363": {
+  {
     "accusativeName": "Wojciecha Szaramę",
     "active": true,
     "birthDate": "1955-12-16",
@@ -7545,7 +7545,7 @@
     "secondName": "Piotr",
     "voivodeship": "śląskie"
   },
-  "364": {
+  {
     "accusativeName": "Wiesława Szczepańskiego",
     "active": true,
     "birthDate": "1960-06-01",
@@ -7566,7 +7566,7 @@
     "secondName": "Andrzej",
     "voivodeship": "wielkopolskie"
   },
-  "365": {
+  {
     "accusativeName": "Michała Szczerbę",
     "active": false,
     "birthDate": "1977-12-14",
@@ -7589,7 +7589,7 @@
     "voivodeship": "mazowieckie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "366": {
+  {
     "accusativeName": "Krzysztofa Szczuckiego",
     "active": true,
     "birthDate": "1986-10-18",
@@ -7610,7 +7610,7 @@
     "secondName": "Łukasz",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "367": {
+  {
     "accusativeName": "Józefę Szczurek-Żelazko",
     "active": true,
     "birthDate": "1961-03-14",
@@ -7630,7 +7630,7 @@
     "profession": "menedżer, parlamentarzysta",
     "voivodeship": "małopolskie"
   },
-  "368": {
+  {
     "accusativeName": "Pawła Szefernakera",
     "active": true,
     "birthDate": "1987-02-27",
@@ -7651,7 +7651,7 @@
     "secondName": "Maciej",
     "voivodeship": "zachodniopomorskie"
   },
-  "369": {
+  {
     "accusativeName": "Andrzeja Szejnę",
     "active": true,
     "birthDate": "1973-04-28",
@@ -7672,7 +7672,7 @@
     "secondName": "Jan",
     "voivodeship": "świętokrzyskie"
   },
-  "370": {
+  {
     "accusativeName": "Andrzeja Szewińskiego",
     "active": true,
     "birthDate": "1970-02-20",
@@ -7692,7 +7692,7 @@
     "profession": "parlamentarzysta, pedagog, przedsiębiorca prywatny, sportowiec, urzędnik samorządowy",
     "voivodeship": "śląskie"
   },
-  "371": {
+  {
     "accusativeName": "Adama Szłapkę",
     "active": true,
     "birthDate": "1984-12-06",
@@ -7713,7 +7713,7 @@
     "secondName": "Stanisław",
     "voivodeship": "wielkopolskie"
   },
-  "372": {
+  {
     "accusativeName": "Henryka Szopińskiego",
     "active": true,
     "birthDate": "1962-09-15",
@@ -7734,7 +7734,7 @@
     "secondName": "Marian",
     "voivodeship": "wielkopolskie"
   },
-  "373": {
+  {
     "accusativeName": "Pawła Szrota",
     "active": true,
     "birthDate": "1975-06-30",
@@ -7754,7 +7754,7 @@
     "profession": "prawnik, wyższy urzędnik państwowy",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "374": {
+  {
     "accusativeName": "Krystynę Szumilas",
     "active": true,
     "birthDate": "1956-06-28",
@@ -7775,7 +7775,7 @@
     "secondName": "Maria",
     "voivodeship": "śląskie"
   },
-  "375": {
+  {
     "accusativeName": "Stanisława Szweda",
     "active": true,
     "birthDate": "1955-04-12",
@@ -7795,7 +7795,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "śląskie"
   },
-  "376": {
+  {
     "accusativeName": "Ewę Szymanowską",
     "active": true,
     "birthDate": "1978-05-30",
@@ -7816,7 +7816,7 @@
     "secondName": "Joanna",
     "voivodeship": "łódzkie"
   },
-  "377": {
+  {
     "accusativeName": "Tomasza Szymańskiego",
     "active": true,
     "birthDate": "1978-04-24",
@@ -7837,7 +7837,7 @@
     "secondName": "Józef",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "378": {
+  {
     "accusativeName": "Szymona Szynkowskiego vel Sęka",
     "active": true,
     "birthDate": "1982-11-24",
@@ -7858,7 +7858,7 @@
     "secondName": "Andrzej",
     "voivodeship": "wielkopolskie"
   },
-  "379": {
+  {
     "accusativeName": "Łukasza Ściebiorowskiego",
     "active": true,
     "birthDate": "1980-03-13",
@@ -7879,7 +7879,7 @@
     "secondName": "Andrzej",
     "voivodeship": "śląskie"
   },
-  "380": {
+  {
     "accusativeName": "Agnieszkę Ścigaj",
     "active": true,
     "birthDate": "1975-12-22",
@@ -7899,7 +7899,7 @@
     "profession": "doradca, pracownik socjalny, wykładowca",
     "voivodeship": "małopolskie"
   },
-  "381": {
+  {
     "accusativeName": "Andrzeja Śliwkę",
     "active": true,
     "birthDate": "1988-10-12",
@@ -7919,7 +7919,7 @@
     "profession": "radca prawny",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "382": {
+  {
     "accusativeName": "Pawła Śliza",
     "active": true,
     "birthDate": "1980-09-18",
@@ -7940,7 +7940,7 @@
     "secondName": "Marek",
     "voivodeship": "małopolskie"
   },
-  "383": {
+  {
     "accusativeName": "Krzysztofa Śmiszka",
     "active": false,
     "birthDate": "1979-08-25",
@@ -7963,7 +7963,7 @@
     "voivodeship": "dolnośląskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "384": {
+  {
     "accusativeName": "Jacka Świata",
     "active": true,
     "birthDate": "1955-12-16",
@@ -7983,7 +7983,7 @@
     "profession": "parlamentarzysta, specjalista ds. marketingu",
     "voivodeship": "dolnośląskie"
   },
-  "385": {
+  {
     "accusativeName": "Apoloniusza Tajnera",
     "active": true,
     "birthDate": "1954-04-17",
@@ -8004,7 +8004,7 @@
     "secondName": "Leopold",
     "voivodeship": "śląskie"
   },
-  "386": {
+  {
     "accusativeName": "Krzysztofa Tchórzewskiego",
     "active": true,
     "birthDate": "1950-05-19",
@@ -8024,7 +8024,7 @@
     "profession": "ekonomista, inżynier elektryk",
     "voivodeship": "mazowieckie"
   },
-  "387": {
+  {
     "accusativeName": "Roberta Telusa",
     "active": true,
     "birthDate": "1969-04-18",
@@ -8044,7 +8044,7 @@
     "profession": "urzędnik państwowy",
     "voivodeship": "łódzkie"
   },
-  "388": {
+  {
     "accusativeName": "Ryszarda Terleckiego",
     "active": true,
     "birthDate": "1949-09-02",
@@ -8065,7 +8065,7 @@
     "secondName": "Iwon",
     "voivodeship": "małopolskie"
   },
-  "389": {
+  {
     "accusativeName": "Tadeusza Tomaszewskiego",
     "active": true,
     "birthDate": "1959-02-21",
@@ -8085,7 +8085,7 @@
     "profession": "ekonomista",
     "voivodeship": "wielkopolskie"
   },
-  "390": {
+  {
     "accusativeName": "Jacka Tomczaka",
     "active": true,
     "birthDate": "1973-07-27",
@@ -8106,7 +8106,7 @@
     "secondName": "Jerzy",
     "voivodeship": "wielkopolskie"
   },
-  "391": {
+  {
     "accusativeName": "Wioletę Tomczak",
     "active": true,
     "birthDate": "1988-04-21",
@@ -8127,7 +8127,7 @@
     "secondName": "Barbara",
     "voivodeship": "pomorskie"
   },
-  "392": {
+  {
     "accusativeName": "Cezarego Tomczyka",
     "active": true,
     "birthDate": "1984-08-25",
@@ -8148,7 +8148,7 @@
     "secondName": "Józef",
     "voivodeship": "łódzkie"
   },
-  "393": {
+  {
     "accusativeName": "Stanisława Tomczyszyna",
     "active": true,
     "birthDate": "1959-08-26",
@@ -8168,7 +8168,7 @@
     "profession": "nauczyciel",
     "voivodeship": "lubuskie"
   },
-  "394": {
+  {
     "accusativeName": "Małgorzatę Tracz",
     "active": true,
     "birthDate": "1985-12-08",
@@ -8189,7 +8189,7 @@
     "secondName": "Elżbieta",
     "voivodeship": "dolnośląskie"
   },
-  "395": {
+  {
     "accusativeName": "Tomasza Trelę",
     "active": true,
     "birthDate": "1979-12-30",
@@ -8210,7 +8210,7 @@
     "secondName": "Dominik",
     "voivodeship": "łódzkie"
   },
-  "396": {
+  {
     "accusativeName": "Krzysztofa Truskolaskiego",
     "active": true,
     "birthDate": "1990-07-25",
@@ -8230,7 +8230,7 @@
     "profession": "ekonomista",
     "voivodeship": "podlaskie"
   },
-  "397": {
+  {
     "accusativeName": "Krzysztofa Tuduja",
     "active": true,
     "birthDate": "1981-04-25",
@@ -8250,7 +8250,7 @@
     "profession": "prawnik",
     "voivodeship": "dolnośląskie"
   },
-  "398": {
+  {
     "accusativeName": "Sylwestra Tułajewa",
     "active": true,
     "birthDate": "1981-12-30",
@@ -8271,7 +8271,7 @@
     "secondName": "Karol",
     "voivodeship": "lubelskie"
   },
-  "399": {
+  {
     "accusativeName": "Witolda Tumanowicza",
     "active": true,
     "birthDate": "1986-11-04",
@@ -8292,7 +8292,7 @@
     "secondName": "Sławomir",
     "voivodeship": "lubelskie"
   },
-  "400": {
+  {
     "accusativeName": "Donalda Tuska",
     "active": true,
     "birthDate": "1957-04-22",
@@ -8313,7 +8313,7 @@
     "secondName": "Franciszek",
     "voivodeship": "mazowieckie"
   },
-  "401": {
+  {
     "accusativeName": "Stanisława Tyszkę",
     "active": false,
     "birthDate": "1979-04-11",
@@ -8335,7 +8335,7 @@
     "voivodeship": "pomorskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "402": {
+  {
     "accusativeName": "Katarzynę Ueberhan",
     "active": true,
     "birthDate": "1975-08-26",
@@ -8355,7 +8355,7 @@
     "profession": "filozof",
     "voivodeship": "wielkopolskie"
   },
-  "403": {
+  {
     "accusativeName": "Jarosława Urbaniaka",
     "active": true,
     "birthDate": "1966-08-07",
@@ -8376,7 +8376,7 @@
     "secondName": "Piotr",
     "voivodeship": "wielkopolskie"
   },
-  "404": {
+  {
     "accusativeName": "Piotra Uruskiego",
     "active": true,
     "birthDate": "1976-08-11",
@@ -8397,7 +8397,7 @@
     "secondName": "Marcin",
     "voivodeship": "podkarpackie"
   },
-  "405": {
+  {
     "accusativeName": "Piotra Uścińskiego",
     "active": true,
     "birthDate": "1977-05-20",
@@ -8417,7 +8417,7 @@
     "profession": "elektronik, menedżer, parlamentarzysta",
     "voivodeship": "mazowieckie"
   },
-  "406": {
+  {
     "accusativeName": "Jarosława Wałęsę",
     "active": true,
     "birthDate": "1976-09-13",
@@ -8438,7 +8438,7 @@
     "secondName": "Leszek",
     "voivodeship": "pomorskie"
   },
-  "407": {
+  {
     "accusativeName": "Marcina Warchoła",
     "active": true,
     "birthDate": "1980-07-13",
@@ -8459,7 +8459,7 @@
     "secondName": "Józef",
     "voivodeship": "podkarpackie"
   },
-  "408": {
+  {
     "accusativeName": "Roberta Wardzałę",
     "active": true,
     "birthDate": "1975-10-12",
@@ -8480,7 +8480,7 @@
     "secondName": "Marian",
     "voivodeship": "małopolskie"
   },
-  "409": {
+  {
     "accusativeName": "Roberta Warwasa",
     "active": true,
     "birthDate": "1976-08-13",
@@ -8501,7 +8501,7 @@
     "secondName": "Piotr",
     "voivodeship": "śląskie"
   },
-  "410": {
+  {
     "accusativeName": "Jana Warzechę",
     "active": true,
     "birthDate": "1959-04-21",
@@ -8522,7 +8522,7 @@
     "secondName": "Marek",
     "voivodeship": "podkarpackie"
   },
-  "411": {
+  {
     "accusativeName": "Małgorzatę Wassermann",
     "active": true,
     "birthDate": "1978-03-16",
@@ -8543,7 +8543,7 @@
     "secondName": "Ewa",
     "voivodeship": "małopolskie"
   },
-  "412": {
+  {
     "accusativeName": "Michała Wawera",
     "active": true,
     "birthDate": "1989-04-01",
@@ -8564,7 +8564,7 @@
     "secondName": "Jan",
     "voivodeship": "świętokrzyskie"
   },
-  "413": {
+  {
     "accusativeName": "Macieja Wąsika",
     "active": false,
     "birthDate": "1969-10-16",
@@ -8585,7 +8585,7 @@
     "voivodeship": "mazowieckie",
     "waiverDesc": "Utrata prawa wybieralności"
   },
-  "414": {
+  {
     "accusativeName": "Martę Wcisło",
     "active": false,
     "birthDate": "1969-02-26",
@@ -8608,7 +8608,7 @@
     "voivodeship": "lubelskie",
     "waiverDesc": "Wybrana na posła do Parlamentu Europejskiego"
   },
-  "415": {
+  {
     "accusativeName": "Rafała Webera",
     "active": true,
     "birthDate": "1981-09-01",
@@ -8628,7 +8628,7 @@
     "profession": "prawnik",
     "voivodeship": "podkarpackie"
   },
-  "416": {
+  {
     "accusativeName": "Marka Wesołego",
     "active": true,
     "birthDate": "1972-05-03",
@@ -8649,7 +8649,7 @@
     "secondName": "Jacek",
     "voivodeship": "śląskie"
   },
-  "417": {
+  {
     "accusativeName": "Joannę Wichę",
     "active": true,
     "birthDate": "1966-10-09",
@@ -8670,7 +8670,7 @@
     "secondName": "Beata",
     "voivodeship": "mazowieckie"
   },
-  "418": {
+  {
     "accusativeName": "Patryka Wichra",
     "active": true,
     "birthDate": "1986-03-09",
@@ -8691,7 +8691,7 @@
     "secondName": "Tomasz",
     "voivodeship": "małopolskie"
   },
-  "419": {
+  {
     "accusativeName": "Dariusza Wieczorka",
     "active": true,
     "birthDate": "1965-05-23",
@@ -8712,7 +8712,7 @@
     "secondName": "Krzysztof",
     "voivodeship": "zachodniopomorskie"
   },
-  "420": {
+  {
     "accusativeName": "Jarosława Wiesława Wieczorka",
     "active": true,
     "birthDate": "1981-01-27",
@@ -8732,7 +8732,7 @@
     "secondName": "Wiesław",
     "voivodeship": "śląskie"
   },
-  "421": {
+  {
     "accusativeName": "Monikę Wielichowską",
     "active": true,
     "birthDate": "1973-10-04",
@@ -8752,7 +8752,7 @@
     "profession": "dziennikarz, ekonomista, pracownik samorządowy",
     "voivodeship": "dolnośląskie"
   },
-  "422": {
+  {
     "accusativeName": "Ryszarda Wilka",
     "active": true,
     "birthDate": "1987-03-24",
@@ -8773,7 +8773,7 @@
     "secondName": "Jakub",
     "voivodeship": "małopolskie"
   },
-  "423": {
+  {
     "accusativeName": "Teresę Wilk",
     "active": true,
     "birthDate": "1952-10-29",
@@ -8793,7 +8793,7 @@
     "profession": "ekonomista",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "424": {
+  {
     "accusativeName": "Przemysława Wiplera",
     "active": true,
     "birthDate": "1978-07-15",
@@ -8814,7 +8814,7 @@
     "secondName": "Janusz",
     "voivodeship": "kujawsko-pomorskie"
   },
-  "425": {
+  {
     "accusativeName": "Aleksandrę Karolinę Uznańską-Wiśniewską",
     "active": true,
     "birthDate": "1994-05-27",
@@ -8835,7 +8835,7 @@
     "secondName": "Karolina",
     "voivodeship": "łódzkie"
   },
-  "426": {
+  {
     "accusativeName": "Adriana Witczaka",
     "active": true,
     "birthDate": "1991-03-20",
@@ -8855,7 +8855,7 @@
     "profession": "nauczyciel",
     "voivodeship": "łódzkie"
   },
-  "427": {
+  {
     "accusativeName": "Mariusza Witczaka",
     "active": true,
     "birthDate": "1971-04-14",
@@ -8876,7 +8876,7 @@
     "secondName": "Sebastian",
     "voivodeship": "wielkopolskie"
   },
-  "428": {
+  {
     "accusativeName": "Elżbietę Witek",
     "active": true,
     "birthDate": "1957-12-17",
@@ -8897,7 +8897,7 @@
     "secondName": "Barbara",
     "voivodeship": "dolnośląskie"
   },
-  "429": {
+  {
     "accusativeName": "Przemysława Witka",
     "active": true,
     "birthDate": "1978-03-16",
@@ -8918,7 +8918,7 @@
     "secondName": "Jarosław",
     "voivodeship": "śląskie"
   },
-  "430": {
+  {
     "accusativeName": "Kamila Wnuka",
     "active": true,
     "birthDate": "1984-05-22",
@@ -8939,7 +8939,7 @@
     "secondName": "Wiesław",
     "voivodeship": "śląskie"
   },
-  "431": {
+  {
     "accusativeName": "Annę Wojciechowską",
     "active": true,
     "birthDate": "1960-02-29",
@@ -8959,7 +8959,7 @@
     "profession": "doradca finansowy, pracownik administracji samorządowej",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "432": {
+  {
     "accusativeName": "Agnieszkę Wojciechowską van Heukelom",
     "active": true,
     "birthDate": "1964-08-30",
@@ -8980,7 +8980,7 @@
     "secondName": "Krystyna",
     "voivodeship": "łódzkie"
   },
-  "433": {
+  {
     "accusativeName": "Agatę Wojtyszek",
     "active": true,
     "birthDate": "1967-10-23",
@@ -9001,7 +9001,7 @@
     "secondName": "Katarzyna",
     "voivodeship": "świętokrzyskie"
   },
-  "434": {
+  {
     "accusativeName": "Bogusława Wołoszańskiego",
     "active": true,
     "birthDate": "1950-03-22",
@@ -9021,7 +9021,7 @@
     "profession": "dziennikarz",
     "voivodeship": "łódzkie"
   },
-  "435": {
+  {
     "accusativeName": "Michała Wosia",
     "active": true,
     "birthDate": "1991-02-08",
@@ -9042,7 +9042,7 @@
     "secondName": "Piotr",
     "voivodeship": "śląskie"
   },
-  "436": {
+  {
     "accusativeName": "Grzegorza Woźniaka",
     "active": true,
     "birthDate": "1968-12-18",
@@ -9063,7 +9063,7 @@
     "secondName": "Adam",
     "voivodeship": "mazowieckie"
   },
-  "437": {
+  {
     "accusativeName": "Tadeusza Woźniaka",
     "active": true,
     "birthDate": "1960-01-15",
@@ -9084,7 +9084,7 @@
     "secondName": "Jacek",
     "voivodeship": "łódzkie"
   },
-  "438": {
+  {
     "accusativeName": "Michała Wójcika",
     "active": true,
     "birthDate": "1971-04-17",
@@ -9105,7 +9105,7 @@
     "secondName": "Marek",
     "voivodeship": "śląskie"
   },
-  "439": {
+  {
     "accusativeName": "Macieja Wróbla",
     "active": true,
     "birthDate": "1983-10-16",
@@ -9126,7 +9126,7 @@
     "secondName": "Stanisław",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "440": {
+  {
     "accusativeName": "Bartłomieja Wróblewskiego",
     "active": true,
     "birthDate": "1975-03-13",
@@ -9147,7 +9147,7 @@
     "secondName": "Piotr",
     "voivodeship": "wielkopolskie"
   },
-  "441": {
+  {
     "accusativeName": "Pawła Zalewskiego",
     "active": true,
     "birthDate": "1964-09-25",
@@ -9168,7 +9168,7 @@
     "secondName": "Ksawery",
     "voivodeship": "mazowieckie"
   },
-  "442": {
+  {
     "accusativeName": "Adriana Zandberga",
     "active": true,
     "birthDate": "1979-12-04",
@@ -9189,7 +9189,7 @@
     "secondName": "Tadeusz",
     "voivodeship": "mazowieckie"
   },
-  "443": {
+  {
     "accusativeName": "Andrzeja Tomasza Zapałowskiego",
     "active": true,
     "birthDate": "1966-11-06",
@@ -9210,7 +9210,7 @@
     "secondName": "Tomasz",
     "voivodeship": "podkarpackie"
   },
-  "444": {
+  {
     "accusativeName": "Bartosza Zawieję",
     "active": true,
     "birthDate": "1978-03-02",
@@ -9231,7 +9231,7 @@
     "secondName": "Józef",
     "voivodeship": "wielkopolskie"
   },
-  "445": {
+  {
     "accusativeName": "Marcelinę Zawiszę",
     "active": true,
     "birthDate": "1989-05-03",
@@ -9252,7 +9252,7 @@
     "secondName": "Monika",
     "voivodeship": "opolskie"
   },
-  "446": {
+  {
     "accusativeName": "Sławomira Zawiślaka",
     "active": true,
     "birthDate": "1963-06-09",
@@ -9272,7 +9272,7 @@
     "profession": "parlamentarzysta",
     "voivodeship": "lubelskie"
   },
-  "447": {
+  {
     "accusativeName": "Bogdana Andrzeja Zdrojewskiego",
     "active": false,
     "birthDate": "1957-05-18",
@@ -9295,7 +9295,7 @@
     "voivodeship": "dolnośląskie",
     "waiverDesc": "Wybrany na posła do Parlamentu Europejskiego"
   },
-  "448": {
+  {
     "accusativeName": "Witolda Zembaczyńskiego",
     "active": true,
     "birthDate": "1980-12-28",
@@ -9316,7 +9316,7 @@
     "secondName": "Maciej",
     "voivodeship": "opolskie"
   },
-  "449": {
+  {
     "accusativeName": "Piotra Zgorzelskiego",
     "active": true,
     "birthDate": "1963-09-17",
@@ -9336,7 +9336,7 @@
     "profession": "urzędnik samorządowy",
     "voivodeship": "mazowieckie"
   },
-  "450": {
+  {
     "accusativeName": "Zbigniewa Ziejewskiego",
     "active": true,
     "birthDate": "1958-11-28",
@@ -9356,7 +9356,7 @@
     "profession": "inżynier rolnik",
     "voivodeship": "warmińsko-mazurskie"
   },
-  "451": {
+  {
     "accusativeName": "Urszulę Sarę Zielińską",
     "active": true,
     "birthDate": "1977-10-03",
@@ -9377,7 +9377,7 @@
     "secondName": "Sara",
     "voivodeship": "mazowieckie"
   },
-  "452": {
+  {
     "accusativeName": "Jarosława Zielińskiego",
     "active": true,
     "birthDate": "1960-09-20",
@@ -9397,7 +9397,7 @@
     "profession": "nauczyciel, parlamentarzysta",
     "voivodeship": "podlaskie"
   },
-  "453": {
+  {
     "accusativeName": "Tomasza Zielińskiego",
     "active": true,
     "birthDate": "1967-07-20",
@@ -9418,7 +9418,7 @@
     "secondName": "Andrzej",
     "voivodeship": "lubelskie"
   },
-  "454": {
+  {
     "accusativeName": "Jolantę Ziębę-Gzik",
     "active": true,
     "birthDate": "1975-10-13",
@@ -9438,7 +9438,7 @@
     "profession": "specjalista ds. zarządzania",
     "voivodeship": "łódzkie"
   },
-  "455": {
+  {
     "accusativeName": "Tomasza Zimocha",
     "active": true,
     "birthDate": "1957-10-30",
@@ -9459,7 +9459,7 @@
     "secondName": "Franciszek",
     "voivodeship": "dolnośląskie"
   },
-  "456": {
+  {
     "accusativeName": "Zbigniewa Ziobrę",
     "active": true,
     "birthDate": "1970-08-18",
@@ -9480,7 +9480,7 @@
     "secondName": "Tadeusz",
     "voivodeship": "podkarpackie"
   },
-  "457": {
+  {
     "accusativeName": "Wojciecha Michała Zubowskiego",
     "active": true,
     "birthDate": "1979-11-12",
@@ -9501,7 +9501,7 @@
     "secondName": "Michał",
     "voivodeship": "dolnośląskie"
   },
-  "458": {
+  {
     "accusativeName": "Ireneusza Zyskę",
     "active": true,
     "birthDate": "1969-08-05",
@@ -9521,7 +9521,7 @@
     "profession": "menedżer, radca prawny, parlamentarzysta",
     "voivodeship": "dolnośląskie"
   },
-  "459": {
+  {
     "accusativeName": "Bożenę Żelazowską",
     "active": true,
     "birthDate": "1970-08-23",
@@ -9542,7 +9542,7 @@
     "secondName": "Jadwiga",
     "voivodeship": "mazowieckie"
   },
-  "460": {
+  {
     "accusativeName": "Annę Marię Żukowską",
     "active": true,
     "birthDate": "1983-06-11",
@@ -9563,4 +9563,4 @@
     "secondName": "Maria",
     "voivodeship": "mazowieckie"
   }
-}
+]

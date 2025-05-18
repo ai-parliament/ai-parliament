@@ -25,6 +25,9 @@ class Politician:
 
 
     def answer_question(self, question:str) -> str:
+        '''
+        Funkcja do pogadania sobie z posłem, odpowiada na pytanie mając kontekst ze swoich narzędzi
+        '''
         messages = [
             SystemMessage(content=self.system_prompt),
             HumanMessage(content=f"context: [{self.get_context()}] \n\n question: [{question}]")
@@ -46,7 +49,7 @@ class Politician:
         return summary['output']
     
     def get_context(self):
-        #na razie tylko ogólne poglądy, później też historia rozmowy
+        #na razie tylko ogólne poglądy, później też historia rozmowy, głosowania itd
         return self.general_beliefs
     
     def _set_system_prompt(self):

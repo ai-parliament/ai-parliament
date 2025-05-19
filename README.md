@@ -116,11 +116,8 @@ Run the `setup.sh` script to automate the creation of virtual environments:
 
 This will create virtual environments for the `ai`, `backend`, and `frontend` subprojects.
 
-### Activating Virtual Environments
+3. Activate the virtual environment for any subproject when needed:
 
-Before running the project, activate the virtual environment for the relevant subproject. For example:
-
-```bash
-cd ai
-source .venv/bin/activate
-```
+    ```bash
+    source .venv/bin/activate
+    ```

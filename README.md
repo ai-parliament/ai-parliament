@@ -121,3 +121,8 @@ This will create virtual environments for the `ai`, `backend`, and `frontend` su
     ```bash
     source .venv/bin/activate
     ```
+4. Install dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```

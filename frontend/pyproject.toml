@@ -1,0 +1,12 @@
+[project]
+name = "frontend"
+version = "0.1.0"
+description = ""
+authors = []
+dependencies = [
+    "streamlit"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

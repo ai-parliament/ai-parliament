@@ -65,64 +65,6 @@ AI Parliament is a simulation of a parliamentary system where agents representin
     pip install uv
     ```
 
-## Project Setup
-
-### Manual Setup
-
-1. Navigate to the root of your project:
-
-    ```bash
-    cd /Users/mchojna/Documents/Repozytoria/ai-parliament
-    ```
-
-2. Create virtual environments for each subproject (`ai`, `backend`, `frontend`) using `uv`:
-
-    ```bash
-    cd ai
-    uv venv .venv
-    cd ../backend
-    uv venv .venv
-    cd ../frontend
-    uv venv .venv
-    ```
-
-3. Activate the virtual environment for any subproject when needed:
-
-    ```bash
-    source .venv/bin/activate
-    ```
-
-4. Install dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-### Automated Setup Script
-
-Run the `setup.sh` script to automate the creation of virtual environments:
-
-1. Make the script executable:
-
-    ```bash
-    chmod +x [setup.sh](http://_vscodecontentref_/7)
-    ```
-
-2. Run the script:
-
-    ```bash
-    [setup.sh](http://_vscodecontentref_/8)
-    ```
-
-This will create virtual environments for the `ai`, `backend`, and `frontend` subprojects.
-
-3. Activate the virtual environment for any subproject when needed:
-
-    ```bash
-    source .venv/bin/activate
-    ```
-4. Install dependencies:
-
     ```bash
     pip install -r requirements.txt
     ```

@@ -3,16 +3,23 @@ name = "backend"
 version = "0.1.0"
 description = ""
 authors = []
+requires-python = ">=3.11"
 dependencies = [
     "langchain",
     "langchain-openai",
     "langgraph",
-    "langchain-hub",
+    "langchainhub",
     "langchain-community",
     "langsmith",
-    "pydantic"
+    "pydantic",
 ]
 
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

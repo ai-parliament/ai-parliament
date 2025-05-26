@@ -44,11 +44,11 @@ AI Parliament is a simulation of a parliamentary system where agents representin
     │   │   │   ├── politician_selector.py  # UI for selecting politicians
     │   │   │   └── results_display.py      # Displays the final results
     │   │   └── app.py                      # Main frontend application
-    ├── [docker-compose.yml]                # Docker configuration for the entire system
-    ├── [.env.shared]                       # Shared environment variables
-    ├── [.env.secret]                       # Secret environment variables
+    ├── docker-compose.yml                  # Docker configuration for the entire system
+    ├── .env.shared                         # Shared environment variables
+    ├── .env.secret                         # Secret environment variables
     ├── .gitignore                          # Git ignore file
-    └── [README.md]                         # Project documentation
+    └── README.md                           # Project documentation
     ```
 
 ## Prerequisites

@@ -14,16 +14,16 @@ AI Parliament is a simulation of a parliamentary system where agents representin
     │   │   ├── config/
     │   │   │   └── config_manager.py
     │   │   ├── agents/
-    │   │   │   ├── main_agent.py       # Manages all other agents
-    │   │   │   ├── party_agent.py      # Represents a political party
-    │   │   │   ├── politician_agent.py # Represents individual politicians
-    │   │   │   └── wiki_agent.py       # Searches Wikipedia for party and politician data
+    │   │   │   ├── main_agent.py           # Manages all other agents
+    │   │   │   ├── party_agent.py          # Represents a political party
+    │   │   │   ├── politician_agent.py     # Represents individual politicians
+    │   │   │   └── wiki_agent.py           # Searches Wikipedia for party and politician data
     │   │   ├── database/
-    │   │   │   └── graph_database.py   # Handles graph database integration
+    │   │   │   └── graph_database.py       # Handles graph database integration
     │   │   └── simulation/
-    │   │       ├── party_discussion.py # Simulates discussions within a party
-    │   │       ├── inter_party_debate.py # Simulates debates between parties
-    │   │       └── voting_system.py    # Determines if the legislation passes
+    │   │       ├── party_discussion.py     # Simulates discussions within a party
+    │   │       ├── inter_party_debate.py   # Simulates debates between parties
+    │   │       └── voting_system.py        # Determines if the legislation passes
     ├── backend/
     │   ├── Dockerfile
     │   ├── requirements.txt
@@ -32,23 +32,23 @@ AI Parliament is a simulation of a parliamentary system where agents representin
     │   │   ├── config/
     │   │   │   └── config_manager.py
     │   │   └── api/
-    │   │       ├── endpoints.py        # API endpoints for interacting with the system
-    │   │       └── models.py           # Data models for API
+    │   │       ├── endpoints.py            # API endpoints for interacting with the system
+    │   │       └── models.py               # Data models for API
     ├── frontend/
     │   ├── Dockerfile
     │   ├── requirements.txt
     │   ├── src/
     │   │   ├── __init__.py
     │   │   ├── components/
-    │   │   │   ├── party_selector.py   # UI for selecting parties
-    │   │   │   ├── politician_selector.py # UI for selecting politicians
-    │   │   │   └── results_display.py  # Displays the final results
-    │   │   └── app.py                  # Main frontend application
-    ├── [docker-compose.yml](http://_vscodecontentref_/3)              # Docker configuration for the entire system
-    ├── [.env.shared](http://_vscodecontentref_/4)                     # Shared environment variables
-    ├── [.env.secret](http://_vscodecontentref_/5)                     # Secret environment variables
-    ├── .gitignore                      # Git ignore file
-    └── [README.md](http://_vscodecontentref_/6)                       # Project documentation
+    │   │   │   ├── party_selector.py       # UI for selecting parties
+    │   │   │   ├── politician_selector.py  # UI for selecting politicians
+    │   │   │   └── results_display.py      # Displays the final results
+    │   │   └── app.py                      # Main frontend application
+    ├── [docker-compose.yml]                # Docker configuration for the entire system
+    ├── [.env.shared]                       # Shared environment variables
+    ├── [.env.secret]                       # Secret environment variables
+    ├── .gitignore                          # Git ignore file
+    └── [README.md]                         # Project documentation
     ```
 
 ## Prerequisites

@@ -1,10 +1,11 @@
+import os
 from main_agent import MainAgent
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_core.tools import Tool
+from langchain.agents import create_tool_calling_agent, AgentExecutor
+from langsmith import Client
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
-from langsmith import Client
-from langchain.agents import create_tool_calling_agent, AgentExecutor
+from typing import List, Dict
 
 
 class PoliticianAgent(MainAgent):
@@ -12,75 +13,72 @@ class PoliticianAgent(MainAgent):
         super().__init__()
         self.first_name = first_name
         self.last_name = last_name
-        self.system_prompt = self._set_system_prompt()
-        self.tools = self._get_all_tools()
-        self.agent = self._setup_agent()
-        self.agent_executor = AgentExecutor(agent=self.agent, tools=self.tools, verbose=True)
 
-    def answer_question(self, question):
+        # Pobieramy ogólne przekonania (np. krótką notkę biograficzną)
+        self.general_beliefs = self._get_general_beliefs()
+        # Przygotowujemy system prompt i narzędzia
+        self.system_prompt    = self._set_system_prompt()
+        self.tools            = self._get_all_tools()
+        self.agent            = self._setup_agent()
+        self.agent_executor   = AgentExecutor(agent=self.agent, tools=self.tools, verbose=True)
 
-        #ten tez powinien byc zasysany
-        prompt = (
-            """
-            ## context of the conversation:\n
-            {conversation_history}\n\n
-            ## question: [{question}]"
-            """
-            )
-        prompt = prompt.replace("{conversation_hisotry}", self.memory.load_memory_variables({})["history"])
-        prompt = prompt.replace("{question}", question)
+    def answer_question(self, question: str):
+        """
+        Wysyła pytanie do agenta-polityka.
+        Zwraca content (str) z odpowiedzi.
+        """
+        response = self.agent_executor.invoke({"input": question})
+        # Dla różnych wersji LangChain:
+        if isinstance(response, dict) and "output" in response:
+            return response["output"]
+        return response.content
 
-        messages = [
-            SystemMessage(content=self.system_prompt),
-            HumanMessage(content=prompt)
-        ]
-        messages += self.memory.load_memory_variables({})["history"]
+    #
+    # === IMPLEMENTACJE METOD ABSTRAKCYJNYCH z MainAgent ===
+    #
 
-        response = self.model(messages=messages)
-        self.memory.chat_memory.add_ai_message(response.content)
-        return response
-    
-    def get_general_political_beliefs(self):
+    def _get_general_beliefs(self) -> str:
+        """
+        Krótka "biografia" lub wstępne przekonania polityka.
+        Potrzebne, bo MainAgent wymaga tej metody.
+        """
+        # Możesz tu dodać wywołanie Wikipedii albo statyczny tekst:
+        return f"{self.first_name} {self.last_name}, polityk działający w Polsce."
 
-        #ten prompt pewnie powinien być jako zasysany z prompt menadzera
-        prompt = f"Jakie poglądy polityczne ma {self.name} {self.surname}?\
-            Skup się wyłącznie na jego poglądach politycznych — nie podawaj informacji biograficznych, dat, stanowisk ani ciekawostek.\
-            Interesuje mnie tylko to, co myśli na temat spraw politycznych, gospodarczych i społecznych.\
-            Wypisz je w następującym formacie: \n\
-            1. Gospodarka: \n\
-            2. Polityka zagraniczna: \n\
-            3. Polityka społeczna: \n\
-            4. Sprawy światopoglądowe: \n"
-        
-        summary = self.agent_executor.invoke({"input" : prompt})
-        return summary['output']
-    
-    def _set_system_prompt(self):
+    def _set_system_prompt(self) -> str:
+        """
+        Systemowy prompt do agenta-polityka.
+        """
+        return (
+            f"Jesteś politykiem {self.first_name} {self.last_name}.\n"
+            "Twoim zadaniem jest odpowiadać na pytania i formułować opinie zgodnie z Twoim profilem."
+        )
 
-        #ten prompt pewnie tez
-        system_prompt = f"Jesteś politykiem i nazywasz się {self.name} {self.surname}. \
-                    Bierzesz udział w dyskusji z innymi politykami.\
-                    Odpowiadasz w oparciu o własne poglądy polityczne i uwzględniając wypowiedzi innych uczestników.\n\n \
-                    Oto kontekst na temat tego jakie są twoje poglądy: context[{self.general_beliefs}]"
-        return system_prompt
-    
-    def _get_all_tools(self):
-        #tutaj miejsce na wywołania jeszcze jakichś innych funkcji zwracających narzędzia (?) 
-        wiki = self._setup_wikipedia_tool()
-        return [wiki]
-    
-    def _setup_agent(self):    
+    def _get_all_tools(self) -> List:
+        """
+        Narzędzia używane przez agenta (np. dostęp do Wikipedii).
+        """
+        return [self._setup_wikipedia_tool()]
+
+    def _setup_agent(self):
+        """
+        Buduje i zwraca agenta LangChain z podpiętym promptem i narzędziami.
+        """
         hub_client = Client(api_key=os.getenv("LANGSMITH_API_KEY"))
         basic_prompt = hub_client.pull_prompt("hwchase17/openai-tools-agent")
-        agent = create_tool_calling_agent(self.llm, self.tools, basic_prompt)
-        return agent
-    
-    def _get_context(self):
-        #na razie tylko ogólne poglądy, później też historia rozmowy, głosowania itd
-        return self.general_beliefs
-    
+        return create_tool_calling_agent(self.llm, self.tools, basic_prompt)
+
+    def _get_context(self) -> Dict[str, str]:
+        """
+        Zwraca kontekst dla pamięci lub dalszych promptów.
+        """
+        return {
+            "politician_beliefs": self.general_beliefs
+        }
+
     def _setup_wikipedia_tool(self) -> WikipediaQueryRun:
+        """
+        Konfiguruje narzędzie do zapytań Wikipedii.
+        """
         wiki_wrapper = WikipediaAPIWrapper(lang="pl")
         return WikipediaQueryRun(api_wrapper=wiki_wrapper)
-
-    

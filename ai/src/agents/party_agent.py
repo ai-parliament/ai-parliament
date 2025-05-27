@@ -10,136 +10,121 @@ import os
 
 
 class PartyAgent(MainAgent):
-    def __init__(self, party_name: str, party_acronym: str):
+    def __init__(self, name: str, acronym: str = ""):
         super().__init__()
-        self.party_name = party_name
-        self.party_acronym = party_acronym
-        
-        # Lista posłów
+        # alias dla testów
+        self.party_name = name
+        self.party_acronym = acronym
+
+        # Lista posłów i historia dyskusji
         self.politicians: List[PoliticianAgent] = []
-        
-        # Historia dyskusji
-        self.discussion_history = []
-        
-        # Podstawowa inicjalizacja
+        self.discussion_history: List[Dict[str, str]] = []
+
+        # Ustawienia agenta
         self.general_beliefs = self._get_general_beliefs()
-        self.system_prompt = self._set_system_prompt()
-        self.tools = self._get_all_tools()
-        self.agent = self._setup_agent()
-        self.agent_executor = AgentExecutor(agent=self.agent, tools=self.tools, verbose=True)
-    
-    def add_politician(self, first_name: str, last_name: str):
-        """Dodaje posła do partii"""
+        self.system_prompt   = self._set_system_prompt()
+        self.tools           = self._get_all_tools()
+        self.agent           = self._setup_agent()
+        self.agent_executor  = AgentExecutor(agent=self.agent, tools=self.tools, verbose=True)
+
+    @property
+    def name(self) -> str:
+        """Pozwala testom zrobić party.name"""
+        return self.party_name
+
+    @name.setter
+    def name(self, value: str):
+        """Obsługa przypisania self.name = … z MainAgent.__init__"""
+        self.party_name = value
+
+    def add_politician(self, full_name: str, role: str = ""):
+        parts = full_name.split(maxsplit=1)
+        first_name = parts[0]
+        last_name = parts[1] if len(parts) > 1 else ""
         politician = PoliticianAgent(first_name=first_name, last_name=last_name)
+        politician.name = full_name  # żeby test mógł to odczytać
+        politician.role = role
         self.politicians.append(politician)
-        print(f"Dodano posła: {first_name} {last_name} do partii {self.party_name}")
-    
+        print(f"Dodano posła: {full_name} do partii {self.party_name}")
+
     def get_politicians_opinions(self, legislation_text: str) -> List[Dict[str, str]]:
-        """Zbiera opinie posłów na temat ustawy"""
         opinions = []
-        
         for politician in self.politicians:
             prompt = f"""
             Projekt ustawy: {legislation_text}
-            
-            Wyraź swoją opinię na temat tego projektu jako poseł {politician.first_name} {politician.last_name}.
+
+            Wyraź swoją opinię na temat tego projektu jako poseł {politician.name}.
             Czy popierasz tę ustawę? Jakie masz argumenty?
             """
-            
             response = politician.answer_question(prompt)
             opinions.append({
-                "politician": f"{politician.first_name} {politician.last_name}",
+                "politician": politician.name,
                 "opinion": response.content
             })
-            
+
         self.discussion_history = opinions
         return opinions
-    
+
     def formulate_party_stance(self, legislation_text: str) -> str:
-        """Formułuje stanowisko partii na podstawie opinii posłów"""
-        # Najpierw zbieramy opinie posłów
         if not self.discussion_history:
             self.get_politicians_opinions(legislation_text)
-        
-        # Przygotowujemy podsumowanie dyskusji
-        discussion_summary = "\n".join([
-            f"{opinion['politician']}: {opinion['opinion']}" 
-            for opinion in self.discussion_history
-        ])
-        
-        # Agent partii formułuje stanowisko na podstawie dyskusji
-        prompt = f"""
-        Jako lider partii {self.party_name} ({self.party_acronym}), 
-        na podstawie poniższych opinii posłów:
-        
-        {discussion_summary}
-        
-        Sformułuj oficjalne stanowisko partii:
-        1. Głosowanie: ZA/PRZECIW/WSTRZYMANIE
-        2. Uzasadnienie decyzji
-        3. Czy wszyscy posłowie są zgodni?
-        """
-        
+
+        discussion_summary = "\n".join(
+            f"{op['politician']}: {op['opinion']}"
+            for op in self.discussion_history
+        )
+        prompt = (
+            f"Jesteś liderem partii {self.party_name} ({self.party_acronym}). "
+            f"Oto opinie posłów na temat ustawy:\n\n{discussion_summary}\n\n"
+            "Sformułuj krótkie stanowisko partii wobec tej ustawy."
+        )
         response = self.agent_executor.invoke({"input": prompt})
-        return response['output']
-    
+        return response["output"]
+
+    def analyze_legislation(self, legislation_text: str) -> str:
+        """Alias dla testów: party.analyze_legislation(...)"""
+        return self.formulate_party_stance(legislation_text)
+
     def answer_question(self, question: str) -> str:
-        """Odpowiada na pytanie jako partia"""
         prompt = f"Jako partia {self.party_name}, odpowiedz na pytanie: {question}"
         response = self.agent_executor.invoke({"input": prompt})
-        return response['output']
-    
+        return response["output"]
+
+    def ask(self, question: str) -> str:
+        """Alias dla testów: party.ask(...)"""
+        return self.answer_question(question)
+
     def _get_general_beliefs(self) -> str:
-        """Pobiera informacje o partii z Wikipedii"""
         wiki_tool = self._setup_wikipedia_tool()
-        
         try:
-            # Szukamy informacji o partii
             party_info = wiki_tool.run(f"{self.party_name} partia polityczna Polska")
-            
-            # Jeśli znajdziemy informacje, zwracamy je
             if party_info and len(party_info) > 100:
-                return party_info[:1000]  # Ograniczamy do 1000 znaków
+                return party_info[:1000]
         except:
             pass
-        
-        # Jeśli nie znajdziemy, zwracamy podstawowe info
         return f"Partia polityczna {self.party_name} ({self.party_acronym}) działająca w Polsce."
-    
-    def _set_system_prompt(self):
-        """System prompt dla agenta partii"""
-        return f"""
-        Jesteś liderem partii politycznej {self.party_name} ({self.party_acronym}).
-        
-        Informacje o partii:
-        {self.general_beliefs}
-        
-        Twoim zadaniem jest:
-        - Analizować opinie posłów z twojej partii
-        - Formułować oficjalne stanowisko partii
-        - Dbać o spójność działań partii
-        """
-    
-    def _get_all_tools(self) -> list:
-        """Zwraca narzędzia dostępne dla agenta"""
-        wiki = self._setup_wikipedia_tool()
-        return [wiki]
-    
+
+    def _set_system_prompt(self) -> str:
+        return (
+            f"Jesteś liderem partii politycznej {self.party_name} ({self.party_acronym}).\n\n"
+            f"Informacje o partii:\n{self.general_beliefs}\n\n"
+            "Twoim zadaniem jest reprezentować stanowisko partii."
+        )
+
+    def _get_all_tools(self):
+        return [self._setup_wikipedia_tool()]
+
     def _setup_agent(self):
-        """Podstawowa konfiguracja agenta"""
         hub_client = Client(api_key=os.getenv("LANGSMITH_API_KEY"))
         basic_prompt = hub_client.pull_prompt("hwchase17/openai-tools-agent")
-        agent = create_tool_calling_agent(self.llm, self.tools, basic_prompt)
-        return agent
-    
-    def _get_context(self):
-        """Zwraca kontekst - historia dyskusji i przekonania partii"""
+        return create_tool_calling_agent(self.llm, self.tools, basic_prompt)
+
+    def _get_context(self) -> Dict[str, str]:
         return {
             "party_beliefs": self.general_beliefs,
             "discussion_history": self.discussion_history
         }
-    
+
     def _setup_wikipedia_tool(self) -> WikipediaQueryRun:
-        """Konfiguruje narzędzie Wikipedia"""
         wiki_wrapper = WikipediaAPIWrapper(lang="pl")
         return WikipediaQueryRun(api_wrapper=wiki_wrapper)

@@ -5,6 +5,8 @@ from langchain.memory import ConversationBufferMemory
 from langsmith import Client
 from langchain.agents import create_tool_calling_agent
 from abc import ABC, abstractmethod
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 
 class MainAgent(ABC):
     def __init__(self):
@@ -15,7 +17,7 @@ class MainAgent(ABC):
         self.langsmith_api_key = os.getenv("LANGSMITH_API_KEY")
         self.memory = ConversationBufferMemory(return_messages=True)
 
-        self.llm = ChatOpenAI(
+        self.llm = ChatGoogleGenerativeAI(
             model_name = self.model_name,
             openai_api_key = self.openai_api_key,
             temperature = 0.7

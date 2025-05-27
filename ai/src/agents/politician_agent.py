@@ -4,7 +4,7 @@ from langchain_core.tools import Tool
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from langsmith import Client
-from langchain.agents import create_tool_calling_agent
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 
 class PoliticianAgent(MainAgent):
@@ -12,15 +12,14 @@ class PoliticianAgent(MainAgent):
         super().__init__()
         self.first_name = first_name
         self.last_name = last_name
-
-        self.system_prompt = None
-        
-        self.tools = None
-        self.agent = None
-        self.agent_executor = None
+        self.system_prompt = self._set_system_prompt()
+        self.tools = self._get_all_tools()
+        self.agent = self._setup_agent()
+        self.agent_executor = AgentExecutor(agent=self.agent, tools=self.tools, verbose=True)
 
     def answer_question(self, question):
 
+        #ten tez powinien byc zasysany
         prompt = (
             """
             ## context of the conversation:\n
@@ -28,6 +27,8 @@ class PoliticianAgent(MainAgent):
             ## question: [{question}]"
             """
             )
+        prompt = prompt.replace("{conversation_hisotry}", self.memory.load_memory_variables({})["history"])
+        prompt = prompt.replace("{question}", question)
 
         messages = [
             SystemMessage(content=self.system_prompt),
@@ -74,4 +75,12 @@ class PoliticianAgent(MainAgent):
         agent = create_tool_calling_agent(self.llm, self.tools, basic_prompt)
         return agent
     
+    def _get_context(self):
+        #na razie tylko ogólne poglądy, później też historia rozmowy, głosowania itd
+        return self.general_beliefs
+    
+    def _setup_wikipedia_tool(self) -> WikipediaQueryRun:
+        wiki_wrapper = WikipediaAPIWrapper(lang="pl")
+        return WikipediaQueryRun(api_wrapper=wiki_wrapper)
+
     

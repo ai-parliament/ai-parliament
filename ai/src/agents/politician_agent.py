@@ -63,7 +63,8 @@ class PoliticianAgent(MainAgent):
             2. Polityka zagraniczna: \n\
             3. Polityka społeczna: \n\
             4. Sprawy światopoglądowe: \n\
-            Skorzystaj ze swojego narzędzia do przeszukiwania wikipedii."
+            **Wszystkie** z tych pozycji muszą **istnieć**. Jeśli nie znalazłeś o danej pozycji informacji wprost"\
+            " postaraj się wydedukować jej zawartość w oparciu o ogólne poglądy polityka."
         
         summary = self.agent_executor.invoke({"input" : prompt})
         return summary['output']

@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
 import os
 from langchain.memory import ConversationBufferMemory
 from langsmith import Client
@@ -9,10 +10,12 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 class MainAgent(ABC):
     def __init__(self):
+        print("jestem tu")
         # Znajdujemy ścieżkę do głównego katalogu projektu
         current_dir = os.path.dirname(os.path.abspath(__file__))
         # Idziemy 4 poziomy w górę: agents -> src -> ai -> ai-parliament
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(current_dir))))
+        #4 poziomy wychodzą poza projekt
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
         
         # Ładujemy pliki .env z głównego katalogu
         env_shared = os.path.join(project_root, '.env.shared')
@@ -27,12 +30,13 @@ class MainAgent(ABC):
         self.memory = ConversationBufferMemory(return_messages=True)
 
         # Poprawne parametry dla Gemini
-        self.llm = ChatGoogleGenerativeAI(
-            model=self.model_name,  # 'model' nie 'model_name'
-            google_api_key=self.google_api_key,  # 'google_api_key' nie 'openai_api_key'
-            temperature=0.7,
-            convert_system_message_to_human=True  # Gemini nie obsługuje system messages
-        )
+        # self.llm = ChatGoogleGenerativeAI(
+        #     model=self.model_name,  # 'model' nie 'model_name'
+        #     google_api_key=self.google_api_key,  # 'google_api_key' nie 'openai_api_key'
+        #     temperature=0.7,
+        #     convert_system_message_to_human=True  # Gemini nie obsługuje system messages
+        # )
+        self.llm = ChatOpenAI(model=os.getenv("GPT_MODEL_NAME"), temperature=0.8, max_completion_tokens=400)
         
         # Dla kompatybilności z politician_agent.py
         self.model = self.llm

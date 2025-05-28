@@ -32,7 +32,7 @@ class PoliticianAgent(MainAgent):
         conversation_history = self.memory.load_memory_variables({})["history"]
 
         messages = [
-            SystemMessage(content=f"{self.system_prompt}. Oto wszystkie dotychczasowe wypowiedzi, uwzględnij je w swojej odpowiedzi: {conversation_history}"),
+            SystemMessage(content=f"{self.system_prompt}. Oto wszystkie twoje dotychczasowe wypowiedzi, uwzględnij je w swojej odpowiedzi: {conversation_history}"),
             HumanMessage(content=question)
         ]
 

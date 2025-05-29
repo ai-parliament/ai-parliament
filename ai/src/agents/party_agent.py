@@ -59,7 +59,7 @@ class PartyAgent(MainAgent):
             response = politician.answer_question(prompt)
             opinions.append({
                 "politician": politician.name,
-                "opinion": response.content
+                "opinion": response
             })
 
         self.discussion_history = opinions

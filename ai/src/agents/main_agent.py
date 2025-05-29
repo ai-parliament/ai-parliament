@@ -36,7 +36,8 @@ class MainAgent(ABC):
         #     convert_system_message_to_human=True  # Gemini nie obsługuje system messages
         # )
         self.llm = ChatOpenAI(model=os.getenv("GPT_MODEL_NAME"),
-                              temperature=0.8)
+                              temperature=0.8,
+                              max_completion_tokens=2000)
         
         # Dla kompatybilności z politician_agent.py
         self.model = self.llm

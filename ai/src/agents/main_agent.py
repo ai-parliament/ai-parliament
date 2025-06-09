@@ -24,7 +24,8 @@ class MainAgent(ABC):
         load_dotenv(dotenv_path=env_secret)
         
         self.model_name = os.getenv("MODEL_NAME")
-        self.openai_api_key = os.getenv("GPT_MODEL_NAME")
+        self.google_api_key = os.getenv("GOOGLE_API_KEY")
+        self.openai_api_key = os.getenv("GPT_API_KEY")
         self.langsmith_api_key = os.getenv("LANGSMITH_API_KEY")
         self.memory = ConversationBufferMemory(return_messages=True)
 
@@ -34,7 +35,7 @@ class MainAgent(ABC):
         #     google_api_key=self.google_api_key,  # 'google_api_key' nie 'openai_api_key'
         #     temperature=0.7,
         #     convert_system_message_to_human=True  # Gemini nie obsługuje system messages
-        # )
+        # )  
         self.llm = ChatOpenAI(model=os.getenv("GPT_MODEL_NAME"),
                               temperature=0.8,
                               max_completion_tokens=2000)

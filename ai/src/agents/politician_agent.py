@@ -1,5 +1,6 @@
 import os
-from main_agent import MainAgent
+import random
+from agents.main_agent import MainAgent
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langsmith import Client
@@ -22,6 +23,7 @@ class PoliticianAgent(MainAgent):
 
         # Pobieramy ogólne przekonania (np. krótką notkę biograficzną)
         self.general_beliefs = self._get_general_beliefs()
+        self.legislation_beliefs = ""
         self.system_prompt    = self._set_system_prompt()
 
     def answer_question(self, question: str):
@@ -32,7 +34,8 @@ class PoliticianAgent(MainAgent):
         conversation_history = self.memory.load_memory_variables({})["history"]
 
         messages = [
-            SystemMessage(content=f"{self.system_prompt}. Oto wszystkie twoje dotychczasowe wypowiedzi, uwzględnij je w swojej odpowiedzi: {conversation_history}"),
+            SystemMessage(content=f"{self.system_prompt}. Oto twoje poglądy na temat aktualnie omawianego zagadnienia: {self.legislation_beliefs}\n\
+                          Oto wszystkie twoje dotychczasowe wypowiedzi, uwzględnij je w swojej odpowiedzi: {conversation_history}"),
             HumanMessage(content=question)
         ]
 
@@ -45,6 +48,35 @@ class PoliticianAgent(MainAgent):
             return response["output"]
         self.memory.chat_memory.add_ai_message(response.content)
         return response.content
+    
+    def set_legislation_beliefs(self, legislation_text):
+        """
+        Jakie poglądy na ten konkretny temat ma dany polityk.
+        Dodatkowo decydujemy czy będzie dzisiaj w złym nastroju i niechętny do zgadzania się z innymi
+        """
+
+        prompt = f"Znajdź kluczowe zagadnienie omawiane w następującym projekcie ustawy: {legislation_text}."\
+            f"Następnie znajdź jakie poglądy na dane zagadnienie ma {self.first_name} {self.last_name} oraz streść je w kilku zdaniach."\
+            "Odpowiedź musi zawierać przynajmniej dwa zdania."
+        
+        summary = self.agent_executor.invoke({"input" : prompt})
+        self.bad_day()
+
+        self.legislation_beliefs = summary['output']
+    
+    def bad_day(self, changed_temperature = 1.2):
+        if random.randint(1,3) == 1:
+            print(f"O nie! - {self.first_name} {self.last_name} ma dzisiaj zły dzień i jest bardzo kłótliwy.")
+
+            self.system_prompt = f"Jesteś politykiem i nazywasz się {self.name} {self.surname}. \
+            Bierzesz udział w dyskusji z innymi politykami.\
+            Odpowiadasz w oparciu o własne poglądy polityczne i uwzględniając wypowiedzi innych uczestników.\n\n \
+            Oto kontekst na temat tego jakie są twoje ogólne poglądy: context[{self.general_beliefs}] \
+            Masz dzisiaj bardzo zły humor, jesteś **kłotliwy** i **nie zgadzasz się** ze stanowiskami swoich kolegów i koleżanek z partii.\
+            Twoje poglądy są dzisiaj **zupełnie inne niż zwykle**.\
+            **Bardzo ciężko jest cię przekonać do zmiany zdania**."
+
+            self.model.temperature = changed_temperature
 
     #
     # === IMPLEMENTACJE METOD ABSTRAKCYJNYCH z MainAgent ===
@@ -77,7 +109,7 @@ class PoliticianAgent(MainAgent):
             f"Jesteś politykiem i nazywasz się {self.name} {self.surname}. \
             Bierzesz udział w dyskusji z innymi politykami.\
             Odpowiadasz w oparciu o własne poglądy polityczne i uwzględniając wypowiedzi innych uczestników.\n\n \
-            Oto kontekst na temat tego jakie są twoje poglądy: context[{self.general_beliefs}]"
+            Oto kontekst na temat tego jakie są twoje ogólne poglądy: context[{self.general_beliefs}]"
         )
 
     def _get_all_tools(self) -> List:

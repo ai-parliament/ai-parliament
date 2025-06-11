@@ -1,0 +1,12 @@
+langchain
+langchain-openai
+langgraph
+langchainhub
+langchain-community
+langsmith
+pydantic
+wikipedia>=1.4.0
+faiss-cpu>=1.11.0
+fastapi>=0.95.0
+uvicorn>=0.22.0
+python-dotenv>=1.0.0

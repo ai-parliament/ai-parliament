@@ -1,10 +1,11 @@
 from typing import List, Dict, Any
-from ..agents.agent_loader import AgentLoader
-from ..agents.supervisor_agent import SupervisorAgent
-from ..database.vector_db import VectorDatabase
-from ..simulation.party_discussion import PartyDiscussion
-from ..simulation.inter_party_debate import InterPartyDebate
-from ..simulation.voting_system import VotingSystem
+from src.ai.agents.agent_loader import AgentLoader
+from src.ai.agents.supervisor_agent import SupervisorAgent
+from src.ai.database.vector_db import VectorDatabase
+from src.ai.simulation.party_discussion import PartyDiscussion
+from src.ai.simulation.inter_party_debate import InterPartyDebate
+from src.ai.simulation.voting_system import VotingSystem
+
 
 class AIService:
     """

@@ -132,6 +132,86 @@ To create a democratic, transparent, and interactive model simulating parliament
     pip install uv
     ```
 
+## Running the Application
+
+### Using Docker Compose (Recommended)
+
+1. Make sure you have Docker and Docker Compose installed:
+
     ```bash
-    pip install -r requirements.txt
+    docker --version
+    docker-compose --version
+    ```
+
+2. Build and start the containers:
+
+    ```bash
+    docker-compose up --build
+    ```
+
+3. Access the application:
+   - Frontend: http://localhost:8501
+   - Backend API: http://localhost:8000/api
+
+4. To stop the application:
+
+    ```bash
+    docker-compose down
+    ```
+
+### Running Locally (Development)
+
+#### Backend
+
+1. Navigate to the backend directory:
+
+    ```bash
+    cd backend
+    ```
+
+2. Create requirements.txt (if not already created):
+
+    ```bash
+    echo "fastapi>=0.95.0" > requirements.txt
+    echo "uvicorn>=0.22.0" >> requirements.txt
+    echo "python-dotenv>=1.0.0" >> requirements.txt
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    uv pip install -r requirements.txt
+    ```
+
+4. Run the backend server:
+
+    ```bash
+    python -m src.main
+    ```
+
+#### Frontend
+
+1. Navigate to the frontend directory:
+
+    ```bash
+    cd frontend
+    ```
+
+2. Create requirements.txt (if not already created):
+
+    ```bash
+    echo "streamlit>=1.29.0" > requirements.txt
+    echo "requests>=2.31.0" >> requirements.txt
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    uv pip install -r requirements.txt
+    ```
+
+4. Run the Streamlit app:
+
+    ```bash
+    streamlit run src/app.py
     ```

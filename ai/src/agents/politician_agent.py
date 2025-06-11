@@ -1,6 +1,6 @@
 import os
 import random
-from agents.main_agent import MainAgent
+from main_agent import MainAgent
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langsmith import Client

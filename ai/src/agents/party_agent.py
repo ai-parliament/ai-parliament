@@ -1,5 +1,5 @@
-from agents.main_agent import MainAgent
-from agents.politician_agent import PoliticianAgent
+from main_agent import MainAgent
+from politician_agent import PoliticianAgent
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langsmith import Client

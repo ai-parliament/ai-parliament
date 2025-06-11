@@ -76,6 +76,7 @@ class PartyAgent(BaseAgent):
             last_name=last_name,
             party_name=self.party_name
         )
+        politician.name = full_name  
         politician.role = role
         self.politicians.append(politician)
         print(f"Added politician: {full_name} to party {self.party_name}")
@@ -172,7 +173,7 @@ class PartyAgent(BaseAgent):
         """
         wiki_tool = self._setup_wikipedia_tool()
         try:
-            party_info = wiki_tool.run(f"{self.party_name} political party Poland")
+            party_info = wiki_tool.invoke(f"{self.party_name} political party Poland")
             if party_info and len(party_info) > 100:
                 return party_info[:1000]
         except Exception:
@@ -217,30 +218,10 @@ class PartyAgent(BaseAgent):
         Returns:
             The configured agent
         """
-        try:
-            langsmith_api_key = os.getenv("LANGSMITH_API_KEY")
-            if langsmith_api_key:
-                hub_client = Client(api_key=langsmith_api_key)
-                basic_prompt = hub_client.pull_prompt("hwchase17/openai-tools-agent")
-                return create_tool_calling_agent(self.llm, self.tools, basic_prompt)
-            else:
-                # Fallback if LANGSMITH_API_KEY is not available
-                from langchain.agents import AgentType, initialize_agent
-                return initialize_agent(
-                    tools=self.tools,
-                    llm=self.llm,
-                    agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-                    verbose=True
-                )
-        except Exception:
-            # Fallback if there's an error with LangSmith
-            from langchain.agents import AgentType, initialize_agent
-            return initialize_agent(
-                tools=self.tools,
-                llm=self.llm,
-                agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-                verbose=True
-            )
+        langsmith_api_key = os.getenv("LANGSMITH_API_KEY")
+        hub_client = Client(api_key=langsmith_api_key)
+        basic_prompt = hub_client.pull_prompt("hwchase17/openai-tools-agent")
+        return create_tool_calling_agent(self.llm, self.tools, basic_prompt)
     
     def _get_context(self) -> Dict[str, Any]:
         """

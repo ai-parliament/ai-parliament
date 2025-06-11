@@ -33,7 +33,7 @@ class BaseAgent(ABC):
         self.llm = ChatOpenAI(
             model=self.model_name,
             temperature=0.7,
-            # max_tokens=2000
+            max_tokens=2000
         )
         
         # For compatibility with derived classes

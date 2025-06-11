@@ -6,6 +6,11 @@ from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langsmith import Client
 from typing import List, Dict, Any
 
+# Import the simulation modules
+from ..simulation.party_discussion import discuss_legislation, PartyPosition
+from ..simulation.inter_party_debate import conduct_inter_party_debate
+from ..simulation.voting_system import simulate_voting
+
 class SupervisorAgent(BaseAgent):
     """
     Agent that manages the coordination of the system and information flow.
@@ -50,23 +55,22 @@ class SupervisorAgent(BaseAgent):
     
     def run_intra_party_deliberation(self):
         """
-        Run the intra-party deliberation phase.
+        Run the intra-party deliberation phase using the party_discussion module.
         
         Returns:
             A dictionary containing the results of the deliberation
         """
-        party_stances = {}
+        # Use the discuss_legislation function from party_discussion.py
+        party_positions = discuss_legislation(self.parties, self.legislation_text)
         
-        for party in self.parties:
-            # Get opinions from politicians in the party
-            opinions = party.get_politicians_opinions(self.legislation_text)
-            
-            # Formulate the party's stance
-            stance = party.formulate_party_stance(self.legislation_text)
-            
-            party_stances[party.party_name] = {
-                "stance": stance,
-                "opinions": opinions
+        # Format results for compatibility with existing code
+        party_stances = {}
+        for party_name, position in party_positions.items():
+            party_stances[party_name] = {
+                "stance": f"{'SUPPORTS' if position.supports_legislation else 'DOES NOT SUPPORT'} the legislation.\nArguments: {', '.join(position.main_arguments)}",
+                "opinions": position.individual_opinions,
+                "supports": position.supports_legislation,
+                "arguments": position.main_arguments
             }
         
         self.simulation_results["intra_party_deliberation"] = party_stances
@@ -74,7 +78,7 @@ class SupervisorAgent(BaseAgent):
     
     def run_inter_party_debate(self):
         """
-        Run the inter-party debate phase.
+        Run the inter-party debate phase using the inter_party_debate module.
         
         Returns:
             A dictionary containing the results of the debate
@@ -82,37 +86,30 @@ class SupervisorAgent(BaseAgent):
         if "intra_party_deliberation" not in self.simulation_results:
             self.run_intra_party_deliberation()
         
-        party_stances = self.simulation_results["intra_party_deliberation"]
+        # Use the conduct_inter_party_debate function from inter_party_debate.py
+        party_positions = conduct_inter_party_debate(self.parties, self.legislation_text, rounds=2)
         
-        # Create a summary of all party stances
-        stances_summary = "\n\n".join([
-            f"{party_name}:\n{data['stance']}"
-            for party_name, data in party_stances.items()
-        ])
-        
+        # Store the results in a format compatible with the rest of the system
         debate_results = {}
+        for party_name, supports_position in party_positions.items():
+            stance = "SUPPORTS" if supports_position else "DOES NOT SUPPORT"
+            debate_results[party_name] = f"The {party_name} party {stance} the legislation after the debate."
+            
+            # Update party positions in the intra-party results to reflect debate outcome
+            if "intra_party_deliberation" in self.simulation_results and party_name in self.simulation_results["intra_party_deliberation"]:
+                self.simulation_results["intra_party_deliberation"][party_name]["supports"] = supports_position
         
-        # Each party responds to other parties' stances
-        for party in self.parties:
-            prompt = f"""
-            Proposed legislation: {self.legislation_text}
-            
-            Here are the stances of all parties on this legislation:
-            {stances_summary}
-            
-            As the leader of {party.party_name}, respond to the other parties' positions.
-            Try to persuade them to align with your party's stance.
-            """
-            
-            response = party.answer_question(prompt)
-            debate_results[party.party_name] = response
+        self.simulation_results["inter_party_debate"] = {
+            "party_positions": party_positions,
+            "debate_summary": debate_results
+        }
         
-        self.simulation_results["inter_party_debate"] = debate_results
+        # To maintain backward compatibility with tests, ensure debate_results is directly returnable
         return debate_results
     
     def run_voting(self):
         """
-        Run the voting phase.
+        Run the voting phase using the voting_system module.
         
         Returns:
             A dictionary containing the results of the voting
@@ -120,51 +117,61 @@ class SupervisorAgent(BaseAgent):
         if "inter_party_debate" not in self.simulation_results:
             self.run_inter_party_debate()
         
-        voting_results = {}
-        total_votes = 0
-        votes_in_favor = 0
+        # Get party positions from the debate results
+        party_positions = {}
+        if "inter_party_debate" in self.simulation_results and "party_positions" in self.simulation_results["inter_party_debate"]:
+            party_positions = self.simulation_results["inter_party_debate"]["party_positions"]
+        else:
+            # Fall back to intra-party deliberation results if needed
+            for party_name, data in self.simulation_results.get("intra_party_deliberation", {}).items():
+                party_positions[party_name] = data.get("supports", False)
         
-        # Each party votes based on their stance and the debate
+        # Use the simulate_voting function from voting_system.py
+        voting_result = simulate_voting(self.parties, party_positions)
+        
+        # Format results for compatibility with existing code
+        party_votes = {}
         for party in self.parties:
-            # Determine the number of votes (equal to the number of politicians)
-            num_votes = len(party.politicians)
-            total_votes = num_votes
+            party_votes_count = {
+                "For": 0,
+                "Against": 0,
+                "Abstain": 0
+            }
             
-            # Determine if the party is in favor or against
-            prompt = f"""
-            Based on your party's stance and the inter-party debate, 
-            will {party.party_name} vote in favor of or against the following legislation?
+            # Count votes by party
+            if party.name in voting_result.votes_by_party:
+                party_votes_count = voting_result.votes_by_party[party.name]
             
-            Legislation: {self.legislation_text}
-            
-            Answer with 'in favor' or 'against' and a brief explanation.
-            """
-            
-            response = party.answer_question(prompt)
-            
-            # Parse the response to determine the vote
-            vote_in_favor = "in favor" in response.lower()
-            
-            if vote_in_favor:
-                votes_in_favor = num_votes
-            
-            voting_results[party.party_name] = {
-                "vote": "in favor" if vote_in_favor else "against",
-                "explanation": response,
-                "num_votes": num_votes
+            # Determine overall party vote based on majority
+            if party_votes_count["For"] > party_votes_count["Against"]:
+                party_vote = "in favor"
+            else:
+                party_vote = "against"
+                
+            party_votes[party.name] = {
+                "vote": party_vote,
+                "explanation": f"The {party.name} party voted {party_vote} with {party_votes_count['For']} votes for, {party_votes_count['Against']} against, and {party_votes_count['Abstain']} abstaining.",
+                "num_votes": len(party.politicians),
+                "detailed_votes": party_votes_count
             }
         
-        # Determine if the legislation passes
-        legislation_passes = votes_in_favor > total_votes / 2
-        
-        self.simulation_results["voting"] = {
-            "party_votes": voting_results,
-            "total_votes": total_votes,
-            "votes_in_favor": votes_in_favor,
-            "legislation_passes": legislation_passes
+        # Maintain expected structure for compatibility with tests
+        voting_results = {
+            "party_votes": party_votes,
+            "total_votes": voting_result.total_for + voting_result.total_against + voting_result.total_abstain,
+            "votes_in_favor": voting_result.total_for,
+            "legislation_passes": voting_result.passed
         }
         
-        return self.simulation_results["voting"]
+        # Add additional detailed information
+        voting_results.update({
+            "votes_against": voting_result.total_against,
+            "abstained": voting_result.total_abstain,
+            "individual_votes": [vars(vote) for vote in voting_result.individual_votes]
+        })
+        
+        self.simulation_results["voting"] = voting_results
+        return voting_results
     
     def run_full_simulation(self, legislation_text: str):
         """
@@ -195,6 +202,19 @@ class SupervisorAgent(BaseAgent):
         
         voting_results = self.simulation_results["voting"]
         
+        # Gather party arguments from the intra-party deliberation phase
+        party_arguments = {}
+        for party_name, data in self.simulation_results.get("intra_party_deliberation", {}).items():
+            if "arguments" in data:
+                party_arguments[party_name] = data["arguments"]
+        
+        # Prepare arguments text for the summary prompt
+        party_args_text = ""
+        for party_name, arguments in party_arguments.items():
+            party_args_text += f"\n{party_name} main arguments:\n"
+            for i, arg in enumerate(arguments, 1):
+                party_args_text += f"- {arg}\n"
+        
         summary_prompt = f"""
         Summarize the results of the parliamentary simulation on the following legislation:
         
@@ -203,10 +223,14 @@ class SupervisorAgent(BaseAgent):
         Voting results:
         - Total votes: {voting_results['total_votes']}
         - Votes in favor: {voting_results['votes_in_favor']}
+        - Votes against: {voting_results.get('votes_against', 0)}
+        - Abstained: {voting_results.get('abstained', 0)}
         - Legislation passes: {voting_results['legislation_passes']}
         
         Party votes:
         {self._format_party_votes(voting_results['party_votes'])}
+        
+        {party_args_text}
         
         Provide a concise summary of the simulation, including the key arguments from each party
         and why the legislation passed or failed.
@@ -231,10 +255,20 @@ class SupervisorAgent(BaseAgent):
         Returns:
             A formatted string of party votes
         """
-        return "\n".join([
-            f"- {party_name}: {data['vote']} ({data['num_votes']} votes)"
-            for party_name, data in party_votes.items()
-        ])
+        formatted_votes = []
+        
+        for party_name, data in party_votes.items():
+            basic_info = f"- {party_name}: {data['vote']} ({data['num_votes']} total members)"
+            
+            # Add detailed breakdown if available
+            if 'detailed_votes' in data:
+                detailed = data['detailed_votes']
+                detailed_info = f" [For: {detailed.get('For', 0)}, Against: {detailed.get('Against', 0)}, Abstain: {detailed.get('Abstain', 0)}]"
+                basic_info += detailed_info
+                
+            formatted_votes.append(basic_info)
+            
+        return "\n".join(formatted_votes)
     
     def answer_question(self, question: str) -> str:
         """
@@ -294,30 +328,35 @@ class SupervisorAgent(BaseAgent):
         Returns:
             The configured agent
         """
-        try:
-            langsmith_api_key = os.getenv("LANGSMITH_API_KEY")
-            if langsmith_api_key:
-                hub_client = Client(api_key=langsmith_api_key)
-                basic_prompt = hub_client.pull_prompt("hwchase17/openai-tools-agent")
-                return create_tool_calling_agent(self.llm, self.tools, basic_prompt)
-            else:
-                # Fallback if LANGSMITH_API_KEY is not available
-                from langchain.agents import AgentType, initialize_agent
-                return initialize_agent(
-                    tools=self.tools,
-                    llm=self.llm,
-                    agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-                    verbose=True
-                )
-        except Exception:
-            # Fallback if there's an error with LangSmith
-            from langchain.agents import AgentType, initialize_agent
-            return initialize_agent(
-                tools=self.tools,
-                llm=self.llm,
-                agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-                verbose=True
-            )
+        langsmith_api_key = os.getenv("LANGSMITH_API_KEY")
+        hub_client = Client(api_key=langsmith_api_key)
+        basic_prompt = hub_client.pull_prompt("hwchase17/openai-tools-agent")
+        return create_tool_calling_agent(self.llm, self.tools, basic_prompt)
+
+        # try:
+        #     langsmith_api_key = os.getenv("LANGSMITH_API_KEY")
+        #     if langsmith_api_key:
+        #         hub_client = Client(api_key=langsmith_api_key)
+        #         basic_prompt = hub_client.pull_prompt("hwchase17/openai-tools-agent")
+        #         return create_tool_calling_agent(self.llm, self.tools, basic_prompt)
+        #     else:
+        #         # Fallback if LANGSMITH_API_KEY is not available
+        #         from langchain.agents import AgentType, initialize_agent
+        #         return initialize_agent(
+        #             tools=self.tools,
+        #             llm=self.llm,
+        #             agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+        #             verbose=True
+        #         )
+        # except Exception:
+        #     # Fallback if there's an error with LangSmith
+        #     from langchain.agents import AgentType, initialize_agent
+        #     return initialize_agent(
+        #         tools=self.tools,
+        #         llm=self.llm,
+        #         agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+        #         verbose=True
+        #     )
     
     def _get_context(self) -> Dict[str, Any]:
         """

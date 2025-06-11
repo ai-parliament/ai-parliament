@@ -1,7 +1,7 @@
 import os
 from typing import List, Dict, Any, Optional
 from langchain_openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores  import FAISS
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
@@ -45,14 +45,39 @@ class VectorDatabase:
         
         if os.path.exists(index_path):
             try:
-                return FAISS.load_local(index_path, self.embeddings)
+                return FAISS.load_local(index_path, self.embeddings, allow_dangerous_deserialization=True)
             except Exception as e:
                 print(f"Error loading vector store: {e}")
-                # If loading fails, create a new one
-                return FAISS.from_documents([], self.embeddings)
+                return self._create_empty_vector_store()
         else:
-            return FAISS.from_documents([], self.embeddings)
+            return self._create_empty_vector_store()
     
+    def _create_empty_vector_store(self) -> FAISS:
+        """
+        Create a new empty vector store with a placeholder document.
+        
+        Returns:
+            A FAISS vector store
+        """
+        # Create a placeholder document to initialize the vector store
+        placeholder_text = "Placeholder document for initialization"
+        placeholder_doc = Document(page_content=placeholder_text, metadata={"type": "placeholder"})
+        
+        # Create the vector store with the placeholder
+        vector_store = FAISS.from_documents([placeholder_doc], self.embeddings)
+        
+        # Remove the placeholder document (optional)
+        # We could keep it, but removing it keeps the DB clean
+        try:
+            # Get the embedding for the placeholder
+            placeholder_embedding = self.embeddings.embed_query(placeholder_text)
+            # Remove the placeholder from the index
+            vector_store.delete([0])  # Assuming it's the first document with ID 0
+        except Exception as e:
+            print(f"Warning: Could not remove placeholder document: {e}")
+            
+        return vector_store
+
     def add_texts(self, texts: List[str], metadatas: Optional[List[Dict[str, Any]]] = None) -> List[str]:
         """
         Add texts to the vector store.

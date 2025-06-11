@@ -62,10 +62,10 @@ def main():
     print("=" * 80)
     
     # Run intra-party deliberation
-    print("\nRunning intra-party deliberation...")
+    print("\n--- RUNNING INTRA-PARTY DELIBERATION ---")
     deliberation_results = ai_service.run_intra_party_deliberation(legislation_text)
     
-    print("\nParty stances:")
+    print("\n--- PARTY STANCE: ---")
     for party_name, data in deliberation_results["party_stances"].items():
         print(f"\n{party_name}:")
         print("-" * 40)
@@ -76,34 +76,34 @@ def main():
             print(f"- {opinion['politician']}: {opinion['opinion'][:100]}...")
     
     # Run inter-party debate
-    print("\nRunning inter-party debate...")
+    print("\n--- RUNNING INTER-PARTY DEBATE ---")
     debate_results = ai_service.run_inter_party_debate(legislation_text)
     
-    print("\nDebate results:")
+    print("\n--- DEBATE RESULTS:--- ")
     for party_name, response in debate_results["debate_results"].items():
         print(f"\n{party_name}:")
         print("-" * 40)
-        print(response[:200]  "...")
+        print(response[:200] + "...")
     
     # Run voting
-    print("\nRunning voting...")
+    print("\n--- RUNNING VOTING ---")
     voting_results = ai_service.run_voting(legislation_text)
     
-    print("\nVoting results:")
+    print("\n--- RUNNING RESULTS ---")
     results = voting_results["voting_results"]
     print(f"Total votes: {results['total_votes']}")
     print(f"Votes in favor: {results['votes_in_favor']}")
     print(f"Legislation passes: {results['legislation_passes']}")
     
-    print("\nParty votes:")
+    print("\n--- PARTY VOTES ---")
     for party_name, vote_data in results["party_votes"].items():
         print(f"- {party_name}: {vote_data['vote']} ({vote_data['num_votes']} votes)")
     
     # Get simulation summary
-    print("\nGetting simulation summary...")
+    print("\n--- GETTING SIMULATION SUMMARY ---")
     summary = ai_service.get_simulation_summary()
     
-    print("\nSimulation summary:")
+    print("\n--- FINAL SUMMARY ---")
     print("=" * 80)
     print(summary["summary"])
     print("=" * 80)

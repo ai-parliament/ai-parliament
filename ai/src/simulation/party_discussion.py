@@ -1,86 +1,194 @@
-from typing import List, Dict, Any
-from ..agents.party_agent import PartyAgent
+from typing import List, Dict, TypedDict, Annotated
+from dataclasses import dataclass
+from langgraph.graph import StateGraph, END
+import operator
+
+@dataclass
+class PartyPosition:
+    """Final position of the party on a piece of legislation"""
+    party_name: str
+    supports_legislation: bool
+    main_arguments: List[str]
+    individual_opinions: Dict[str, str]
+
+
+class DiscussionState(TypedDict):
+    """State for the party discussion workflow"""
+    party_name: str
+    legislation_text: str
+    individual_opinions: Dict[str, str]
+    debate_summary: str
+    final_position: str
+    supports: bool
+    arguments: List[str]
+
 
 class PartyDiscussion:
-    """
-    Simulates discussions within a party.
-    """
-    def __init__(self, party: PartyAgent):
-        """
-        Initialize a party discussion.
-        
-        Args:
-            party: The party agent
-        """
-        self.party = party
+    """Manages internal party discussion using LangGraph"""
     
-    def discuss_legislation(self, legislation_text: str) -> Dict[str, Any]:
-        """
-        Simulate a discussion within the party about a piece of legislation.
+    def __init__(self, party_agent):
+        self.party = party_agent
+        self.workflow = self._create_workflow()
+    
+    def _create_workflow(self):
+        """Create the LangGraph workflow for party discussion"""
+        workflow = StateGraph(DiscussionState)
         
-        Args:
-            legislation_text: The text of the legislation
+        # Add nodes
+        workflow.add_node("gather_opinions", self._gather_opinions)
+        workflow.add_node("conduct_debate", self._conduct_debate)
+        workflow.add_node("formulate_position", self._formulate_position)
+        
+        # Add edges
+        workflow.set_entry_point("gather_opinions")
+        workflow.add_edge("gather_opinions", "conduct_debate")
+        workflow.add_edge("conduct_debate", "formulate_position")
+        workflow.add_edge("formulate_position", END)
+        
+        return workflow.compile()
+    
+    def _gather_opinions(self, state: DiscussionState) -> DiscussionState:
+        """Node: Gather initial opinions from each politician"""
+        print(f"\n=== Gathering opinions in party {state['party_name']} ===")
+        
+        opinions = {}
+        for politician in self.party.politicians:
+            prompt = f"""
+            Bill draft: {state['legislation_text']}
             
-        Returns:
-            A dictionary containing the results of the discussion
+            As {politician.name}, express your opinion (2-3 sentences).
+            Start with "I SUPPORT" or "I DO NOT SUPPORT", then provide your reasoning.
+            """
+            
+            response = politician.answer_question(prompt)
+            opinions[politician.name] = response
+            print(f"\n{politician.name}: {response}")
+        
+        state['individual_opinions'] = opinions
+        return state
+    
+    def _conduct_debate(self, state: DiscussionState) -> DiscussionState:
+        """Node: Politicians respond to each other's opinions"""
+        print(f"\n=== Debate in party {state['party_name']} ===")
+        
+        debate_points = []
+        opinions_text = "\n".join([f"{name}: {opinion}" 
+                                  for name, opinion in state['individual_opinions'].items()])
+        
+        # Each politician can respond to others
+        for politician in self.party.politicians:
+            prompt = f"""
+            Opinions of party colleagues about the bill:
+            {opinions_text}
+            
+            As {politician.name}, briefly (1-2 sentences) respond to the discussion.
+            You can maintain your opinion or change it.
+            """
+            
+            response = politician.answer_question(prompt)
+            debate_points.append(f"{politician.name}: {response}")
+            print(f"\n{politician.name}: {response}")
+        
+        state['debate_summary'] = "\n".join(debate_points)
+        return state
+    
+    def _formulate_position(self, state: DiscussionState) -> DiscussionState:
+        """Node: Party leader formulates final position"""
+        print(f"\n=== Formulating party position for {state['party_name']} ===")
+        
+        # Combine all discussion points
+        full_discussion = f"Initial opinions:\n{chr(10).join([f'{k}: {v}' for k,v in state['individual_opinions'].items()])}\n\nDebate:\n{state['debate_summary']}"
+        
+        prompt = f"""
+        As the leader of {state['party_name']} party, summarize the discussion about the bill:
+        {state['legislation_text']}
+        
+        {full_discussion}
+        
+        Answer in this format:
+        POSITION: [SUPPORTS or DOES NOT SUPPORT]
+        ARGUMENT 1: [main argument]
+        ARGUMENT 2: [second argument]
+        ARGUMENT 3: [third argument]
         """
-        # Get opinions from all politicians in the party
-        opinions = self.party.get_politicians_opinions(legislation_text)
         
-        # Analyze the opinions to identify agreement and disagreement
-        agreement_level = self._calculate_agreement_level(opinions)
+        response = self.party.answer_question(prompt)
+        print(f"\nParty position: {response}")
         
-        # Formulate the party's stance
-        party_stance = self.party.formulate_party_stance(legislation_text)
+        # Parse response
+        state['final_position'] = response
+        state['supports'] = "SUPPORTS" in response and "NOT SUPPORT" not in response
         
-        return {
-            "party_name": self.party.party_name,
-            "opinions": opinions,
-            "agreement_level": agreement_level,
-            "party_stance": party_stance
+        # Extract arguments
+        arguments = []
+        for line in response.split('\n'):
+            if line.strip().startswith('ARGUMENT'):
+                arguments.append(line.split(':', 1)[1].strip())
+        
+        state['arguments'] = arguments[:3]  # Take max 3 arguments
+        return state
+    
+    def conduct_discussion(self, legislation_text: str) -> PartyPosition:
+        """Run the discussion workflow and return party position"""
+        
+        # Initial state
+        initial_state = {
+            "party_name": self.party.name,
+            "legislation_text": legislation_text,
+            "individual_opinions": {},
+            "debate_summary": "",
+            "final_position": "",
+            "supports": False,
+            "arguments": []
         }
+        
+        # Run workflow
+        final_state = self.workflow.invoke(initial_state)
+        
+        # Determine individual positions from their initial opinions
+        individual_positions = {}
+        for name, opinion in final_state['individual_opinions'].items():
+            # More robust parsing
+            opinion_lower = opinion.lower()
+            if ("support" in opinion_lower and "not support" not in opinion_lower) or "i support" in opinion_lower:
+                individual_positions[name] = "For"
+            else:
+                individual_positions[name] = "Against"
+        
+        # Create and return PartyPosition
+        return PartyPosition(
+            party_name=self.party.name,
+            supports_legislation=final_state['supports'],
+            main_arguments=final_state['arguments'],
+            individual_opinions=individual_positions
+        )
+
+
+def discuss_legislation(parties: List, legislation_text: str) -> Dict[str, PartyPosition]:
+    """
+    Have multiple parties discuss legislation internally using LangGraph
     
-    def _calculate_agreement_level(self, opinions: List[Dict[str, str]]) -> str:
-        """
-        Calculate the level of agreement within the party.
+    Args:
+        parties: List of PartyAgent instances
+        legislation_text: The legislation to discuss
         
-        Args:
-            opinions: A list of dictionaries containing politician names and their opinions
-            
-        Returns:
-            A string indicating the level of agreement
-        """
-        # This is a simplified implementation
-        # In a real system, you would use NLP to analyze the opinions
+    Returns:
+        Dictionary mapping party names to their positions
+    """
+    positions = {}
+    
+    for party in parties:
+        print(f"\n{'='*60}")
+        print(f"PARTY DISCUSSION: {party.name}")
+        print(f"{'='*60}")
         
-        # Count positive and negative opinions
-        positive_count = 0
-        negative_count = 0
+        discussion = PartyDiscussion(party)
+        position = discussion.conduct_discussion(legislation_text)
+        positions[party.name] = position
         
-        for opinion in opinions:
-            text = opinion["opinion"].lower()
-            
-            # Simple keyword-based analysis
-            if any(word in text for word in ["support", "agree", "favor", "positive", "good", "beneficial"]):
-                positive_count = 1
-            elif any(word in text for word in ["oppose", "disagree", "against", "negative", "bad", "harmful"]):
-                negative_count = 1
-        
-        # Determine agreement level
-        total_opinions = len(opinions)
-        if total_opinions == 0:
-            return "No opinions"
-        
-        positive_percentage = positive_count / total_opinions * 100
-        negative_percentage = negative_count / total_opinions * 100
-        
-        if positive_percentage >= 80:
-            return "Strong agreement"
-        elif positive_percentage >= 60:
-            return "Moderate agreement"
-        elif positive_percentage >= 40:
-            return "Mixed opinions"
-        elif positive_percentage >= 20:
-            return "Moderate disagreement"
-        else:
-            return "Strong disagreement"
+        print(f"\nSummary for {party.name}:")
+        print(f"  Position: {'SUPPORTS' if position.supports_legislation else 'DOES NOT SUPPORT'}")
+        print(f"  Votes: For={sum(1 for v in position.individual_opinions.values() if v=='For')}, "
+              f"Against={sum(1 for v in position.individual_opinions.values() if v=='Against')}")
+    
+    return positions

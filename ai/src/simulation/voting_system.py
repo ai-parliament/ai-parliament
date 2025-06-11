@@ -1,119 +1,189 @@
-from typing import List, Dict, Any
-from ..agents.party_agent import PartyAgent
+from typing import List, Dict, Tuple
+from dataclasses import dataclass
+from collections import defaultdict
+
+
+@dataclass
+class Vote:
+    """Individual vote"""
+    politician_name: str
+    party_name: str
+    vote: str  # "For", "Against", "Abstain"
+    
+    
+@dataclass
+class VotingResult:
+    """Result of voting"""
+    total_for: int
+    total_against: int
+    total_abstain: int
+    passed: bool
+    votes_by_party: Dict[str, Dict[str, int]]
+    individual_votes: List[Vote]
+    
+    def __str__(self):
+        status = "PASSED ✓" if self.passed else "REJECTED"
+        return f"For: {self.total_for}, Against: {self.total_against}, Abstained: {self.total_abstain} - Bill {status}"
+
 
 class VotingSystem:
-    """
-    Determines if the legislation passes based on party votes.
-    """
-    def __init__(self, parties: List[PartyAgent]):
+    """Manages the voting process"""
+    
+    def __init__(self, parties: List, party_positions: Dict[str, bool]):
         """
-        Initialize a voting system.
+        Initialize voting system
         
         Args:
-            parties: A list of party agents
+            parties: List of PartyAgent instances
+            party_positions: Dict mapping party names to their positions (True = support)
         """
         self.parties = parties
-    
-    def conduct_vote(self, legislation_text: str, debate_results: Dict[str, Any]) -> Dict[str, Any]:
+        self.party_positions = party_positions
+        self.votes: List[Vote] = []
+        
+    def conduct_vote(self, allow_dissent: bool = True, dissent_probability: float = 0.1) -> VotingResult:
         """
-        Conduct a vote on a piece of legislation.
+        Conduct the actual vote
         
         Args:
-            legislation_text: The text of the legislation
-            debate_results: The results of the inter-party debate
+            allow_dissent: Whether politicians can vote against party line
+            dissent_probability: Probability of voting against party line
             
         Returns:
-            A dictionary containing the results of the vote
+            VotingResult with detailed voting information
         """
-        voting_results = {}
-        total_votes = 0
-        votes_in_favor = 0
+        print("\n" + "="*60)
+        print("VOTING")
+        print("="*60)
         
-        # Each party votes based on their stance and the debate
         for party in self.parties:
-            # Determine the number of votes (equal to the number of politicians)
-            num_votes = len(party.politicians)
-            total_votes = num_votes
+            print(f"\n--- {party.name} ---")
+            party_supports = self.party_positions.get(party.name, False)
             
-            # Get the closing statement from the debate
-            closing_statement = debate_results["closing_statements"].get(party.party_name, "")
-            
-            # Determine if the party is in favor or against
-            prompt = f"""
-            Based on your party's stance and the inter-party debate, 
-            will {party.party_name} vote in favor of or against the following legislation?
-            
-            Legislation: {legislation_text}
-            
-            Your closing statement: {closing_statement}
-            
-            Answer with 'in favor' or 'against' and a brief explanation.
-            """
-            
-            response = party.answer_question(prompt)
-            
-            # Parse the response to determine the vote
-            vote_in_favor = "in favor" in response.lower()
-            
-            if vote_in_favor:
-                votes_in_favor = num_votes
-            
-            voting_results[party.party_name] = {
-                "vote": "in favor" if vote_in_favor else "against",
-                "explanation": response,
-                "num_votes": num_votes
-            }
+            for politician in party.politicians:
+                # Determine individual vote
+                vote = self._determine_vote(
+                    politician, 
+                    party_supports,
+                    allow_dissent,
+                    dissent_probability
+                )
+                
+                self.votes.append(Vote(
+                    politician_name=politician.name,
+                    party_name=party.name,
+                    vote=vote
+                ))
+                
+                print(f"{politician.name}: {vote}")
         
-        # Determine if the legislation passes
-        legislation_passes = votes_in_favor > total_votes / 2
+        # Calculate results
+        result = self._calculate_results()
         
-        return {
-            "legislation_text": legislation_text,
-            "party_votes": voting_results,
-            "total_votes": total_votes,
-            "votes_in_favor": votes_in_favor,
-            "legislation_passes": legislation_passes
-        }
+        # Display summary
+        self._display_summary(result)
+        
+        return result
+        
+    def _determine_vote(self, politician, party_supports: bool, 
+                       allow_dissent: bool, dissent_probability: float) -> str:
+        """Determine how a politician votes"""
+        
+        if not allow_dissent:
+            # Vote strictly along party lines
+            return "For" if party_supports else "Against"
+        
+        # Ask politician for their personal stance
+        prompt = f"""
+        As {politician.name}, you must now cast your vote.
+        Your party's official position is: {'SUPPORT' if party_supports else 'OPPOSE'}.
+        
+        Do you vote according to the party line, or do you have a different opinion?
+        Answer with ONLY one word: FOR, AGAINST, or ABSTAIN
+        """
+        
+        response = politician.answer_question(prompt).strip().upper()
+        
+        # Parse response
+        if "FOR" in response and "AGAINST" not in response:
+            return "For"
+        elif "AGAINST" in response:
+            return "Against"
+        elif "ABSTAIN" in response:
+            return "Abstain"
+        else:
+            # Default to party line if unclear
+            return "For" if party_supports else "Against"
+            
+    def _calculate_results(self) -> VotingResult:
+        """Calculate voting results"""
+        total_for = sum(1 for v in self.votes if v.vote == "For")
+        total_against = sum(1 for v in self.votes if v.vote == "Against")
+        total_abstain = sum(1 for v in self.votes if v.vote == "Abstain")
+        
+        # Calculate by party
+        votes_by_party = defaultdict(lambda: {"For": 0, "Against": 0, "Abstain": 0})
+        for vote in self.votes:
+            votes_by_party[vote.party_name][vote.vote] += 1
+            
+        # Determine if passed (simple majority)
+        passed = total_for > total_against
+        
+        return VotingResult(
+            total_for=total_for,
+            total_against=total_against,
+            total_abstain=total_abstain,
+            passed=passed,
+            votes_by_party=dict(votes_by_party),
+            individual_votes=self.votes
+        )
+        
+    def _display_summary(self, result: VotingResult):
+        """Display voting summary"""
+        print("\n" + "="*60)
+        print("VOTING RESULTS")
+        print("="*60)
+        
+        # Overall results
+        print(f"\nOverall:")
+        print(f"  For: {result.total_for}")
+        print(f"  Against: {result.total_against}")
+        print(f"  Abstained: {result.total_abstain}")
+        
+        # By party
+        print("\nBy party:")
+        for party_name, votes in result.votes_by_party.items():
+            print(f"\n{party_name}:")
+            print(f"  For: {votes['For']}")
+            print(f"  Against: {votes['Against']}")
+            print(f"  Abstained: {votes['Abstain']}")
+            
+            # Check for dissent
+            expected_vote = "For" if self.party_positions.get(party_name, False) else "Against"
+            dissent_count = len([v for v in result.individual_votes 
+                               if v.party_name == party_name and v.vote != expected_vote])
+            if dissent_count > 0:
+                print(f"Votes against party line: {dissent_count}")
+        
+        # Final result
+        print("\n" + "-"*60)
+        print(f"RESULT: Bill {'PASSED ✓' if result.passed else 'REJECTED'}")
+        print(f"({result.total_for} for, {result.total_against} against, {result.total_abstain} abstained)")
+
+
+def simulate_voting(parties: List, party_positions: Dict[str, bool], 
+                   allow_dissent: bool = True, dissent_probability: float = 0.1) -> VotingResult:
+    """
+    Simulate the voting process
     
-    def generate_voting_summary(self, voting_results: Dict[str, Any]) -> str:
-        """
-        Generate a summary of the voting results.
+    Args:
+        parties: List of PartyAgent instances
+        party_positions: Dict mapping party names to their positions
+        allow_dissent: Whether politicians can vote against party line
+        dissent_probability: Probability of dissent
         
-        Args:
-            voting_results: The results of the vote
-            
-        Returns:
-            A summary of the voting results
-        """
-        legislation_text = voting_results["legislation_text"]
-        total_votes = voting_results["total_votes"]
-        votes_in_favor = voting_results["votes_in_favor"]
-        legislation_passes = voting_results["legislation_passes"]
-        party_votes = voting_results["party_votes"]
-        
-        # Format party votes
-        party_votes_formatted = "\n".join([
-            f"- {party_name}: {data['vote']} ({data['num_votes']} votes)"
-            for party_name, data in party_votes.items()
-        ])
-        
-        summary = f"""
-        Voting Results for Legislation:
-        {legislation_text}
-        
-        Total votes: {total_votes}
-        Votes in favor: {votes_in_favor} ({votes_in_favor/total_votes*100:.1f}%)
-        Votes against: {total_votes - votes_in_favor} ({(total_votes - votes_in_favor)/total_votes*100:.1f}%)
-        
-        Result: The legislation {'passes' if legislation_passes else 'fails'}.
-        
-        Party votes:
-        {party_votes_formatted}
-        
-        Explanations:
-        """
-        
-        for party_name, data in party_votes.items():
-            summary = f"\n{party_name}: {data['explanation']}"
-        
-        return summary
+    Returns:
+        VotingResult with detailed voting information
+    """
+    voting_system = VotingSystem(parties, party_positions)
+    return voting_system.conduct_vote(allow_dissent, dissent_probability)

@@ -33,7 +33,7 @@ class AgentLoader:
             return self.parties[party_name]
         
         # Research the party
-        party_info = self.research_agent.research_party(party_name)
+        # party_info = self.research_agent.research_party(party_name)
         
         # Create the party agent
         party_agent = PartyAgent(name=party_name, acronym=party_acronym)
@@ -60,7 +60,7 @@ class AgentLoader:
             return self.politicians[full_name]
         
         # Research the politician
-        politician_info = self.research_agent.research_politician(full_name)
+        # politician_info = self.research_agent.research_politician(full_name)
         
         # Split the name
         parts = full_name.split(maxsplit=1)

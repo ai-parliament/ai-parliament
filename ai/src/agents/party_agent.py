@@ -128,3 +128,9 @@ class PartyAgent(MainAgent):
     def _setup_wikipedia_tool(self) -> WikipediaQueryRun:
         wiki_wrapper = WikipediaAPIWrapper(lang="pl")
         return WikipediaQueryRun(api_wrapper=wiki_wrapper)
+    
+    def update_members_on_legislation(self, legislation: str):
+        for politician in self.politicians:
+            politician.set_legislation_beliefs(legislation)
+
+        print(f"Wszyscy posłowie partii {self.party_name} zaznajomili się z tekstem ustawy.")

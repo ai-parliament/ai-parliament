@@ -1,7 +1,3 @@
---- ai/run_simulation.py
- ai/run_simulation.py
-@@ -0,0 1,113 @@
-#!/usr/bin/env python3
 """
 Script to run a simulation using the AI Parliament system.
 """

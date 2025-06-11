@@ -1,7 +1,6 @@
 from .agents import BaseAgent, PoliticianAgent, PartyAgent, SupervisorAgent, ResearchAgent, AgentLoader
 from .database import VectorDatabase
 from .simulation import PartyDiscussion, InterPartyDebate, VotingSystem
-from .api import AIService
 
 __all__ = [
     'BaseAgent',
@@ -14,5 +13,4 @@ __all__ = [
     'PartyDiscussion',
     'InterPartyDebate',
     'VotingSystem',
-    'AIService'
 ]

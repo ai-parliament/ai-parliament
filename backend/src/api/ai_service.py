@@ -15,7 +15,7 @@ class AIService:
         Initialize the AI service.
         """
         self.agent_loader = AgentLoader()
-        self.vector_db = VectorDatabase()
+        # self.vector_db = VectorDatabase()
     
     def create_simulation(self, party_names: List[str], politicians_per_party: Dict[str, List[Dict[str, str]]]) -> Dict[str, Any]:
         """
@@ -65,7 +65,7 @@ class AIService:
         legislation_text = self.agent_loader.generate_legislation(topic)
         
         # Store the legislation text in the vector database
-        self.vector_db.add_legislation_data(topic, legislation_text)
+        # self.vector_db.add_legislation_data(topic, legislation_text)
         
         return legislation_text
     
@@ -165,67 +165,3 @@ class AIService:
             return {"error": "No simulation has been created yet."}
         
         return self.supervisor.get_simulation_summary()
-    
-    def search_parties(self, query: str, k: int = 5) -> List[Dict[str, Any]]:
-        """
-        Search for parties in the vector database.
-        
-        Args:
-            query: The search query
-            k: The number of results to return
-            
-        Returns:
-            A list of party documents
-        """
-        documents = self.vector_db.search_parties(query, k=k)
-        
-        return [
-            {
-                "content": doc.page_content,
-                "metadata": doc.metadata
-            }
-            for doc in documents
-        ]
-    
-    def search_politicians(self, query: str, k: int = 5, party_name: str = None) -> List[Dict[str, Any]]:
-        """
-        Search for politicians in the vector database.
-        
-        Args:
-            query: The search query
-            k: The number of results to return
-            party_name: The name of the party to filter by
-            
-        Returns:
-            A list of politician documents
-        """
-        documents = self.vector_db.search_politicians(query, k=k, party_name=party_name)
-        
-        return [
-            {
-                "content": doc.page_content,
-                "metadata": doc.metadata
-            }
-            for doc in documents
-        ]
-    
-    def search_legislation(self, query: str, k: int = 5) -> List[Dict[str, Any]]:
-        """
-        Search for legislation in the vector database.
-        
-        Args:
-            query: The search query
-            k: The number of results to return
-            
-        Returns:
-            A list of legislation documents
-        """
-        documents = self.vector_db.search_legislation(query, k=k)
-        
-        return [
-            {
-                "content": doc.page_content,
-                "metadata": doc.metadata
-            }
-            for doc in documents
-        ]

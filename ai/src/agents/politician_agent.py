@@ -70,20 +70,11 @@ class PoliticianAgent(BaseAgent):
         Returns:
             A string containing the politician's political beliefs
         """
-        prompt = f"""
-        What are the political views of {self.full_name}?
-        Focus ONLY on their political views - do not include biographical information, dates, positions, or trivia.
-        I'm only interested in what they think about political, economic, and social issues.
-        List them in the following format:
-        
-        1. Economy:
-        2. Foreign policy:
-        3. Social policy:
-        4. Worldview issues:
-        
-        ALL of these positions MUST exist. If you can't find explicit information about a position,
-        try to deduce its content based on the politician's general views.
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'politician', 
+            'beliefs_prompt', 
+            full_name=self.full_name
+        )
         
         try:
             summary = self.agent_executor.invoke({"input": prompt})
@@ -99,20 +90,13 @@ class PoliticianAgent(BaseAgent):
         Returns:
             The system prompt as a string
         """
-        return f"""
-        You are a politician named {self.full_name}. You are a member of {self.party_name}.
-        You are participating in a discussion with other politicians.
-        You respond based on your own political views and take into account what others have said.
-        
-        Here is context about your political views:
-        {self.beliefs}
-        
-        When responding:
-        1. Stay in character as {self.full_name}
-        2. Be consistent with your political views
-        3. Be persuasive but respectful
-        4. Use a formal, parliamentary style of speech
-        """
+        return self.prompt_manager.format_prompt(
+            'politician', 
+            'system_prompt', 
+            full_name=self.full_name,
+            party_name=self.party_name,
+            beliefs=self.beliefs
+        )
     
     def _get_all_tools(self) -> List:
         """

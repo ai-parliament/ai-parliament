@@ -3,7 +3,8 @@ import os
 from langchain.memory import ConversationBufferMemory
 from langchain_openai import ChatOpenAI
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
+from ..utilities.prompt_manager import PromptManager
 
 class BaseAgent(ABC):
     """
@@ -38,6 +39,9 @@ class BaseAgent(ABC):
         
         # For compatibility with derived classes
         self.model = self.llm
+        
+        # Initialize prompt manager
+        self.prompt_manager = PromptManager()
         
         # Basic attributes
         self.name = ""

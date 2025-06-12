@@ -2,6 +2,11 @@ from typing import List, Dict, TypedDict, Annotated
 from dataclasses import dataclass
 from langgraph.graph import StateGraph, END
 import operator
+try:
+    from ..utilities.prompt_manager import PromptManager
+except ImportError:
+    # Fallback for different import contexts
+    from ai.src.utilities.prompt_manager import PromptManager
 
 @dataclass
 class PartyPosition:
@@ -28,6 +33,7 @@ class PartyDiscussion:
     
     def __init__(self, party_agent):
         self.party = party_agent
+        self.prompt_manager = PromptManager()
         self.workflow = self._create_workflow()
     
     def _create_workflow(self):
@@ -53,12 +59,12 @@ class PartyDiscussion:
         
         opinions = {}
         for politician in self.party.politicians:
-            prompt = f"""
-            Bill draft: {state['legislation_text']}
-            
-            As {politician.name}, express your opinion (2-3 sentences).
-            Start with "I SUPPORT" or "I DO NOT SUPPORT", then provide your reasoning.
-            """
+            prompt = self.prompt_manager.format_prompt(
+                'simulation',
+                'party_discussion.gather_opinions_prompt',
+                legislation_text=state['legislation_text'],
+                politician_name=politician.name
+            )
             
             response = politician.answer_question(prompt)
             opinions[politician.name] = response
@@ -77,13 +83,12 @@ class PartyDiscussion:
         
         # Each politician can respond to others
         for politician in self.party.politicians:
-            prompt = f"""
-            Opinions of party colleagues about the bill:
-            {opinions_text}
-            
-            As {politician.name}, briefly (1-2 sentences) respond to the discussion.
-            You can maintain your opinion or change it.
-            """
+            prompt = self.prompt_manager.format_prompt(
+                'simulation',
+                'party_discussion.conduct_debate_prompt',
+                opinions_text=opinions_text,
+                politician_name=politician.name
+            )
             
             response = politician.answer_question(prompt)
             debate_points.append(f"{politician.name}: {response}")
@@ -99,18 +104,13 @@ class PartyDiscussion:
         # Combine all discussion points
         full_discussion = f"Initial opinions:\n{chr(10).join([f'{k}: {v}' for k,v in state['individual_opinions'].items()])}\n\nDebate:\n{state['debate_summary']}"
         
-        prompt = f"""
-        As the leader of {state['party_name']} party, summarize the discussion about the bill:
-        {state['legislation_text']}
-        
-        {full_discussion}
-        
-        Answer in this format:
-        POSITION: [SUPPORTS or DOES NOT SUPPORT]
-        ARGUMENT 1: [main argument]
-        ARGUMENT 2: [second argument]
-        ARGUMENT 3: [third argument]
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'party_discussion.formulate_position_prompt',
+            party_name=state['party_name'],
+            legislation_text=state['legislation_text'],
+            full_discussion=full_discussion
+        )
         
         response = self.party.answer_question(prompt)
         print(f"\nParty position: {response}")

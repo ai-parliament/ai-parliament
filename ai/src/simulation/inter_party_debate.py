@@ -1,6 +1,11 @@
 from typing import List, Dict, Optional
 from dataclasses import dataclass
 import random
+try:
+    from ..utilities.prompt_manager import PromptManager
+except ImportError:
+    # Fallback for different import contexts
+    from ai.src.utilities.prompt_manager import PromptManager
 
 
 @dataclass
@@ -20,6 +25,7 @@ class InterPartyDebate:
         self.parties = parties
         self.legislation_text = legislation_text
         self.debate_history: List[DebateArgument] = []
+        self.prompt_manager = PromptManager()
         
     def conduct_debate(self, rounds: int = 2) -> List[DebateArgument]:
         """
@@ -60,14 +66,13 @@ class InterPartyDebate:
         # Select representative speaker
         speaker = random.choice(party.politicians)
         
-        prompt = f"""
-        As {speaker.name} from the {party.name} party, present your party's position
-        on the following bill:
-        {self.legislation_text}
-        
-        Focus on the main arguments of your party (2-3 sentences).
-        Begin with a clear statement whether you support or oppose the bill.
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'inter_party_debate.opening_statement_prompt',
+            speaker_name=speaker.name,
+            party_name=party.name,
+            legislation_text=self.legislation_text
+        )
         
         response = speaker.answer_question(prompt)
         is_supporting = ("support" in response.lower() and "not support" not in response.lower() and "don't support" not in response.lower())
@@ -106,15 +111,15 @@ class InterPartyDebate:
             for arg in opposing_arguments[-3:]
         ])
         
-        prompt = f"""
-        As {speaker.name} from the {party.name} party, respond to the arguments from other parties.
-        
-        Recent arguments in the debate:
-        {recent_arguments}
-        
-        Specifically address the argument made by {target_argument.speaker_name} ({target_argument.party_name}).
-        Your response should be specific and substantive (2-3 sentences).
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'inter_party_debate.response_prompt',
+            speaker_name=speaker.name,
+            party_name=party.name,
+            recent_arguments=recent_arguments,
+            target_speaker=target_argument.speaker_name,
+            target_party=target_argument.party_name
+        )
         
         response = speaker.answer_question(prompt)
         
@@ -132,14 +137,12 @@ class InterPartyDebate:
         
     def _party_closing_statement(self, party):
         """Generate closing statement for a party"""
-        prompt = f"""
-        As the leader of the {party.name} party, summarize the debate on the following bill:
-        {self.legislation_text}
-        
-        Consider the main arguments presented during the debate.
-        Confirm your party's final position (1-2 sentences).
-        End with a clear statement: "The {party.name} party VOTES FOR/AGAINST the bill."
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'inter_party_debate.closing_statement_prompt',
+            party_name=party.name,
+            legislation_text=self.legislation_text
+        )
         
         response = party.answer_question(prompt)
         is_supporting = "votes for" in response.lower() or "vote for" in response.lower()

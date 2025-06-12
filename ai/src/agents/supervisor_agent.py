@@ -228,27 +228,21 @@ class SupervisorAgent(BaseAgent):
             party_args_text += f"\n{party_name} main arguments:\n"
             for i, arg in enumerate(arguments, 1):
                 party_args_text += f"- {arg}\n"
+                
+        party_votes_formatted = self._format_party_votes(voting_results['party_votes'])
         
-        summary_prompt = f"""
-        Summarize the results of the parliamentary simulation on the following legislation:
-        
-        Legislation: {self.legislation_text}
-        
-        Voting results:
-        - Total votes: {voting_results['total_votes']}
-        - Votes in favor: {voting_results['votes_in_favor']}
-        - Votes against: {voting_results.get('votes_against', 0)}
-        - Abstained: {voting_results.get('abstained', 0)}
-        - Legislation passes: {voting_results['legislation_passes']}
-        
-        Party votes:
-        {self._format_party_votes(voting_results['party_votes'])}
-        
-        {party_args_text}
-        
-        Provide a concise summary of the simulation, including the key arguments from each party
-        and why the legislation passed or failed.
-        """
+        summary_prompt = self.prompt_manager.format_prompt(
+            'supervisor',
+            'summary_prompt',
+            legislation_text=self.legislation_text,
+            total_votes=voting_results['total_votes'],
+            votes_in_favor=voting_results['votes_in_favor'],
+            votes_against=voting_results.get('votes_against', 0),
+            abstained=voting_results.get('abstained', 0),
+            legislation_passes=voting_results['legislation_passes'],
+            party_votes_formatted=party_votes_formatted,
+            party_arguments_text=party_args_text
+        )
         
         response = self.answer_question(summary_prompt)
         
@@ -313,18 +307,7 @@ class SupervisorAgent(BaseAgent):
         Returns:
             The system prompt as a string
         """
-        return """
-        You are the supervisor of a parliamentary simulation system.
-        Your role is to oversee the decision-making process and provide objective analysis.
-        
-        You should:
-        1. Maintain neutrality and objectivity
-        2. Provide clear summaries of complex political processes
-        3. Explain why certain decisions were made
-        4. Highlight key arguments from different parties
-        
-        When responding, use a formal, analytical tone appropriate for political analysis.
-        """
+        return self.prompt_manager.get_prompt('supervisor', 'system_prompt')
     
     def _get_all_tools(self) -> List:
         """

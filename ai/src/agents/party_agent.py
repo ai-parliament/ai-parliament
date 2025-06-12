@@ -93,12 +93,13 @@ class PartyAgent(BaseAgent):
         """
         opinions = []
         for politician in self.politicians:
-            prompt = f"""
-            Proposed legislation: {legislation_text}
-
-            Express your opinion on this proposal as MP {politician.full_name}.
-            Do you support this legislation? What are your arguments?
-            """
+            prompt = self.prompt_manager.format_prompt(
+                'politician',
+                'legislation_opinion_prompt',
+                legislation_text=legislation_text,
+                full_name=politician.full_name
+            )
+                
             response = politician.answer_question(prompt)
             opinions.append({
                 "politician": politician.full_name,
@@ -126,14 +127,13 @@ class PartyAgent(BaseAgent):
             for op in self.discussion_history
         )
         
-        prompt = f"""
-        You are the leader of the {self.party_name} party ({self.party_acronym}).
-        Here are the opinions of your party members on the proposed legislation:
-
-        {discussion_summary}
-
-        Formulate a concise party position on this legislation.
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'party',
+            'stance_prompt',
+            party_name=self.party_name,
+            party_acronym=self.party_acronym,
+            discussion_summary=discussion_summary
+        )
         
         response = self.agent_executor.invoke({"input": prompt})
         return response["output"]
@@ -160,7 +160,13 @@ class PartyAgent(BaseAgent):
         Returns:
             The party's response
         """
-        prompt = f"As the {self.party_name} party, answer the following question: {question}"
+        prompt = self.prompt_manager.format_prompt(
+            'party',
+            'question_prompt',
+            party_name=self.party_name,
+            question=question
+        )
+            
         response = self.agent_executor.invoke({"input": prompt})
         return response["output"]
     
@@ -188,19 +194,13 @@ class PartyAgent(BaseAgent):
         Returns:
             The system prompt as a string
         """
-        return f"""
-        You are the leader of the political party {self.party_name} ({self.party_acronym}).
-
-        Party information:
-        {self.party_info}
-
-        Your task is to represent the party's position on various issues.
-        When responding:
-        1. Stay consistent with the party's ideology and platform
-        2. Consider the opinions of party members
-        3. Be persuasive but realistic
-        4. Use a formal, parliamentary style of speech
-        """
+        return self.prompt_manager.format_prompt(
+            'party',
+            'system_prompt',
+            party_name=self.party_name,
+            party_acronym=self.party_acronym,
+            party_info=self.party_info
+        )
     
     def _get_all_tools(self) -> List:
         """

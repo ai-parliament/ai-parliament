@@ -1,6 +1,11 @@
 from typing import List, Dict, Tuple
 from dataclasses import dataclass
 from collections import defaultdict
+try:
+    from ..utilities.prompt_manager import PromptManager
+except ImportError:
+    # Fallback for different import contexts
+    from ai.src.utilities.prompt_manager import PromptManager
 
 
 @dataclass
@@ -40,6 +45,7 @@ class VotingSystem:
         self.parties = parties
         self.party_positions = party_positions
         self.votes: List[Vote] = []
+        self.prompt_manager = PromptManager()
         
     def conduct_vote(self, allow_dissent: bool = True, dissent_probability: float = 0.1) -> VotingResult:
         """
@@ -94,13 +100,14 @@ class VotingSystem:
             return "For" if party_supports else "Against"
         
         # Ask politician for their personal stance
-        prompt = f"""
-        As {politician.name}, you must now cast your vote.
-        Your party's official position is: {'SUPPORT' if party_supports else 'OPPOSE'}.
+        party_position = 'SUPPORT' if party_supports else 'OPPOSE'
         
-        Do you vote according to the party line, or do you have a different opinion?
-        Answer with ONLY one word: FOR, AGAINST, or ABSTAIN
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'voting_system.vote_prompt',
+            politician_name=politician.name,
+            party_position=party_position
+        )
         
         response = politician.answer_question(prompt).strip().upper()
         

@@ -16,14 +16,16 @@ class BaseAgent(ABC):
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
         
-        env_shared = os.path.join(project_root, '.env.shared')
-        env_secret = os.path.join(project_root, '.env.secret')
+        # Try to load environment variables from different possible locations
+        env_files = [
+            os.path.join(project_root, '.env'),
+            os.path.join(project_root, '.env.shared'),
+            os.path.join(project_root, '.env.secret')
+        ]
         
-        # Try to load environment variables if files exist
-        if os.path.exists(env_shared):
-            load_dotenv(dotenv_path=env_shared)
-        if os.path.exists(env_secret):
-            load_dotenv(dotenv_path=env_secret)
+        for env_file in env_files:
+            if os.path.exists(env_file):
+                load_dotenv(dotenv_path=env_file)
         
         # Initialize LLM and memory
         self.model_name = os.getenv("GPT_MODEL_NAME", "gpt-4o-mini")

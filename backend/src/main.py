@@ -1,7 +1,11 @@
 import os
 import uvicorn
+from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from .api.routes import create_app
+
+# Load environment variables
+load_dotenv()
 
 # Create the FastAPI application
 app = create_app()

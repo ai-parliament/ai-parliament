@@ -2,7 +2,11 @@ import os
 import json
 import requests
 import streamlit as st
+from dotenv import load_dotenv
 from config_manager import config
+
+# Load environment variables
+load_dotenv()
 
 
 def call_backend_api(endpoint, method="GET", data=None):

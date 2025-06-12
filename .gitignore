@@ -1,5 +1,7 @@
-DS_Store
+.DS_Store
 .venv
+.env
 .env.secret
 __pycache__
 *.egg-info
+.vscode

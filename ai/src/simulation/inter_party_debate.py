@@ -1,11 +1,11 @@
-"""
-Inter-Party Debate Module
-Handles debates between different political parties
-"""
-
 from typing import List, Dict, Optional
 from dataclasses import dataclass
 import random
+try:
+    from ..utilities.prompt_manager import PromptManager
+except ImportError:
+    # Fallback for different import contexts
+    from ai.src.utilities.prompt_manager import PromptManager
 
 
 @dataclass
@@ -25,6 +25,7 @@ class InterPartyDebate:
         self.parties = parties
         self.legislation_text = legislation_text
         self.debate_history: List[DebateArgument] = []
+        self.prompt_manager = PromptManager()
         
     def conduct_debate(self, rounds: int = 2) -> List[DebateArgument]:
         """
@@ -37,24 +38,24 @@ class InterPartyDebate:
             List of debate arguments
         """
         print("\n" + "="*60)
-        print("DEBATA MIĘDZYPARTYJNA")
+        print("INTER-PARTY DEBATE")
         print("="*60)
         
         # First round - opening statements
-        print("\n--- RUNDA 1: Stanowiska wstępne ---")
+        print("\n--- ROUND 1: Opening statements ---")
         for party in self.parties:
             self._party_opening_statement(party)
         
         # Subsequent rounds - responses and rebuttals
         for round_num in range(2, rounds + 1):
-            print(f"\n--- RUNDA {round_num}: Odpowiedzi i kontrargumenty ---")
+            print(f"\n--- ROUND {round_num}: Responses and rebuttals ---")
             
             # Each party responds to previous arguments
             for party in self.parties:
                 self._party_response(party, round_num)
         
         # Final statements
-        print("\n--- STANOWISKA KOŃCOWE ---")
+        print("\n--- FINAL POSITIONS ---")
         for party in self.parties:
             self._party_closing_statement(party)
             
@@ -65,17 +66,16 @@ class InterPartyDebate:
         # Select representative speaker
         speaker = random.choice(party.politicians)
         
-        prompt = f"""
-        Jako {speaker.name} z partii {party.name}, przedstaw stanowisko partii
-        w sprawie ustawy:
-        {self.legislation_text}
-        
-        Skoncentruj się na głównych argumentach partii (2-3 zdania).
-        Rozpocznij od jasnego stwierdzenia czy popierasz czy odrzucasz ustawę.
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'inter_party_debate.opening_statement_prompt',
+            speaker_name=speaker.name,
+            party_name=party.name,
+            legislation_text=self.legislation_text
+        )
         
         response = speaker.answer_question(prompt)
-        is_supporting = "popieram" in response.lower() and "nie popieram" not in response.lower()
+        is_supporting = ("support" in response.lower() and "not support" not in response.lower() and "don't support" not in response.lower())
         
         argument = DebateArgument(
             party_name=party.name,
@@ -111,15 +111,15 @@ class InterPartyDebate:
             for arg in opposing_arguments[-3:]
         ])
         
-        prompt = f"""
-        Jako {speaker.name} z partii {party.name}, odpowiedz na argumenty innych partii.
-        
-        Ostatnie argumenty w debacie:
-        {recent_arguments}
-        
-        Szczególnie odnieś się do argumentu {target_argument.speaker_name} ({target_argument.party_name}).
-        Odpowiedź powinna być konkretna i merytoryczna (2-3 zdania).
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'inter_party_debate.response_prompt',
+            speaker_name=speaker.name,
+            party_name=party.name,
+            recent_arguments=recent_arguments,
+            target_speaker=target_argument.speaker_name,
+            target_party=target_argument.party_name
+        )
         
         response = speaker.answer_question(prompt)
         
@@ -137,17 +137,15 @@ class InterPartyDebate:
         
     def _party_closing_statement(self, party):
         """Generate closing statement for a party"""
-        prompt = f"""
-        Jako lider partii {party.name}, podsumuj debatę na temat ustawy:
-        {self.legislation_text}
-        
-        Uwzględnij główne argumenty które padły w debacie.
-        Potwierdź ostateczne stanowisko partii (1-2 zdania).
-        Zakończ jasnym stwierdzeniem: "Partia {party.name} GŁOSUJE ZA/PRZECIW ustawie."
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'inter_party_debate.closing_statement_prompt',
+            party_name=party.name,
+            legislation_text=self.legislation_text
+        )
         
         response = party.answer_question(prompt)
-        is_supporting = "głosuje za" in response.lower()
+        is_supporting = "votes for" in response.lower() or "vote for" in response.lower()
         
         argument = DebateArgument(
             party_name=party.name,

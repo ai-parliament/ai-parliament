@@ -1,0 +1,99 @@
+# Default Party and Politician Data
+# This file contains default party configurations for the AI Parliament
+
+parties:
+  "Prawo i Sprawiedliwosc":
+    abbreviation: "PiS"
+    description: "Law and Justice - Conservative party"
+    politicians:
+      - name: "Jaroslaw Kaczynski"
+        role: "Chairman"
+        description: "Party leader and former Prime Minister"
+      - name: "Antoni Macierewicz"
+        role: "Member"
+        description: "Former Minister of National Defence"
+      - name: "Beata Szydlo"
+        role: "Member"
+        description: "Former Prime Minister"
+
+  "Koalicja Obywatelska":
+    abbreviation: "KO"
+    description: "Civic Coalition - Liberal-conservative coalition"
+    politicians:
+      - name: "Donald Tusk"
+        role: "Chairman"
+        description: "Former Prime Minister and European Council President"
+      - name: "Rafal Trzaskowski"
+        role: "Member"
+        description: "Mayor of Warsaw"
+      - name: "Borys Budka"
+        role: "Member"
+        description: "Former party chairman"
+
+  "Lewica":
+    abbreviation: "L"
+    description: "The Left - Social democratic alliance"
+    politicians:
+      - name: "Wlodzimierz Czarzasty"
+        role: "Co-Chairman"
+        description: "Democratic Left Alliance leader"
+      - name: "Robert Biedron"
+        role: "Co-Chairman"
+        description: "Spring party leader"
+      - name: "Adrian Zandberg"
+        role: "Member"
+        description: "Together party leader"
+
+  "Polska 2050":
+    abbreviation: "P2050"
+    description: "Poland 2050 - Centrist political movement"
+    politicians:
+      - name: "Szymon Holownia"
+        role: "Chairman"
+        description: "TV presenter and politician"
+      - name: "Michal Kobosko"
+        role: "Vice-Chairman"
+        description: "Former Modern party member"
+
+  "Konfederacja":
+    abbreviation: "K"
+    description: "Confederation - Right-wing coalition"
+    politicians:
+      - name: "Janusz Korwin-Mikke"
+        role: "Member"
+        description: "Libertarian politician"
+      - name: "Krzysztof Bosak"
+        role: "Member"
+        description: "National Movement politician"
+
+  "Polskie Stronnictwo Ludowe":
+    abbreviation: "PSL"
+    description: "Polish People's Party - Agrarian party"
+    politicians:
+      - name: "Wladyslaw Kosiniak-Kamysz"
+        role: "Chairman"
+        description: "Party leader and former Deputy Prime Minister"
+      - name: "Urszula Pasławska"
+        role: "Member"
+        description: "Former Minister of Agriculture"
+
+# Alternative party configurations for different scenarios
+alternative_parties:
+  international:
+    "Democratic Party":
+      abbreviation: "DEM"
+      description: "Democratic Party - Center-left"
+      politicians:
+        - name: "John Smith"
+          role: "Chairman"
+        - name: "Jane Doe"
+          role: "Member"
+    
+    "Republican Party":
+      abbreviation: "REP"
+      description: "Republican Party - Center-right"
+      politicians:
+        - name: "Bob Johnson"
+          role: "Chairman"
+        - name: "Alice Brown"
+          role: "Member"

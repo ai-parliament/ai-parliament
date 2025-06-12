@@ -1,11 +1,11 @@
-"""
-Voting System Module
-Handles the voting process and determines if legislation passes
-"""
-
 from typing import List, Dict, Tuple
 from dataclasses import dataclass
 from collections import defaultdict
+try:
+    from ..utilities.prompt_manager import PromptManager
+except ImportError:
+    # Fallback for different import contexts
+    from ai.src.utilities.prompt_manager import PromptManager
 
 
 @dataclass
@@ -13,7 +13,7 @@ class Vote:
     """Individual vote"""
     politician_name: str
     party_name: str
-    vote: str  # "Za", "Przeciw", "Wstrzymuje się"
+    vote: str  # "For", "Against", "Abstain"
     
     
 @dataclass
@@ -27,8 +27,8 @@ class VotingResult:
     individual_votes: List[Vote]
     
     def __str__(self):
-        status = "PRZYJĘTA ✓" if self.passed else "ODRZUCONA ✗"
-        return f"Za: {self.total_for}, Przeciw: {self.total_against}, Wstrzymało się: {self.total_abstain} - Ustawa {status}"
+        status = "PASSED ✓" if self.passed else "REJECTED"
+        return f"For: {self.total_for}, Against: {self.total_against}, Abstained: {self.total_abstain} - Bill {status}"
 
 
 class VotingSystem:
@@ -45,6 +45,7 @@ class VotingSystem:
         self.parties = parties
         self.party_positions = party_positions
         self.votes: List[Vote] = []
+        self.prompt_manager = PromptManager()
         
     def conduct_vote(self, allow_dissent: bool = True, dissent_probability: float = 0.1) -> VotingResult:
         """
@@ -58,7 +59,7 @@ class VotingSystem:
             VotingResult with detailed voting information
         """
         print("\n" + "="*60)
-        print("GŁOSOWANIE")
+        print("VOTING")
         print("="*60)
         
         for party in self.parties:
@@ -96,38 +97,39 @@ class VotingSystem:
         
         if not allow_dissent:
             # Vote strictly along party lines
-            return "Za" if party_supports else "Przeciw"
+            return "For" if party_supports else "Against"
         
         # Ask politician for their personal stance
-        prompt = f"""
-        Jako {politician.name}, musisz teraz zagłosować.
-        Oficjalne stanowisko twojej partii to: {'POPARCIE' if party_supports else 'SPRZECIW'}.
+        party_position = 'SUPPORT' if party_supports else 'OPPOSE'
         
-        Czy głosujesz zgodnie z linią partii, czy może masz inne zdanie?
-        Odpowiedz TYLKO jednym słowem: ZA, PRZECIW lub WSTRZYMUJĘ_SIĘ
-        """
+        prompt = self.prompt_manager.format_prompt(
+            'simulation',
+            'voting_system.vote_prompt',
+            politician_name=politician.name,
+            party_position=party_position
+        )
         
         response = politician.answer_question(prompt).strip().upper()
         
         # Parse response
-        if "ZA" in response and "PRZECIW" not in response:
-            return "Za"
-        elif "PRZECIW" in response:
-            return "Przeciw"
-        elif "WSTRZYM" in response:
-            return "Wstrzymuje się"
+        if "FOR" in response and "AGAINST" not in response:
+            return "For"
+        elif "AGAINST" in response:
+            return "Against"
+        elif "ABSTAIN" in response:
+            return "Abstain"
         else:
             # Default to party line if unclear
-            return "Za" if party_supports else "Przeciw"
+            return "For" if party_supports else "Against"
             
     def _calculate_results(self) -> VotingResult:
         """Calculate voting results"""
-        total_for = sum(1 for v in self.votes if v.vote == "Za")
-        total_against = sum(1 for v in self.votes if v.vote == "Przeciw")
-        total_abstain = sum(1 for v in self.votes if v.vote == "Wstrzymuje się")
+        total_for = sum(1 for v in self.votes if v.vote == "For")
+        total_against = sum(1 for v in self.votes if v.vote == "Against")
+        total_abstain = sum(1 for v in self.votes if v.vote == "Abstain")
         
         # Calculate by party
-        votes_by_party = defaultdict(lambda: {"Za": 0, "Przeciw": 0, "Wstrzymuje się": 0})
+        votes_by_party = defaultdict(lambda: {"For": 0, "Against": 0, "Abstain": 0})
         for vote in self.votes:
             votes_by_party[vote.party_name][vote.vote] += 1
             
@@ -146,34 +148,34 @@ class VotingSystem:
     def _display_summary(self, result: VotingResult):
         """Display voting summary"""
         print("\n" + "="*60)
-        print("WYNIKI GŁOSOWANIA")
+        print("VOTING RESULTS")
         print("="*60)
         
         # Overall results
-        print(f"\nOgółem:")
-        print(f"  Za: {result.total_for}")
-        print(f"  Przeciw: {result.total_against}")
-        print(f"  Wstrzymało się: {result.total_abstain}")
+        print(f"\nOverall:")
+        print(f"  For: {result.total_for}")
+        print(f"  Against: {result.total_against}")
+        print(f"  Abstained: {result.total_abstain}")
         
         # By party
-        print("\nWedług partii:")
+        print("\nBy party:")
         for party_name, votes in result.votes_by_party.items():
             print(f"\n{party_name}:")
-            print(f"  Za: {votes['Za']}")
-            print(f"  Przeciw: {votes['Przeciw']}")
-            print(f"  Wstrzymało się: {votes['Wstrzymuje się']}")
+            print(f"  For: {votes['For']}")
+            print(f"  Against: {votes['Against']}")
+            print(f"  Abstained: {votes['Abstain']}")
             
             # Check for dissent
-            expected_vote = "Za" if self.party_positions.get(party_name, False) else "Przeciw"
+            expected_vote = "For" if self.party_positions.get(party_name, False) else "Against"
             dissent_count = len([v for v in result.individual_votes 
                                if v.party_name == party_name and v.vote != expected_vote])
             if dissent_count > 0:
-                print(f"  ⚠️  Głosów niezgodnych z linią partii: {dissent_count}")
+                print(f"Votes against party line: {dissent_count}")
         
         # Final result
         print("\n" + "-"*60)
-        print(f"WYNIK: Ustawa {'PRZYJĘTA ✓' if result.passed else 'ODRZUCONA ✗'}")
-        print(f"({result.total_for} za, {result.total_against} przeciw, {result.total_abstain} wstrzymało się)")
+        print(f"RESULT: Bill {'PASSED ✓' if result.passed else 'REJECTED'}")
+        print(f"({result.total_for} for, {result.total_against} against, {result.total_abstain} abstained)")
 
 
 def simulate_voting(parties: List, party_positions: Dict[str, bool], 

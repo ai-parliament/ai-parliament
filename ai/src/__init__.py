@@ -1,4 +1,4 @@
-from .agents import BaseAgent, PoliticianAgent, PartyAgent, SupervisorAgent, AgentLoader
+from .agents import BaseAgent, PoliticianAgent, PartyAgent, SupervisorAgent, AgentManager
 from .database import VectorDatabase
 from .simulation import PartyDiscussion, InterPartyDebate, VotingSystem
 
@@ -7,7 +7,7 @@ __all__ = [
     'PoliticianAgent',
     'PartyAgent',
     'SupervisorAgent',
-    'AgentLoader',
+    'AgentManager',
     'VectorDatabase',
     'PartyDiscussion',
     'InterPartyDebate',

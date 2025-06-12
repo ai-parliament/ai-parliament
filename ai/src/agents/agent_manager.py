@@ -3,14 +3,14 @@ from .party_agent import PartyAgent
 from .supervisor_agent import SupervisorAgent
 from typing import List, Dict, Any
 
-class AgentLoader:
+class AgentManager:
     """
-    Loads biographical and political context data for each politician and party.
+    Manages biographical and political context data for each politician and party.
     Creates unique system prompts based on ideology, past votes, public statements, etc.
     """
     def __init__(self):
         """
-        Initialize the agent loader.
+        Initialize the agent manager.
         """
         self.parties = {}
         self.politicians = {}

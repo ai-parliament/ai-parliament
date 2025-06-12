@@ -1,5 +1,5 @@
 from typing import List, Dict, Any
-from src.ai.agents.agent_loader import AgentLoader
+from src.ai.agents.agent_manager import AgentManager
 from src.ai.agents.supervisor_agent import SupervisorAgent
 from src.ai.database.vector_db import VectorDatabase
 from src.ai.simulation.party_discussion import PartyDiscussion
@@ -15,7 +15,7 @@ class AIService:
         """
         Initialize the AI service.
         """
-        self.agent_loader = AgentLoader()
+        self.agent_manager = AgentManager()
         # self.vector_db = VectorDatabase()
     
     def create_simulation(self, party_names: List[str], politicians_per_party: Dict[str, List[Dict[str, str]]]) -> Dict[str, Any]:
@@ -30,7 +30,7 @@ class AIService:
         Returns:
             A dictionary containing the simulation configuration
         """
-        supervisor = self.agent_loader.create_simulation(party_names, politicians_per_party)
+        supervisor = self.agent_manager.create_simulation(party_names, politicians_per_party)
         
         # Store the supervisor in the instance for later use
         self.supervisor = supervisor
@@ -63,7 +63,7 @@ class AIService:
         Returns:
             The generated legislation text
         """
-        legislation_text = self.agent_loader.generate_legislation(topic)
+        legislation_text = self.agent_manager.generate_legislation(topic)
                 
         return legislation_text
     

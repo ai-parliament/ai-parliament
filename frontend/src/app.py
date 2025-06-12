@@ -2,9 +2,7 @@ import os
 import json
 import requests
 import streamlit as st
-
-# Backend API URL (will come from environment in Docker)
-BACKEND_API_URL = os.environ.get("BACKEND_API_URL", "http://localhost:8000/api")
+from config_manager import config
 
 
 def call_backend_api(endpoint, method="GET", data=None):
@@ -19,7 +17,7 @@ def call_backend_api(endpoint, method="GET", data=None):
     Returns:
         JSON response from the API
     """
-    url = f"{BACKEND_API_URL}/{endpoint}"
+    url = f"{config.backend_api_url}/{endpoint}"
     
     try:
         if method == "GET":
@@ -38,154 +36,95 @@ def call_backend_api(endpoint, method="GET", data=None):
 
 
 def initialize_session_state():
-    """Initialize the session state variables."""
-    if "simulation_created" not in st.session_state:
-        st.session_state.simulation_created = False
+    """Initialize the session state variables using config manager."""
+    defaults = config.get_session_state_defaults()
     
-    if "party_names" not in st.session_state:
-        st.session_state.party_names = []
-    
-    if "party_abbreviations" not in st.session_state:
-        st.session_state.party_abbreviations = []
-    
-    if "politicians_per_party" not in st.session_state:
-        st.session_state.politicians_per_party = {}
-    
-    if "legislation_text" not in st.session_state:
-        st.session_state.legislation_text = ""
-    
-    if "intra_party_results" not in st.session_state:
-        st.session_state.intra_party_results = None
-    
-    if "inter_party_results" not in st.session_state:
-        st.session_state.inter_party_results = None
-    
-    if "voting_results" not in st.session_state:
-        st.session_state.voting_results = None
-    
-    if "simulation_summary" not in st.session_state:
-        st.session_state.simulation_summary = None
-    
-    if "chat_messages" not in st.session_state:
-        st.session_state.chat_messages = []
-    
-    # Initialize LLM configuration parameters
-    if "model_name" not in st.session_state:
-        st.session_state.model_name = "gpt-4"
-    
-    if "temperature" not in st.session_state:
-        st.session_state.temperature = 0.7
-    
-    if "max_tokens" not in st.session_state:
-        st.session_state.max_tokens = 2000
-    
-    # Initialize number of parties and MPs
-    if "num_parties" not in st.session_state:
-        st.session_state.num_parties = 2
-    
-    if "num_mps_per_party" not in st.session_state:
-        st.session_state.num_mps_per_party = 2
-        
-    # Initialize default party and politician names
-    if "default_party_data" not in st.session_state:
-        st.session_state.default_party_data = {
-            "Prawo i Sprawiedliwosc": [
-                {"name": "Jaroslaw Kaczynski", "role": "Chairman"},
-                {"name": "Antoni Macierewicz", "role": "Member"}
-            ],
-            "Koalicja Obywatelska": [
-                {"name": "Donald Tusk", "role": "Chairman"},
-                {"name": "Rafal Trzaskowski", "role": "Member"}
-            ]
-        }
+    for key, value in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
 
 
 def setup_page():
-    """Set up the Streamlit page."""
+    """Set up the Streamlit page using config manager."""
     st.set_page_config(
-        page_title="AI Parliament",
-        page_icon="🏛️",
-        layout="wide",
-        initial_sidebar_state="expanded"
+        page_title=config.ui_page_title,
+        page_icon=config.ui_page_icon,
+        layout=config.ui_layout,
+        initial_sidebar_state=config.ui_sidebar_state
     )
 
 
 def sidebar_ui():
-    """Create the sidebar UI for configuration."""
+    """Create the sidebar UI for configuration using config manager."""
     with st.sidebar:
-        st.title("🏛️ AI Parliament")
-        st.markdown("## ⚙️ Configuration")
+        st.title(f"{config.ui_page_icon} {config.get_text('titles', 'app_title')}")
+        st.markdown(f"## {config.get_text('titles', 'configuration_title')}")
         
         # LLM Configuration Section
-        st.markdown("#### 🤖 LLM Settings")
+        st.markdown(f"#### {config.get_text('sections', 'llm_settings')}")
         
-        model_options = ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo"]
         st.session_state.model_name = st.selectbox(
-            "Model", 
-            options=model_options, 
-            index=model_options.index(st.session_state.model_name)
+            config.get_text('labels', 'model_label'), 
+            options=config.llm_available_models, 
+            index=config.llm_available_models.index(st.session_state.model_name)
         )
         
         st.session_state.temperature = st.slider(
-            "Temperature", 
-            min_value=0.0, 
-            max_value=1.0, 
+            config.get_text('labels', 'temperature_label'), 
+            min_value=config.llm_temperature_range[0], 
+            max_value=config.llm_temperature_range[1], 
             value=st.session_state.temperature,
-            step=0.1,
-            help="Controls randomness. Lower values are more deterministic."
+            step=config.llm_temperature_step,
+            help=config.get_text('help_texts', 'temperature_help')
         )
         
         st.session_state.max_tokens = st.slider(
-            "Max Tokens", 
-            min_value=500, 
-            max_value=4000, 
+            config.get_text('labels', 'max_tokens_label'), 
+            min_value=config.llm_max_tokens_range[0], 
+            max_value=config.llm_max_tokens_range[1], 
             value=st.session_state.max_tokens,
-            step=100,
-            help="Maximum number of tokens to generate per response."
+            step=config.llm_max_tokens_step,
+            help=config.get_text('help_texts', 'max_tokens_help')
         )
         
         # Parliament Configuration Section
-        st.markdown("#### 🏛️ Parliament Settings")
+        st.markdown(f"#### {config.get_text('sections', 'parliament_settings')}")
         
         st.session_state.num_parties = st.number_input(
-            "Number of Parties", 
-            min_value=1, 
-            max_value=10, 
+            config.get_text('labels', 'num_parties_label'), 
+            min_value=config.parliament_parties_range[0], 
+            max_value=config.parliament_parties_range[1], 
             value=st.session_state.num_parties
         )
         
         # Party and MP Configuration
-        st.markdown("#### 🏢 Party Configuration")
+        st.markdown(f"#### {config.get_text('sections', 'party_configuration')}")
         
         party_names = []
         party_abbreviations = []
         politicians_per_party = {}
         
-        # Get default party names
-        default_party_names = list(st.session_state.default_party_data.keys())
-        default_party_abbreviations = {
-            "Prawo i Sprawiedliwosc": "PiS",
-            "Koalicja Obywatelska": "KO"
-        }
+        # Get default party names from config
+        default_party_names = config.get_default_party_names()
         
         for i in range(st.session_state.num_parties):
             # Get default party name for this index or use generic name
-            default_party_name = default_party_names[i] if i < len(default_party_names) else f"Party {i+1}"
-            default_abbreviation = default_party_abbreviations.get(default_party_name, "")
+            default_party_name = default_party_names[i] if i < len(default_party_names) else f"{config.get_text('defaults', 'party_prefix')} {i+1}"
+            default_abbreviation = config.get_default_abbreviation(default_party_name)
             
             with st.expander(f"{default_party_name}", expanded=False):
                 col1, col2 = st.columns([3, 1])
                 
                 with col1:
                     party_name = st.text_input(
-                        "Party Name", 
+                        config.get_text('labels', 'party_name_label'), 
                         value=default_party_name, 
                         key=f"party_{i}"
                     )
                 
                 with col2:
                     party_abbreviation = st.text_input(
-                        "Abbreviation",
+                        config.get_text('labels', 'abbreviation_label'),
                         value=default_abbreviation,
                         key=f"party_abbr_{i}"
                     )
@@ -193,41 +132,41 @@ def sidebar_ui():
                 party_names.append(party_name)
                 party_abbreviations.append(party_abbreviation)
                 
-                # Get default politicians for this party
-                default_politicians = st.session_state.default_party_data.get(default_party_name, [])
+                # Get default politicians for this party from config
+                default_politicians = config.get_default_politicians(default_party_name)
                 if not default_politicians and i < len(default_party_names):
                     # Try with the original index-based key if the party name was changed
-                    default_politicians = st.session_state.default_party_data.get(default_party_names[i], [])
+                    default_politicians = config.get_default_politicians(default_party_names[i])
                 
                 num_politicians = st.number_input(
-                    "Number of MPs", 
-                    min_value=1, 
-                    max_value=5, 
+                    config.get_text('labels', 'num_mps_label'), 
+                    min_value=config.parliament_mps_range[0], 
+                    max_value=config.parliament_mps_range[1], 
                     value=len(default_politicians) if default_politicians else st.session_state.num_mps_per_party,
                     key=f"num_pol_{i}"
                 )
 
                 st.markdown("---")
-                st.markdown("##### 👥 MPs Configuration")
+                st.markdown(f"##### {config.get_text('sections', 'mps_configuration')}")
                 politicians = []
                 for j in range(num_politicians):
                     # Get default values for this politician
-                    default_name = default_politicians[j]["name"] if j < len(default_politicians) else f"Politician {j+1}"
-                    default_role = default_politicians[j]["role"] if j < len(default_politicians) else "Member"
+                    default_name = default_politicians[j]["name"] if j < len(default_politicians) else f"{config.get_text('defaults', 'politician_prefix')} {j+1}"
+                    default_role = default_politicians[j]["role"] if j < len(default_politicians) else config.get_text('defaults', 'role')
 
                     st.markdown(f"**{default_name}**")
                     col1, col2 = st.columns(2)
 
                     with col1:
                         politician_name = st.text_input(
-                            "Name",
+                            config.get_text('labels', 'politician_name_label'),
                             value=default_name,
                             key=f"pol_name_{i}_{j}"
                         )
                     
                     with col2:
                         politician_role = st.text_input(
-                            "Role",
+                            config.get_text('labels', 'politician_role_label'),
                             value=default_role,
                             key=f"pol_role_{i}_{j}"
                         )
@@ -244,15 +183,15 @@ def sidebar_ui():
                 politicians_per_party[party_name] = politicians
         
         # Control buttons
-        st.markdown("#### 🎮 Controls")
+        st.markdown(f"#### {config.get_text('titles', 'controls_title')}")
         
         col1, col2 = st.columns(2)
         
         with col1:
-            start_button = st.button("Start Simulation", use_container_width=True)
+            start_button = st.button(config.get_text('buttons', 'start_simulation'), use_container_width=True)
         
         with col2:
-            reset_button = st.button("Reset", use_container_width=True)
+            reset_button = st.button(config.get_text('buttons', 'reset'), use_container_width=True)
         
         if start_button:
             data = {
@@ -275,7 +214,7 @@ def sidebar_ui():
                 st.session_state.party_abbreviations = party_abbreviations
                 st.session_state.politicians_per_party = politicians_per_party
                 
-                st.success("Simulation created successfully!")
+                st.success(config.get_text('messages', 'success', 'simulation_created'))
                 
                 # Add individual party creation messages to chat
                 for party in response["parties"]:
@@ -284,7 +223,7 @@ def sidebar_ui():
                     if 'acronym' in party and party['acronym']:
                         party_name_display = f"{party['name']} ({party['acronym']})"
                     
-                    party_info = f"Created party: {party_name_display}"
+                    party_info = f"{config.get_text('chat', 'created_party')}: {party_name_display}"
                     politicians_info = "\n".join([f"• {pol['name']} ({pol['role']})" for pol in party["politicians"]])
                     
                     st.session_state.chat_messages.append({
@@ -292,74 +231,42 @@ def sidebar_ui():
                         "content": f"{party_info}\n{politicians_info}"
                     })
             else:
-                st.error("Failed to create simulation")
+                st.error(config.get_text('messages', 'error', 'simulation_failed'))
         
         if reset_button:
-            # Reset session state to defaults - clearing specific session variables
-            # instead of deleting all keys which can cause issues
-            st.session_state.simulation_created = False
-            st.session_state.party_names = []
-            st.session_state.party_abbreviations = []
-            st.session_state.politicians_per_party = {}
-            st.session_state.legislation_text = ""
-            st.session_state.intra_party_results = None
-            st.session_state.inter_party_results = None
-            st.session_state.voting_results = None
-            st.session_state.simulation_summary = None
-            st.session_state.chat_messages = []
-            st.session_state.model_name = "gpt-4"
-            st.session_state.temperature = 0.7
-            st.session_state.max_tokens = 2000
-            st.session_state.num_parties = 2
-            st.session_state.num_mps_per_party = 2
-            # Reinitialize the default party data
-            st.session_state.default_party_data = {
-                "Prawo i Sprawiedliwosc": [
-                    {"name": "Jaroslaw Kaczynski", "role": "Chairman"},
-                    {"name": "Antoni Macierewicz", "role": "Member"}
-                ],
-                "Koalicja Obywatelska": [
-                    {"name": "Donald Tusk", "role": "Chairman"},
-                    {"name": "Rafal Trzaskowski", "role": "Member"}
-                ]
-            }
+            # Reset session state to defaults using config manager
+            defaults = config.get_session_state_defaults()
+            for key, value in defaults.items():
+                st.session_state[key] = value
             st.rerun()
 
 
 def main_screen():
-    """Create the main screen UI."""
+    """Create the main screen UI using config manager."""
     if not st.session_state.simulation_created:
-        st.markdown("""
-        ## Welcome to AI Parliament
-        
-        Configure your parliament in the sidebar and click "Start Simulation" to begin.
-        
-        This application simulates parliamentary deliberation, debate, and voting on legislation topics 
-        using AI models to emulate different parties and politicians.
-        """)
-        
+        st.markdown(config.get_text('welcome', 'message'))
         return
     
     # Main content area with question input and chat display
-    st.markdown("## AI Parliament Session")
+    st.markdown(f"## {config.get_text('titles', 'session_title')}")
     
     # Topic Input
     with st.container():
-        st.markdown("### Enter a topic for parliamentary discussion")
+        st.markdown(config.get_text('sections', 'topic_input_section'))
         
         # Use a form for the topic input
         with st.form(key="topic_form"):
             legislation_topic = st.text_input(
-                "Topic for parliamentary discussion",
-                placeholder="e.g., 'Renewable Energy Subsidies', 'Privacy Regulation Reform', 'Education Budget'...",
-                help="Enter a topic or question for the parliament to discuss and vote on."
+                config.get_text('labels', 'topic_input_label'),
+                placeholder=config.get_text('placeholders', 'topic_input_placeholder'),
+                help=config.get_text('help_texts', 'topic_input_help')
             )
             
-            submit_button = st.form_submit_button("Start Discussion", use_container_width=True)
+            submit_button = st.form_submit_button(config.get_text('buttons', 'start_discussion'), use_container_width=True)
             
             if submit_button and legislation_topic:
                 # Call backend API to generate legislation
-                with st.spinner("Preparing discussion topic..."):
+                with st.spinner(config.get_text('messages', 'loading', 'preparing_topic')):
                     response = call_backend_api(
                         "generate_legislation", 
                         method="POST", 
@@ -379,24 +286,24 @@ def main_screen():
                     # Add to chat
                     st.session_state.chat_messages.append({
                         "role": "system",
-                        "content": f"Starting parliamentary discussion on topic: **{legislation_topic}**"
+                        "content": f"{config.get_text('chat', 'starting_discussion')}: **{legislation_topic}**"
                     })
                     
-                    st.success("Discussion topic set successfully!")
+                    st.success(config.get_text('messages', 'success', 'topic_set'))
                 else:
-                    st.error("Failed to set discussion topic")
+                    st.error(config.get_text('messages', 'error', 'topic_failed'))
     
     # Only show simulation actions when legislation is available
     if st.session_state.legislation_text:
         # Action buttons for simulation steps
-        st.markdown("### Simulation Actions")
+        st.markdown(f"### {config.get_text('sections', 'simulation_actions')}")
         
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            if st.button("Run Intra-Party Deliberation", use_container_width=True):
+            if st.button(config.get_text('buttons', 'run_intra_party'), use_container_width=True):
                 # Call backend API for intra-party deliberation
-                with st.spinner("Running intra-party deliberation..."):
+                with st.spinner(config.get_text('messages', 'loading', 'running_intra_party')):
                     response = call_backend_api(
                         "run_intra_party_deliberation", 
                         method="POST", 
@@ -418,7 +325,7 @@ def main_screen():
                         st.session_state.chat_messages.append({
                             "role": "party",
                             "party": party_name,
-                            "content": f"**Party Stance:** {data['stance']}"
+                            "content": f"{config.get_text('chat', 'party_stance')} {data['stance']}"
                         })
                         
                         for politician_name, stance in data["opinions"].items():
@@ -429,14 +336,14 @@ def main_screen():
                                 "content": stance
                             })
                     
-                    st.success("Intra-party deliberation completed")
+                    st.success(config.get_text('messages', 'success', 'intra_party_completed'))
                 else:
-                    st.error("Failed to run intra-party deliberation")
+                    st.error(config.get_text('messages', 'error', 'intra_party_failed'))
         
         with col2:
-            if st.button("Run Inter-Party Debate", use_container_width=True):
+            if st.button(config.get_text('buttons', 'run_inter_party'), use_container_width=True):
                 # Call backend API for inter-party debate
-                with st.spinner("Running inter-party debate..."):
+                with st.spinner(config.get_text('messages', 'loading', 'running_inter_party')):
                     response = call_backend_api(
                         "run_inter_party_debate", 
                         method="POST", 
@@ -472,14 +379,14 @@ def main_screen():
                             "content": response_text
                         })
                     
-                    st.success("Inter-party debate completed")
+                    st.success(config.get_text('messages', 'success', 'inter_party_completed'))
                 else:
-                    st.error("Failed to run inter-party debate")
+                    st.error(config.get_text('messages', 'error', 'inter_party_failed'))
         
         with col3:
-            if st.button("Run Voting", use_container_width=True):
+            if st.button(config.get_text('buttons', 'run_voting'), use_container_width=True):
                 # Call backend API for voting
-                with st.spinner("Running voting..."):
+                with st.spinner(config.get_text('messages', 'loading', 'running_voting')):
                     response = call_backend_api(
                         "run_voting", 
                         method="POST", 
@@ -498,9 +405,9 @@ def main_screen():
                     results = response["voting_results"]
                     
                     # Add voting results directly without the header
-                    vote_result = f"📊 **Voting Results:**\nTotal votes: {results['total_votes']}\n"
-                    vote_result += f"Votes in favor: {results['votes_in_favor']}\n"
-                    vote_result += f"Legislation passes: {'Yes ✅' if results['legislation_passes'] else 'No ❌'}"
+                    vote_result = f"{config.get_text('chat', 'voting_results')}\n{config.get_text('chat', 'total_votes')} {results['total_votes']}\n"
+                    vote_result += f"{config.get_text('chat', 'votes_in_favor')} {results['votes_in_favor']}\n"
+                    vote_result += f"{config.get_text('chat', 'legislation_passes')} {config.get_text('chat', 'yes') if results['legislation_passes'] else config.get_text('chat', 'no')}"
                     
                     st.session_state.chat_messages.append({
                         "role": "system",
@@ -511,10 +418,10 @@ def main_screen():
                         st.session_state.chat_messages.append({
                             "role": "party",
                             "party": party_name,
-                            "content": f"Vote: {vote_data['vote']} ({vote_data['num_votes']} votes)"
+                            "content": f"{config.get_text('chat', 'vote')}: {vote_data['vote']} ({vote_data['num_votes']} {config.get_text('chat', 'votes')})"
                         })
                     
-                    st.success("Voting completed")
+                    st.success(config.get_text('messages', 'success', 'voting_completed'))
                     
                     # Get simulation summary
                     summary_response = call_backend_api("get_simulation_summary", method="GET")
@@ -525,7 +432,7 @@ def main_screen():
                         # Add to chat
                         st.session_state.chat_messages.append({
                             "role": "system",
-                            "content": "**Simulation Summary:**"
+                            "content": config.get_text('chat', 'simulation_summary')
                         })
                         
                         st.session_state.chat_messages.append({
@@ -533,7 +440,7 @@ def main_screen():
                             "content": summary_response["summary"]
                         })
                 else:
-                    st.error("Failed to run voting")
+                    st.error(config.get_text('messages', 'error', 'voting_failed'))
     
     # Parliament Debate Chat Display
     display_chat()
@@ -544,57 +451,14 @@ def display_chat():
     if not st.session_state.chat_messages:
         return
     
-    st.markdown("### Parliamentary Debate")
+    st.markdown(f"### {config.get_text('sections', 'parliamentary_debate')}")
     
     # Create a styled chat container
     chat_container = st.container()
     
     with chat_container:
         # Custom CSS for chat bubbles with improved markdown rendering
-        st.markdown("""
-        <style>
-        .chat-message {
-            padding: 1.5rem; 
-            border-radius: 0.5rem; 
-            margin-bottom: 1rem; 
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .system-message {
-            background-color: #f0f2f6;
-            border-left: 5px solid #4e8cff;
-        }
-        .party-message {
-            background-color: #e6f3ff;
-            border-left: 5px solid #0068c9;
-        }
-        .politician-message {
-            background-color: #f5f5f5;
-            border-left: 5px solid #ff9500;
-        }
-        .message-header {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-size: 1.1em;
-        }
-        .message-content {
-            margin-top: 0.5rem;
-            white-space: pre-wrap;
-            line-height: 1.5;
-        }
-        .message-content p {
-            margin-bottom: 0.8rem;
-        }
-        h4 {
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        </style>
-        """, unsafe_allow_html=True)
+        st.markdown(config.get_chat_css(), unsafe_allow_html=True)
         
         # Group all messages by type
         system_messages = []
@@ -605,7 +469,7 @@ def display_chat():
         # First, categorize all messages
         for message in st.session_state.chat_messages:
             # Handle summary messages separately
-            if message["role"] == "system" and "Simulation Summary" in message.get("content", ""):
+            if message["role"] == "system" and config.get_text('chat', 'simulation_summary') in message.get("content", ""):
                 summary_messages.append(message)
                 continue
             
@@ -618,17 +482,17 @@ def display_chat():
         
         # Display system messages first
         if system_messages:
-            st.markdown("#### 📢 System Announcements")
+            st.markdown(f"#### {config.get_text('sections', 'system_announcements')}")
             for message in system_messages:
                 st.markdown(f"""
                 <div class="chat-message system-message">
-                    <div class="message-header">System</div>
+                    <div class="message-header">{config.get_text('defaults', 'system')}</div>
                     <div class="message-content">{message['content']}</div>
                 </div>
                 """, unsafe_allow_html=True)
             # Display politician messages before party messages
         if politician_messages:
-            st.markdown("#### 👥 Politician Speeches")
+            st.markdown(f"#### {config.get_text('sections', 'politician_speeches')}")
             for message in politician_messages:
     
                 # Find the abbreviation for this party

@@ -1,0 +1,115 @@
+# AI Parliament Frontend Text Configuration
+# This file contains all text content for the application
+
+# Page titles and headers
+titles:
+  app_title: "AI Parliament"
+  welcome_title: "Welcome to AI Parliament"
+  session_title: "AI Parliament Session"
+  configuration_title: "⚙️ Configuration"
+  controls_title: "🎮 Controls"
+
+# Section headers
+sections:
+  llm_settings: "🤖 LLM Settings"
+  parliament_settings: "🏛️ Parliament Settings"
+  party_configuration: "🏢 Party Configuration"
+  mps_configuration: "👥 MPs Configuration"
+  simulation_actions: "Simulation Actions"
+  parliamentary_debate: "Parliamentary Debate"
+  system_announcements: "📢 System Announcements"
+  politician_speeches: "👥 Politician Speeches"
+  party_statements: "🏢 Party Statements"
+  final_summary: "📝 OFFICIAL PARLIAMENTARY ANNOUNCEMENT"
+  final_summary_header: "🏛️ Final Summary of Parliamentary Proceedings"
+  topic_input_section: "### Enter a topic for parliamentary discussion"
+
+# Form labels and placeholders
+labels:
+  model_label: "Model"
+  temperature_label: "Temperature"
+  max_tokens_label: "Max Tokens"
+  num_parties_label: "Number of Parties"
+  party_name_label: "Party Name"
+  abbreviation_label: "Abbreviation"
+  num_mps_label: "Number of MPs"
+  politician_name_label: "Name"
+  politician_role_label: "Role"
+  topic_input_label: "Topic for parliamentary discussion"
+
+# Help texts
+help_texts:
+  temperature_help: "Controls randomness. Lower values are more deterministic."
+  max_tokens_help: "Maximum number of tokens to generate per response."
+  topic_input_help: "Enter a topic or question for the parliament to discuss and vote on."
+
+# Placeholders
+placeholders:
+  topic_input_placeholder: "e.g., 'Renewable Energy Subsidies', 'Privacy Regulation Reform', 'Education Budget'..."
+
+# Button labels
+buttons:
+  start_simulation: "Start Simulation"
+  reset: "Reset"
+  start_discussion: "Start Discussion"
+  run_intra_party: "Run Intra-Party Deliberation"
+  run_inter_party: "Run Inter-Party Debate"
+  run_voting: "Run Voting"
+
+# Status messages
+messages:
+  success:
+    simulation_created: "Simulation created successfully!"
+    topic_set: "Discussion topic set successfully!"
+    intra_party_completed: "Intra-party deliberation completed"
+    inter_party_completed: "Inter-party debate completed"
+    voting_completed: "Voting completed"
+  
+  error:
+    simulation_failed: "Failed to create simulation"
+    topic_failed: "Failed to set discussion topic"
+    intra_party_failed: "Failed to run intra-party deliberation"
+    inter_party_failed: "Failed to run inter-party debate"
+    voting_failed: "Failed to run voting"
+  
+  loading:
+    preparing_topic: "Preparing discussion topic..."
+    running_intra_party: "Running intra-party deliberation..."
+    running_inter_party: "Running inter-party debate..."
+    running_voting: "Running voting..."
+
+# Welcome message
+welcome:
+  message: |
+    ## Welcome to AI Parliament
+    
+    Configure your parliament in the sidebar and click "Start Simulation" to begin.
+    
+    This application simulates parliamentary deliberation, debate, and voting on legislation topics 
+    using AI models to emulate different parties and politicians.
+
+# Chat messages
+chat:
+  party_stance: "**Party Stance:**"
+  voting_results: "📊 **Voting Results:**"
+  total_votes: "Total votes:"
+  votes_in_favor: "Votes in favor:"
+  legislation_passes: "Legislation passes:"
+  yes: "Yes ✅"
+  no: "No ❌"
+  vote: "Vote:"
+  votes: "votes"
+  simulation_summary: "**Simulation Summary:**"
+  starting_discussion: "Starting parliamentary discussion on topic"
+  created_party: "Created party"
+  vote_tally: "Vote Tally"
+  for: "FOR"
+  against: "AGAINST"
+  total_votes_label: "TOTAL VOTES:"
+
+# Default values
+defaults:
+  party_prefix: "Party"
+  politician_prefix: "Politician"
+  role: "Member"
+  system: "System"

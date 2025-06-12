@@ -1,0 +1,88 @@
+# AI Parliament Frontend Configuration
+# This file contains all configuration settings for the application
+
+# LLM Configuration
+llm:
+  default_model: "gpt-4"
+  available_models:
+    - "gpt-3.5-turbo"
+    - "gpt-4"
+    - "gpt-4-turbo"
+    - "gpt-4o"
+    - "gpt-4o-mini"
+  temperature:
+    default: 0.7
+    min: 0.0
+    max: 1.0
+    step: 0.1
+  max_tokens:
+    default: 2000
+    min: 500
+    max: 4000
+    step: 100
+
+# Parliament Configuration
+parliament:
+  parties:
+    default_count: 2
+    min_count: 1
+    max_count: 10
+  mps:
+    default_per_party: 2
+    min_per_party: 1
+    max_per_party: 5
+
+# UI Configuration
+ui:
+  page:
+    title: "AI Parliament"
+    icon: "🏛️"
+    layout: "wide"
+    sidebar_state: "expanded"
+  
+  chat:
+    container_height: 600
+    message_padding: "1.5rem"
+    border_radius: "0.5rem"
+  
+  colors:
+    system_message:
+      background: "#f0f2f6"
+      border: "#4e8cff"
+    party_message:
+      background: "#e6f3ff"
+      border: "#0068c9"
+    politician_message:
+      background: "#f5f5f5"
+      border: "#ff9500"
+    summary_box:
+      border: "#0068c9"
+      background: "#f8f9fa"
+    vote_tally:
+      border: "#dee2e6"
+      background: "#f8f9fa"
+
+# Backend Configuration
+backend:
+  api_url_env: "BACKEND_API_URL"
+  default_api_url: "http://localhost:8000/api"
+
+# Environment Configuration
+environment:
+  docker_env: "DOCKER_ENV"
+  debug_env: "DEBUG"
+  default_docker: false
+  default_debug: false
+
+# Session State Defaults
+session_defaults:
+  simulation_created: false
+  party_names: []
+  party_abbreviations: []
+  politicians_per_party: {}
+  legislation_text: ""
+  intra_party_results: null
+  inter_party_results: null
+  voting_results: null
+  simulation_summary: null
+  chat_messages: []

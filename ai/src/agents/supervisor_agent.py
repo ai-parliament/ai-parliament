@@ -8,7 +8,7 @@ from typing import List, Dict, Any
 
 # Import the simulation modules
 from ..simulation.party_discussion import discuss_legislation, PartyPosition
-from ..simulation.inter_party_debate import conduct_inter_party_debate
+from ..simulation.inter_party_debate import conduct_inter_party_debate, InterPartyDebate
 from ..simulation.voting_system import simulate_voting
 
 class SupervisorAgent(BaseAgent):
@@ -87,7 +87,9 @@ class SupervisorAgent(BaseAgent):
             self.run_intra_party_deliberation()
         
         # Use the conduct_inter_party_debate function from inter_party_debate.py
-        party_positions = conduct_inter_party_debate(self.parties, self.legislation_text, rounds=2)
+        debate = InterPartyDebate(self.parties, self.legislation_text)
+        debate_history = debate.conduct_debate(rounds=2)
+        party_positions = debate.get_final_positions()
         
         # Store the results in a format compatible with the rest of the system
         debate_results = {}
@@ -99,9 +101,21 @@ class SupervisorAgent(BaseAgent):
             if "intra_party_deliberation" in self.simulation_results and party_name in self.simulation_results["intra_party_deliberation"]:
                 self.simulation_results["intra_party_deliberation"][party_name]["supports"] = supports_position
         
+        # Format the debate speeches for frontend display
+        debate_speeches = []
+        for argument in debate_history:
+            debate_speeches.append({
+                "politician": argument.speaker_name,
+                "party": argument.party_name,
+                "content": argument.argument,
+                "supporting": argument.is_supporting,
+                "responding_to": argument.responding_to
+            })
+        
         self.simulation_results["inter_party_debate"] = {
             "party_positions": party_positions,
-            "debate_summary": debate_results
+            "debate_summary": debate_results,
+            "debate_speeches": debate_speeches
         }
         
         # To maintain backward compatibility with tests, ensure debate_results is directly returnable

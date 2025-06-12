@@ -295,11 +295,35 @@ def sidebar_ui():
                 st.error("Failed to create simulation")
         
         if reset_button:
-            # Reset session state
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
-            initialize_session_state()
-            st.experimental_rerun()
+            # Reset session state to defaults - clearing specific session variables
+            # instead of deleting all keys which can cause issues
+            st.session_state.simulation_created = False
+            st.session_state.party_names = []
+            st.session_state.party_abbreviations = []
+            st.session_state.politicians_per_party = {}
+            st.session_state.legislation_text = ""
+            st.session_state.intra_party_results = None
+            st.session_state.inter_party_results = None
+            st.session_state.voting_results = None
+            st.session_state.simulation_summary = None
+            st.session_state.chat_messages = []
+            st.session_state.model_name = "gpt-4"
+            st.session_state.temperature = 0.7
+            st.session_state.max_tokens = 2000
+            st.session_state.num_parties = 2
+            st.session_state.num_mps_per_party = 2
+            # Reinitialize the default party data
+            st.session_state.default_party_data = {
+                "Prawo i Sprawiedliwosc": [
+                    {"name": "Jaroslaw Kaczynski", "role": "Chairman"},
+                    {"name": "Antoni Macierewicz", "role": "Member"}
+                ],
+                "Koalicja Obywatelska": [
+                    {"name": "Donald Tusk", "role": "Chairman"},
+                    {"name": "Rafal Trzaskowski", "role": "Member"}
+                ]
+            }
+            st.rerun()
 
 
 def main_screen():
@@ -428,6 +452,17 @@ def main_screen():
                 
                 if response:
                     st.session_state.inter_party_results = response
+                    
+                    # Add politician speeches if available
+                    if "debate_speeches" in response and response["debate_speeches"]:
+                        for speech in response["debate_speeches"]:
+                            st.session_state.chat_messages.append({
+                                "role": "politician",
+                                "politician": speech["politician"],
+                                "party": speech["party"],
+                                "content": speech["content"],
+                                "supporting": speech["supporting"]
+                            })
                     
                     # Add debate results directly without the header
                     for party_name, response_text in response["debate_results"].items():
@@ -612,9 +647,14 @@ def display_chat():
                 if party_abbr:
                     party_info = f"{message['party']} ({party_abbr})"
                 
+                # Get stance information
+                stance_info = ""
+                if 'supporting' in message:
+                    stance_info = "FOR" if message['supporting'] else "AGAINST"
+                
                 st.markdown(f"""
                 <div class="chat-message politician-message">
-                    <div class="message-header">{message['politician']} ({party_info})</div>
+                    <div class="message-header">{message['politician']} ({party_info}) - {stance_info}</div>
                     <div class="message-content">{message['content']}</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -647,10 +687,59 @@ def display_chat():
                 """, unsafe_allow_html=True)
     
     # Display summary if available, only once at the end
-    if st.session_state.simulation_summary and not summary_messages:
+    if st.session_state.simulation_summary:
         st.markdown("## 📝 OFFICIAL PARLIAMENTARY ANNOUNCEMENT")
+        
+        # Count votes for the vote tally
+        for_count = 0
+        against_count = 0
+        
+        # Track politicians who have already voted to avoid counting twice
+        counted_politicians = set()
+        
+        # Check both intra-party and debate speeches (where 'supporting' is explicitly set)
+        for message in st.session_state.chat_messages:
+            if message['role'] == 'politician':
+                politician_id = f"{message['politician']}_{message['party']}"
+                
+                # Skip if we've already counted this politician
+                if politician_id in counted_politicians:
+                    continue
+                    
+                # If the message has explicit support indicator
+                if 'supporting' in message:
+                    counted_politicians.add(politician_id)
+                    if message['supporting']:
+                        for_count += 1
+                    else:
+                        against_count += 1
+        
+        total_votes = for_count + against_count
+        for_percentage = (for_count / total_votes * 100) if total_votes > 0 else 0
+        against_percentage = (against_count / total_votes * 100) if total_votes > 0 else 0
+        
+        vote_summary_html = f"""
+        <div style="
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        ">
+            <h4 style="border-bottom: 1px solid #dee2e6; padding-bottom: 8px; margin-bottom: 12px;">
+                Vote Tally
+            </h4>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <div><strong>FOR:</strong> {for_count} ({for_percentage:.1f}%)</div>
+                <div><strong>AGAINST:</strong> {against_count} ({against_percentage:.1f}%)</div>
+                <div><strong>TOTAL VOTES:</strong> {total_votes}</div>
+            </div>
+        </div>
+        """
+        
         # Create a styled box for the summary
-        st.markdown("""
+        st.markdown(f"""
         <div style="
             border: 2px solid #0068c9; 
             border-radius: 10px; 
@@ -664,10 +753,11 @@ def display_chat():
                 🏛️ Final Summary of Parliamentary Proceedings
             </h3>
             <div style="font-size: 16px; line-height: 1.6;">
-                {0}
+                {st.session_state.simulation_summary["summary"]}
             </div>
+            {vote_summary_html}
         </div>
-        """.format(st.session_state.simulation_summary["summary"]), unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
 
 def main():

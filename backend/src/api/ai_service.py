@@ -124,9 +124,15 @@ class AIService:
         
         results = self.supervisor.run_inter_party_debate()
         
+        # Get the debate speeches if available
+        debate_speeches = []
+        if "inter_party_debate" in self.supervisor.simulation_results:
+            debate_speeches = self.supervisor.simulation_results["inter_party_debate"].get("debate_speeches", [])
+        
         return {
             "legislation_text": legislation_text,
-            "debate_results": results
+            "debate_results": results,
+            "debate_speeches": debate_speeches
         }
     
     def run_voting(self, legislation_text: str) -> Dict[str, Any]:

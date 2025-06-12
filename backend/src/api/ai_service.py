@@ -64,10 +64,7 @@ class AIService:
             The generated legislation text
         """
         legislation_text = self.agent_loader.generate_legislation(topic)
-        
-        # Store the legislation text in the vector database
-        # self.vector_db.add_legislation_data(topic, legislation_text)
-        
+                
         return legislation_text
     
     def run_simulation(self, legislation_text: str) -> Dict[str, Any]:

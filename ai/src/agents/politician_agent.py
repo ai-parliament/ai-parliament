@@ -60,11 +60,6 @@ class PoliticianAgent(BaseAgent):
         
         response = self.model.invoke(messages)
         
-        # Handle different response formats
-        # if isinstance(response, dict) and "output" in response:
-        #     self.memory.chat_memory.add_ai_message(response["output"])
-        #     return response["output"]
-        
         self.memory.chat_memory.add_ai_message(response.content)
         return response.content
     

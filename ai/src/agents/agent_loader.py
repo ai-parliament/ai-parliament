@@ -1,7 +1,6 @@
 from .politician_agent import PoliticianAgent
 from .party_agent import PartyAgent
 from .supervisor_agent import SupervisorAgent
-from .research_agent import ResearchAgent
 from typing import List, Dict, Any
 
 class AgentLoader:
@@ -13,7 +12,6 @@ class AgentLoader:
         """
         Initialize the agent loader.
         """
-        self.research_agent = ResearchAgent()
         self.parties = {}
         self.politicians = {}
     
@@ -31,9 +29,6 @@ class AgentLoader:
         # Check if we already have this party
         if party_name in self.parties:
             return self.parties[party_name]
-        
-        # Research the party
-        # party_info = self.research_agent.research_party(party_name)
         
         # Create the party agent
         party_agent = PartyAgent(name=party_name, acronym=party_acronym)
@@ -58,9 +53,6 @@ class AgentLoader:
         # Check if we already have this politician
         if full_name in self.politicians:
             return self.politicians[full_name]
-        
-        # Research the politician
-        # politician_info = self.research_agent.research_politician(full_name)
         
         # Split the name
         parts = full_name.split(maxsplit=1)
@@ -165,4 +157,4 @@ class AgentLoader:
         Returns:
             The generated legislation text
         """
-        return self.research_agent.generate_legislation_text(topic)
+        return topic

@@ -7,6 +7,8 @@ from langsmith import Client
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from typing import List, Dict, Any
+from langsmith import traceable
+
 
 class PartyAgent(BaseAgent):
     """
@@ -59,6 +61,7 @@ class PartyAgent(BaseAgent):
         """
         self.party_name = value
     
+    @traceable(name="Add Politician to Party")
     def add_politician(self, full_name: str, role: str = ""):
         """
         Add a politician to the party.
@@ -109,6 +112,8 @@ class PartyAgent(BaseAgent):
         self.discussion_history = opinions
         return opinions
     
+
+    @traceable(name="Formulate Party Opinion")
     def formulate_party_stance(self, legislation_text: str) -> str:
         """
         Formulate the party's stance on a piece of legislation.

@@ -6,11 +6,14 @@ from langsmith import Client
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from typing import List, Dict, Any
+from langsmith import traceable
+
 
 class PoliticianAgent(BaseAgent):
     """
     Agent representing a politician in the AI Parliament system.
     """
+    @traceable(name="Get Politician Opinion")
     def __init__(self, first_name: str, last_name: str, party_name: str = ""):
         """
         Initialize a politician agent.
@@ -40,7 +43,8 @@ class PoliticianAgent(BaseAgent):
         # Get politician's beliefs and set system prompt
         self.beliefs = self._get_beliefs()
         self.system_prompt = self._set_system_prompt()
-    
+        
+    @traceable(name="Get Politician Opinion")
     def answer_question(self, question: str) -> str:
         """
         Answer a question as this politician.

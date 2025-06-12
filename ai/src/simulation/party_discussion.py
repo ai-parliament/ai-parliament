@@ -73,6 +73,7 @@ class PartyDiscussion:
         state['individual_opinions'] = opinions
         return state
     
+    
     def _conduct_debate(self, state: DiscussionState) -> DiscussionState:
         """Node: Politicians respond to each other's opinions"""
         print(f"\n=== Debate in party {state['party_name']} ===")
@@ -128,6 +129,7 @@ class PartyDiscussion:
         state['arguments'] = arguments[:3]  # Take max 3 arguments
         return state
     
+    @traceable(name="Conduct Party Debate")
     def conduct_discussion(self, legislation_text: str) -> PartyPosition:
         """Run the discussion workflow and return party position"""
         

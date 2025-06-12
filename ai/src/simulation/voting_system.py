@@ -46,7 +46,8 @@ class VotingSystem:
         self.party_positions = party_positions
         self.votes: List[Vote] = []
         self.prompt_manager = PromptManager()
-        
+
+    @traceable(name="Conduct Voting")    
     def conduct_vote(self, allow_dissent: bool = True, dissent_probability: float = 0.1) -> VotingResult:
         """
         Conduct the actual vote

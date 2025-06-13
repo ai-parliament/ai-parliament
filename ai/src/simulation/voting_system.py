@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple
 from dataclasses import dataclass
 from collections import defaultdict
+from langsmith import traceable
 try:
     from ..utilities.prompt_manager import PromptManager
 except ImportError:

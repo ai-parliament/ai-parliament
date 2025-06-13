@@ -1,6 +1,7 @@
 from typing import List, Dict, TypedDict, Annotated
 from dataclasses import dataclass
 from langgraph.graph import StateGraph, END
+from langsmith import traceable
 import operator
 try:
     from ..utilities.prompt_manager import PromptManager

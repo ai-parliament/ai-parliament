@@ -179,10 +179,6 @@ def sidebar_ui():
                         "name": politician_name,
                         "role": politician_role
                     })
-                    
-                    # # Add a separator between MPs
-                    # if j < num_politicians - 1:
-                    #     st.markdown("---")
                 
                 politicians_per_party[party_name] = politicians
         
@@ -238,10 +234,27 @@ def sidebar_ui():
                 st.error(config.get_text('messages', 'error', 'simulation_failed'))
         
         if reset_button:
-            # Reset session state to defaults using config manager
+            # Clear ALL session state properly
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
+            
+            # Reinitialize with defaults
             defaults = config.get_session_state_defaults()
             for key, value in defaults.items():
                 st.session_state[key] = value
+            
+            # Force clear the chat messages specifically
+            st.session_state.chat_messages = []
+            
+            # Clear any cached simulation data
+            st.session_state.simulation_created = False
+            st.session_state.legislation_text = ""
+            st.session_state.intra_party_results = None
+            st.session_state.inter_party_results = None
+            st.session_state.voting_results = None
+            st.session_state.simulation_summary = None
+            
+            st.success("Reset complete! Starting fresh.")
             st.rerun()
 
 
@@ -494,11 +507,11 @@ def display_chat():
                     <div class="message-content">{message['content']}</div>
                 </div>
                 """, unsafe_allow_html=True)
-            # Display politician messages before party messages
+            
+        # Display politician messages
         if politician_messages:
             st.markdown(f"#### {config.get_text('sections', 'politician_speeches')}")
             for message in politician_messages:
-    
                 # Find the abbreviation for this party
                 party_abbr = ""
                 if 'party' in message:
@@ -586,46 +599,34 @@ def display_chat():
         for_percentage = (for_count / total_votes * 100) if total_votes > 0 else 0
         against_percentage = (against_count / total_votes * 100) if total_votes > 0 else 0
         
-        vote_summary_html = f"""
-        <div style="
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        ">
-            <h4 style="border-bottom: 1px solid #dee2e6; padding-bottom: 8px; margin-bottom: 12px;">
-                Vote Tally
-            </h4>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                <div><strong>FOR:</strong> {for_count} ({for_percentage:.1f}%)</div>
-                <div><strong>AGAINST:</strong> {against_count} ({against_percentage:.1f}%)</div>
-                <div><strong>TOTAL VOTES:</strong> {total_votes}</div>
+        # Create the final summary container
+        summary_container = st.container()
+        with summary_container:
+            # Main summary box
+            st.markdown(f"""
+            <div style="{config.get_summary_box_style()}">
+                <h3 style="color: #0068c9; border-bottom: 1px solid #dee2e6; padding-bottom: 10px; margin-bottom: 15px;">
+                    🏛️ Final Summary of Parliamentary Proceedings
+                </h3>
+                <div style="font-size: 16px; line-height: 1.6;">
+                    {st.session_state.simulation_summary["summary"]}
+                </div>
             </div>
-        </div>
-        """
-        
-        # Create a styled box for the summary
-        st.markdown(f"""
-        <div style="
-            border: 2px solid #0068c9; 
-            border-radius: 10px; 
-            padding: 20px; 
-            background-color: #f8f9fa;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            margin-bottom: 30px;
-        ">
-            <h3 style="color: #0068c9; border-bottom: 1px solid #dee2e6; padding-bottom: 10px; margin-bottom: 15px;">
-                🏛️ Final Summary of Parliamentary Proceedings
-            </h3>
-            <div style="font-size: 16px; line-height: 1.6;">
-                {st.session_state.simulation_summary["summary"]}
+            """, unsafe_allow_html=True)
+            
+            # Vote tally box (separate from summary)
+            st.markdown(f"""
+            <div style="{config.get_vote_tally_style()}">
+                <h4 style="border-bottom: 1px solid #dee2e6; padding-bottom: 8px; margin-bottom: 12px;">
+                    Vote Tally
+                </h4>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <div><strong>FOR:</strong> {for_count} ({for_percentage:.1f}%)</div>
+                    <div><strong>AGAINST:</strong> {against_count} ({against_percentage:.1f}%)</div>
+                    <div><strong>TOTAL VOTES:</strong> {total_votes}</div>
+                </div>
             </div>
-            {vote_summary_html}
-        </div>
-        """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
 
 
 def main():

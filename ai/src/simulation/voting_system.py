@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple
 from dataclasses import dataclass
 from collections import defaultdict
+from langsmith import traceable
 try:
     from ..utilities.prompt_manager import PromptManager
 except ImportError:
@@ -46,7 +47,8 @@ class VotingSystem:
         self.party_positions = party_positions
         self.votes: List[Vote] = []
         self.prompt_manager = PromptManager()
-        
+
+    @traceable(name="Conduct Voting")    
     def conduct_vote(self, allow_dissent: bool = True, dissent_probability: float = 0.1) -> VotingResult:
         """
         Conduct the actual vote

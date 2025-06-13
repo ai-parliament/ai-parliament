@@ -18,6 +18,8 @@ services:
       - LANGSMITH_PROJECT=${LANGSMITH_PROJECT}
       - LANGSMITH_TRACING=${LANGSMITH_TRACING}
       - GPT_MODEL_NAME=${GPT_MODEL_NAME}
+    volumes:
+      - ./cache:/app/cache
     networks:
       - default
 
@@ -40,6 +42,8 @@ services:
       - LANGSMITH_PROJECT=${LANGSMITH_PROJECT}
       - LANGSMITH_TRACING=${LANGSMITH_TRACING}
       - GPT_MODEL_NAME=${GPT_MODEL_NAME}
+    volumes:
+      - ./cache:/app/cache
     depends_on:
       - backend
     networks:

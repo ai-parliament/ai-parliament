@@ -24,16 +24,25 @@ Supervisor Agent
 ai/
 ├── 📄 pyproject.toml              # Module configuration
 ├── 📄 requirements.txt            # Dependencies
+├── 📄 README.md                   # This documentation
 └── 📁 src/
     ├── 📁 agents/                 # AI agent implementations
+    │   ├── agent_manager.py       # Agent lifecycle management
     │   ├── base_agent.py          # Abstract base class for all agents
+    │   ├── cache_manager.py       # Caching system for agents
+    │   ├── cached_wikipedia.py    # Wikipedia data caching
+    │   ├── parallel_loader.py     # Parallel agent loading
     │   ├── party_agent.py         # Political party agent
     │   ├── politician_agent.py    # Individual politician agent
-    │   └── supervisor_agent.py    # Simulation orchestrator
+    │   ├── supervisor_agent.py    # Simulation orchestrator
+    │   └── warm_cache.py          # Cache warming utilities
+    ├── 📁 api/                    # API integration (reserved for future use)
     ├── 📁 database/               # Data storage and retrieval
-    │   └── vector_database.py     # Vector database for knowledge storage
+    │   └── vector_db.py           # Vector database for knowledge storage
     ├── 📁 simulation/             # Simulation logic
-    │   ├── parliament_simulation.py # Main simulation controller
+    │   ├── inter_party_debate.py  # Cross-party debate orchestration
+    │   ├── party_discussion.py    # Intra-party discussion logic
+    │   ├── party_discussion_langgraph.py # LangGraph-based discussions
     │   └── voting_system.py       # Voting mechanics and tallying
     ├── 📁 utilities/              # Helper functions and utilities
     │   └── prompt_manager.py      # AI prompt management
@@ -99,9 +108,79 @@ Represents individual politicians:
 - Argument generation
 - Vote casting
 
+### Agent Manager (`agent_manager.py`)
+
+Manages the lifecycle of all agents:
+- Agent creation and initialization
+- Resource allocation and cleanup
+- State management across simulation phases
+- Error handling and recovery
+
+**Key Features:**
+- Centralized agent registry
+- Memory management
+- Performance monitoring
+- Graceful shutdown handling
+
+### Cache Manager (`cache_manager.py`)
+
+Optimizes performance through intelligent caching:
+- Response caching for repeated queries
+- Memory-efficient storage
+- Cache invalidation strategies
+- Performance metrics tracking
+
+**Caching Strategies:**
+- LRU (Least Recently Used) eviction
+- Time-based expiration
+- Content-based hashing
+- Selective cache warming
+
+### Cached Wikipedia (`cached_wikipedia.py`)
+
+Provides efficient Wikipedia data access:
+- Local caching of Wikipedia articles
+- Batch data retrieval
+- Content preprocessing
+- Search optimization
+
+**Features:**
+- Article content caching
+- Metadata extraction
+- Search index building
+- Offline capability
+
+### Parallel Loader (`parallel_loader.py`)
+
+Enables concurrent agent operations:
+- Parallel agent initialization
+- Concurrent data loading
+- Thread pool management
+- Synchronization primitives
+
+**Capabilities:**
+- Multi-threaded processing
+- Load balancing
+- Error isolation
+- Progress tracking
+
+### Warm Cache (`warm_cache.py`)
+
+Preloads frequently accessed data:
+- Predictive cache warming
+- Background data loading
+- Performance optimization
+- Resource preallocation
+
+**Warming Strategies:**
+- Popular content preloading
+- Usage pattern analysis
+- Scheduled warming tasks
+- Adaptive warming algorithms
+
 ## 🗄️ Database Integration
 
-### Vector Database (`vector_database.py`)
+### Vector Database (`vector_db.py`)
 
 Handles knowledge storage and retrieval:
 - FAISS-based vector storage
@@ -114,23 +193,52 @@ Handles knowledge storage and retrieval:
 - Scalable storage
 - Real-time updates
 - Context-aware retrieval
+- Persistent storage
+- Batch operations
 
 ## 🎯 Simulation Components
 
-### Parliament Simulation (`parliament_simulation.py`)
+### Party Discussion (`party_discussion.py`)
 
-Main simulation controller:
-- Phase management
-- Agent coordination
-- State tracking
-- Result compilation
+Manages intra-party deliberations:
+- Internal party debate facilitation
+- Consensus building mechanisms
+- Position formation
+- Member coordination
 
-**Simulation Phases:**
-1. **Initialization**: Set up agents and context
-2. **Intra-Party Deliberation**: Internal party discussions
-3. **Inter-Party Debate**: Cross-party negotiations
-4. **Voting**: Individual vote collection
-5. **Results**: Summary generation
+**Key Features:**
+- Structured discussion flow
+- Argument tracking
+- Decision recording
+- Conflict resolution
+
+### Party Discussion LangGraph (`party_discussion_langgraph.py`)
+
+LangGraph-based implementation of party discussions:
+- Graph-based conversation flow
+- State management
+- Conditional branching
+- Advanced orchestration
+
+**LangGraph Features:**
+- Visual workflow representation
+- Complex conversation patterns
+- State persistence
+- Error handling and recovery
+
+### Inter-Party Debate (`inter_party_debate.py`)
+
+Orchestrates cross-party negotiations:
+- Multi-party debate management
+- Position exchange
+- Negotiation facilitation
+- Compromise identification
+
+**Debate Mechanics:**
+- Turn-based speaking
+- Argument presentation
+- Counter-argument handling
+- Consensus seeking
 
 ### Voting System (`voting_system.py`)
 
@@ -145,6 +253,8 @@ Handles the democratic voting process:
 - Party-wise analysis
 - Majority determination
 - Detailed breakdowns
+- Vote validation
+- Result certification
 
 ## 🛠️ Utilities
 

@@ -22,6 +22,7 @@ backend/
 ├── 📄 pyproject.toml             # Module configuration
 ├── 📄 requirements.txt           # Dependencies
 ├── 📄 run_simulation.py          # Standalone simulation runner
+├── 📄 README.md                  # This documentation
 └── 📁 src/
     ├── 📄 main.py                # FastAPI application entry point
     └── 📁 api/

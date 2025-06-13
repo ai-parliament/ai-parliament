@@ -22,6 +22,7 @@ frontend/
 ├── 📄 Dockerfile                    # Container configuration
 ├── 📄 pyproject.toml                # Module configuration
 ├── 📄 requirements.txt              # Dependencies
+├── 📄 README.md                     # This documentation
 ├── 📁 config/                       # Configuration files
 │   ├── app_config.yml               # Application settings
 │   ├── default_parties.yml          # Pre-configured parties

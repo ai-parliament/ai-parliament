@@ -89,21 +89,30 @@ To create a democratic, transparent, and interactive model simulating parliament
 ## 📁 Project Structure
 
 ```
-ai-parliament/
+ai-parliament-v2/
 ├── 📁 ai/                                  # AI agents and simulation logic
 │   ├── 📄 pyproject.toml                  # AI module configuration
 │   ├── 📄 requirements.txt                # AI dependencies
+│   ├── 📄 README.md                       # AI module documentation
 │   └── 📁 src/
 │       ├── 📁 agents/                     # AI agent implementations
+│       │   ├── agent_manager.py           # Agent lifecycle management
 │       │   ├── base_agent.py              # Base class for all agents
+│       │   ├── cache_manager.py           # Caching system for agents
+│       │   ├── cached_wikipedia.py        # Wikipedia data caching
+│       │   ├── parallel_loader.py         # Parallel agent loading
 │       │   ├── party_agent.py             # Political party agent
 │       │   ├── politician_agent.py        # Individual politician agent
-│       │   └── supervisor_agent.py        # Simulation supervisor
+│       │   ├── supervisor_agent.py        # Simulation supervisor
+│       │   └── warm_cache.py              # Cache warming utilities
+│       ├── 📁 api/                        # API integration (empty)
 │       ├── 📁 database/                   # Database integrations
-│       │   └── vector_database.py         # Vector database for knowledge storage
+│       │   └── vector_db.py               # Vector database for knowledge storage
 │       ├── 📁 simulation/                 # Simulation orchestration
-│       │   ├── parliament_simulation.py   # Main simulation controller
-│       │   └── voting_system.py          # Voting logic and tallying
+│       │   ├── inter_party_debate.py      # Cross-party debate logic
+│       │   ├── party_discussion.py        # Intra-party discussion
+│       │   ├── party_discussion_langgraph.py # LangGraph-based discussions
+│       │   └── voting_system.py           # Voting logic and tallying
 │       ├── 📁 utilities/                  # Utility functions
 │       │   └── prompt_manager.py          # Manages AI prompts
 │       └── 📄 prompts.yml                 # AI prompt templates
@@ -112,15 +121,20 @@ ai-parliament/
 │   ├── 📄 pyproject.toml                  # Backend module configuration
 │   ├── 📄 requirements.txt                # Backend dependencies
 │   ├── 📄 run_simulation.py               # Standalone simulation runner
+│   ├── 📄 README.md                       # Backend documentation
 │   └── 📁 src/
 │       ├── 📄 main.py                     # FastAPI application entry point
 │       └── 📁 api/
 │           ├── ai_service.py              # AI service integration
 │           └── routes.py                  # API endpoints and routing
+├── 📁 data/                               # Data storage and management
+│   ├── 📄 README.md                       # Data directory documentation
+│   └── 📁 vector_db/                      # Vector database files
 ├── 📁 frontend/                           # Streamlit web interface
 │   ├── 📄 Dockerfile                      # Frontend container configuration
 │   ├── 📄 pyproject.toml                  # Frontend module configuration
 │   ├── 📄 requirements.txt                # Frontend dependencies
+│   ├── 📄 README.md                       # Frontend documentation
 │   ├── 📁 config/                         # Configuration files
 │   │   ├── app_config.yml                 # Application settings
 │   │   ├── default_parties.yml            # Default political parties
@@ -128,8 +142,14 @@ ai-parliament/
 │   └── 📁 src/
 │       ├── 📄 app.py                      # Main Streamlit application
 │       └── 📄 config_manager.py           # Configuration management
+├── 📁 tests/                              # Test files and results
+│   ├── 📄 README.md                       # Testing documentation
+│   ├── 📄 party_discussion_test.ipynb     # Jupyter notebook tests
+│   └── 📁 test_results/                   # Test output files
+│       └── party_discussion_result3.txt   # Sample test results
+├── 📁 cache/                              # Runtime cache directory (created by Docker)
 ├── 📄 docker-compose.yml                  # Multi-container orchestration
-├── 📄 .env                                # Environment variables
+├── 📄 .env                                # Environment variables (create from .env.example)
 ├── 📄 .gitignore                          # Git ignore rules
 └── 📄 README.md                           # Project documentation
 ```
@@ -316,9 +336,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Getting Help
 
-- 📖 Check the individual README files in each folder
+- 📖 Check the module-specific README files:
+  - [AI Module Issues](ai/README.md#-troubleshooting)
+  - [Backend Issues](backend/README.md#-troubleshooting)
+  - [Frontend Issues](frontend/README.md#-troubleshooting)
+  - [Testing Issues](tests/README.md#-debugging-tests)
+  - [Data Issues](data/README.md#-troubleshooting)
 - 🐛 Open an issue on GitHub
 - 💬 Join our community discussions
+
+## 📖 Documentation Structure
+
+Each module has its own comprehensive README file:
+
+- **[AI Module](ai/README.md)** - Detailed documentation of AI agents, simulation components, and utilities
+- **[Backend](backend/README.md)** - FastAPI service documentation, API endpoints, and integration guides
+- **[Frontend](frontend/README.md)** - Streamlit interface documentation, configuration, and customization
+- **[Tests](tests/README.md)** - Testing documentation, test execution, and result analysis
+- **[Data](data/README.md)** - Data management, vector database, and storage documentation
 
 ## 🙏 Acknowledgments
 

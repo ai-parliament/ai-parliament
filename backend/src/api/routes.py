@@ -105,6 +105,26 @@ def get_simulation_summary():
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+# backend/src/api/routes.py
+@router.get("/api/cache/stats")
+async def get_cache_stats():
+    """Get cache statistics"""
+    from ai.src.agents.cache_manager import cache_manager
+    return cache_manager.get_cache_stats()
+
+@router.post("/api/cache/clear")
+async def clear_cache(max_age_days: int = 30):
+    """Clear old cache entries"""
+    from ai.src.agents.cache_manager import cache_manager
+    cleared = cache_manager.clear_old_cache(max_age_days)
+    return {"cleared": cleared}
+
+@router.post("/api/cache/warm")
+async def warm_cache(party_names: List[str] = None):
+    """Warm cache for specific parties"""
+    # Implementation of cache warming
+    pass
 
 
 def create_app():

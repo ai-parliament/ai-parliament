@@ -3,11 +3,12 @@ from .base_agent import BaseAgent
 from .politician_agent import PoliticianAgent
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.agents import create_tool_calling_agent, AgentExecutor
-from langsmith import Client
+from langsmith import Client, traceable
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from typing import List, Dict, Any
-from langsmith import traceable
+from .cache_manager import cache_manager
+from .cached_wikipedia import CachedWikipediaTool
 
 
 class PartyAgent(BaseAgent):
@@ -22,7 +23,19 @@ class PartyAgent(BaseAgent):
             name: The name of the party
             acronym: The acronym of the party
         """
-        super().__init__()
+        # Check cache first
+        cached_data = cache_manager.get_party(name, acronym)
+        
+        if cached_data:
+            print(f"✅ Loaded party {name} from cache!")
+            self.party_info = cached_data['party_info']
+            self._cached_politicians_data = cached_data.get('politicians_data', [])
+            super().__init__()
+        else:
+            print(f"🔄 Initializing party {name}...")
+            super().__init__()
+            self._cached_politicians_data = []
+        
         self.party_name = name
         self.party_acronym = acronym
         
@@ -30,8 +43,16 @@ class PartyAgent(BaseAgent):
         self.politicians: List[PoliticianAgent] = []
         self.discussion_history: List[Dict[str, str]] = []
         
+        # Only fetch party info if not cached
+        if not hasattr(self, 'party_info'):
+            self.party_info = self._get_party_info()
+            # Save to cache
+            cache_manager.save_party(name, acronym, {
+                'party_info': self.party_info,
+                'politicians_data': []
+            })
+        
         # Set up agent
-        self.party_info = self._get_party_info()
         self.system_prompt = self._set_system_prompt()
         self.tools = self._get_all_tools()
         self.agent = self._setup_agent()
@@ -82,6 +103,22 @@ class PartyAgent(BaseAgent):
         politician.name = full_name  
         politician.role = role
         self.politicians.append(politician)
+        
+        # Update party cache with new politician
+        current_cache = cache_manager.get_party(self.party_name, self.party_acronym) or {}
+        politicians_data = current_cache.get('politicians_data', [])
+        politicians_data.append({
+            'full_name': full_name,
+            'first_name': first_name,
+            'last_name': last_name,
+            'role': role
+        })
+        
+        cache_manager.save_party(self.party_name, self.party_acronym, {
+            'party_info': self.party_info,
+            'politicians_data': politicians_data
+        })
+        
         print(f"Added politician: {full_name} to party {self.party_name}")
     
     def get_politicians_opinions(self, legislation_text: str) -> List[Dict[str, str]]:
@@ -244,15 +281,21 @@ class PartyAgent(BaseAgent):
     
     def _setup_wikipedia_tool(self) -> WikipediaQueryRun:
         """
-        Set up the Wikipedia tool.
+        Set up the Wikipedia tool with caching.
         
         Returns:
             A configured Wikipedia query tool
         """
-        wiki_wrapper = WikipediaAPIWrapper(lang="pl")
-        return WikipediaQueryRun(api_wrapper=wiki_wrapper)
+        cached_tool = CachedWikipediaTool(cache_manager, lang="pl")
+        return cached_tool.as_tool()
     
     def update_members_on_legislation(self, legislation: str):
+        """
+        Update all party members on the legislation text.
+        
+        Args:
+            legislation: The text of the legislation
+        """
         for politician in self.politicians:
             politician.set_legislation_beliefs(legislation)
 
